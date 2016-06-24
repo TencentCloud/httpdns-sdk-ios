@@ -17,6 +17,17 @@
 
 1. 更换灯塔版本，兼容MSDK2.14及以上版本
 
+	灯塔初始化代码更改为：
+
+    	//已正常接入MSDK的游戏无需关注以下代码，未接入MSDK的外部APP调用以下代码注册灯塔
+    	//******************************
+    	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+    	NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    	NSString *appid = dic[@"COOPERATOR_APPID "];
+    	[BeaconBaseInterface setAppKey:appid];
+    	[BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
+    	//******************************
+
 2. 支持only-ipv6
 
 ==============================修改历史============================================ 1.0.6
@@ -55,7 +66,7 @@
 | DNS_ID | String | 参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |
 | DNS_KEY | String | 参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |	
 
-2.3 在AppDelegate.m中引入头文件#import <MSDK/MSDK.h>
+2.3 在AppDelegate.m中引入头文件 #import &lt;/MSDK/MSDK.h&gt;
 
 2.4 在application:didFinishLaunchingWithOptions:加入注册灯塔代码
 
@@ -68,7 +79,7 @@
     [AnalyticsInterface enableAnalytics:@"" gatewayIP:nil];
     //******************************
 
-2.5 在需要使用Dns的地方引入Dns头文件#import <MSDKDns/MSDKDns.h>，传入域名调用接口，具体调用可参考Demo中DnsVC.m dnsButtonDidClicked:方法
+2.5 在需要使用Dns的地方引入Dns头文件#import &lt;/MSDKDns/MSDKDns.h&gt;，传入域名调用接口，具体调用可参考Demo中DnsVC.m dnsButtonDidClicked:方法
 
 
 ==============================修改历史============================================ 1.0.3
