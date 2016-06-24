@@ -1,4 +1,3 @@
-# httpdns-ios-sdk
 # MSDKDns介绍 #
 ----
 
@@ -43,19 +42,19 @@ MSDKDns依赖MSDK2.14.0i及其以上版本，接入MSDKDns之前必须接入MSDK
 在info.plist中配置允许http声明，具体配置如下：
 
 | Key        | Type           | Value  |
-| ------------- |:-------------:| -----------------:|
-| IS_COOPERATOR      | Boolean | 外部应用填“YES”<br>内部应用填“NO” |
-| QQAppID      | String      |   腾讯内部应用对应的QQAppid |
-| COOPERATOR_APPID | String      |    外部应用对应的上报appid，见key_ios.txt中 |
-| TIME_OUT | Number      |    请求httpdns超时设定时间<br>单位：ms |
-| DNS_ID | String      |    参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |
-| DNS_KEY | String      |    参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |	
+| ------------- |:-------------:| -------------:|
+| IS_COOPERATOR | Boolean | 外部应用填“YES”<br>内部应用填“NO” |
+| QQAppID | String | 腾讯内部应用对应的QQAppid |
+| COOPERATOR_APPID | String | 外部应用对应的上报appid，见key_ios.txt中 |
+| TIME_OUT | Number | 请求httpdns超时设定时间<br>单位：ms |
+| DNS_ID | String | 参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |
+| DNS_KEY | String | 参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |	
 
 ## 4. API及使用示例
 
 ### 4.1 获取IP: WGGetHostByName
 
-#### - 概述
+#### 概述
 
 引入头文件，调用WGGetHostByName接口会返回IP数组。
 
@@ -66,7 +65,7 @@ MSDKDns依赖MSDK2.14.0i及其以上版本，接入MSDKDns之前必须接入MSDK
      */
     std::vector<unsigned char*> WGGetHostByName(unsigned char* domain);
 
-#### - 示例代码
+#### 示例代码
 
 接口调用示例：
 
@@ -79,7 +78,7 @@ MSDKDns依赖MSDK2.14.0i及其以上版本，接入MSDKDns之前必须接入MSDK
 
 ### 4.2 控制台日志: WGOpenMSDKDnsLog
 
-#### - 概述
+#### 概述
 
 游戏可以通过开关控制是否打印MSDKDns相关的Log，**注意和MSDKLog区分**。
 
@@ -89,7 +88,7 @@ MSDKDns依赖MSDK2.14.0i及其以上版本，接入MSDKDns之前必须接入MSDK
      */
     void WGOpenMSDKDnsLog(bool enabled);
 
-#### - 示例代码
+#### 示例代码
 
 接口调用示例：
 
@@ -97,4 +96,11 @@ MSDKDns依赖MSDK2.14.0i及其以上版本，接入MSDKDns之前必须接入MSDK
 
 ## 5. 注意事项
 
-1. 当httpdns解析失败时，WGGetHostByName接口会返回为空，此时业务再次请求一次即可，或者走业务原本的解析逻辑。
+异常情况下，httpdns可能会解析失败：
+
+表现形式为：WGGetHostByName接口返回为空
+
+解决方案：
+
+1. 业务再次请求一次WGGetHostByName即可，或者
+2. 走业务原本的解析逻辑。
