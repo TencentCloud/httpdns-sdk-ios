@@ -42,7 +42,7 @@ MSDKDns依赖MSDK2.14.0i及其以上版本，接入MSDKDns之前必须接入MSDK
 在info.plist中配置允许http声明，具体配置如下：
 
 | Key        | Type           | Value  |
-| ------------- |:-------------:| -------------:|
+| ------------- |-------------| -------------|
 | IS_COOPERATOR | Boolean | 外部应用填“YES”<br>内部应用填“NO” |
 | QQAppID | String | 腾讯内部应用对应的QQAppid |
 | COOPERATOR_APPID | String | 外部应用对应的上报appid，见key_ios.txt中 |
