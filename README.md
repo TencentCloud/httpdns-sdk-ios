@@ -48,7 +48,7 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
     //******************************
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
     NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    NSString *appid = dic[@"COOPERATOR_APPID "];
+    NSString *appid = dic[@"COOPERATOR_APPID"];
     [BeaconBaseInterface setAppKey:appid];
     [BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
     //******************************
