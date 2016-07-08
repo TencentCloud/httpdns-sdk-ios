@@ -8,7 +8,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.0.7.3i"
+#define MSDKDns_Version @"1.0.7.4i"
 
 #import <Foundation/Foundation.h>
 #include "MSDKDnsObserver.h"

@@ -4,7 +4,7 @@
 <dict>
 
  <key>com.tencent.rdm.uuid</key>
-<string>af51b938-cbe0-46a2-bc35-490f2d4d1fc5</string>
+<string>6d159df7-d5ed-4731-9a53-46fabcf703cc</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -34,7 +34,7 @@
 	<key>HTTP_DNS_SERVER</key>
 	<string></string>
 	<key>IS_COOPERATOR</key>
-	<false/>
+	<true/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -60,5 +60,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>Debug</key>
+	<true/>
 </dict>
 </plist>

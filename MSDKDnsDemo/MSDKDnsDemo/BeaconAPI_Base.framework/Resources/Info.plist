@@ -4,7 +4,10 @@
 <dict>
 
  <key>com.tencent.rdm.uuid</key>
-<string>af51b938-cbe0-46a2-bc35-490f2d4d1fc5</string>
+<string>6d159df7-d5ed-4731-9a53-46fabcf703cc</string>
+
+ <key>com.tencent.rdm.uuid</key>
+<string>4a97835f-8605-403a-80ac-1a34d4ede9e3</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

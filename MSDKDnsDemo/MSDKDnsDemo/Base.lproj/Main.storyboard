@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="InS-q0-CFI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G19a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="InS-q0-CFI">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -72,6 +72,17 @@
                                             <action selector="doPerformanceTest:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nRf-jY-X3d"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Q49-1R-t0q">
+                                        <rect key="frame" x="57" y="282" width="206" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Load H5 Test">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doLoadH5Test:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="XDB-lD-7Lp"/>
+                                            <segue destination="obO-YA-D0w" kind="push" id="cSX-YS-sr9"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -85,7 +96,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="228" y="368"/>
+            <point key="canvasLocation" x="96" y="368"/>
+        </scene>
+        <!--H5VC-->
+        <scene sceneID="gJ2-Yh-tHj">
+            <objects>
+                <viewController id="obO-YA-D0w" userLabel="H5VC" customClass="H5DnsVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="32p-5M-R8f">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="H5内嵌IP测试" id="G6f-pm-WLd" userLabel="H5Navigation item"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pCB-cj-afS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="505" y="368"/>
         </scene>
     </scenes>
 </document>

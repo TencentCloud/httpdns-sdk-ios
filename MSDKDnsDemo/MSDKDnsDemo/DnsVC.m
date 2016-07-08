@@ -78,7 +78,7 @@
 - (IBAction)doPerformanceTest:(id)sender
 {
     NSString *domain1 = @"www.qq.com";
-    //MSDKDns::GetInstance()->WGGetHostByName((unsigned char *)[domain1 UTF8String]);
+
     std::vector<unsigned char*> result1 =
     MSDKDns::GetInstance()->WGGetHostByName((unsigned char *)[domain1 UTF8String]);
     NSMutableString *ipsStr1 = [NSMutableString stringWithString:@""];
@@ -122,6 +122,11 @@
         [alertView show];
     });
 
+}
+
+- (IBAction)doLoadH5Test:(id)sender
+{
+    
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
