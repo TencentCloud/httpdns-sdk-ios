@@ -84,10 +84,6 @@ static NSSet *H5CachingSupportedSchemes;
  */
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
-    static NSUInteger requestCount = 0;
-
-    // Read .png from request
-    NSLog(@"Request #%lu: URL = %@", (unsigned long)requestCount++, request);
     // 防止循环拦截的标示
     if ([NSURLProtocol propertyForKey:@"MyURLProtocolHandledKey" inRequest:
          request])
@@ -138,11 +134,10 @@ static NSSet *H5CachingSupportedSchemes;
 {
     NSMutableURLRequest *newRequest;
     NSString *fileExtension = [[self.request URL] absoluteString];
-    
-    if ([fileExtension containsString:@".png"] || [fileExtension containsString:@".jpg"] || [fileExtension containsString:@".css"])
+    if (([fileExtension rangeOfString:@".png"].location != NSNotFound) || ([fileExtension rangeOfString:@".jpg"].location != NSNotFound) || ([fileExtension rangeOfString:@".css"].location != NSNotFound))
     {
         // 修改了请求的头部信息，同步/异步请求
-        newRequest = [[H5ContentURLProtocol convertToNewRequest:self.request isSynchronous:NO] mutableCopy];
+        newRequest = [[H5ContentURLProtocol convertToNewRequest:self.request] mutableCopy];
     } else {
         newRequest = [self.request mutableCopy];
     }
@@ -285,82 +280,28 @@ static NSSet *H5CachingSupportedSchemes;
 
 #pragma mark - HTTPDNS Conversion
 /**
- *  同步或者异步转换URL请求
+ *  转换URL请求
  *
  *  @param oldRequest     待转换的URL请求
- *  @param isSynchronised 是否同步，同步：是；异步：否
  *
  *  @return 返回转换过后的URL请求
  */
-+ (NSURLRequest *)convertToNewRequest:(NSURLRequest *)oldRequest isSynchronous:(BOOL)isSynchronised
-{
-
-    NSLog(@"Find element Resources");
-
-    // Convert request to NSString URL
-    NSString *url = [[oldRequest URL] absoluteString];
-
-    NSLog(@"[Unconverted]: Absolute URL : %@", url);
-
++ (NSURLRequest *)convertToNewRequest:(NSURLRequest *)oldRequest {
     NSString *hostName = [[oldRequest URL] host];
     NSString *httpHostName = [NSString stringWithFormat:@"http://%@", hostName];
     NSMutableURLRequest *mutableReq = [oldRequest mutableCopy];
-
-    /**
-     *   File path
-     */
     NSString *filePath = [[oldRequest URL] path];
-    NSLog(@"[H5ContentURLProtocol] file path is %@", filePath);
-    NSString *cachedFullPath;
 
-    // If cached in the dict
+    NSString *convertedHost = [[HttpDNS shareInstance] getHostByName:httpHostName];
     
-        // It is a unknown host
-    if (isSynchronised)
-    {
-        NSString *convertedHost =
-        [[HttpDNS shareInstance] getHostByNameSync:httpHostName];
-        
-        // Add hostName(Key) and convertedHost(Object) to dict
-        cachedFullPath = [convertedHost stringByAppendingString:filePath];
-        [mutableReq setURL:[NSURL URLWithString:cachedFullPath]];
-        NSLog(@"[Converted_SYN]Absolute url: %@", cachedFullPath);
-    } else {
-        // Send Asynchronous Request
-        __block BOOL finished = NO;
-        [[HttpDNS shareInstance] getHostByNameAsync:httpHostName
-                                        dnsCallback:^(
-                                                      NSString *resultUrl) {
-                                            NSString *cachedFullPath =
-                                            [resultUrl stringByAppendingString:filePath];
-                                            [mutableReq setURL:[NSURL URLWithString:cachedFullPath]];
-                                            NSLog(@"[Converted_ASYN] Absolute URL %@", cachedFullPath);
-                                            finished = YES;
-                                        }];
-        while (!finished)
-        {
-            // wait 1 second for the task to finish
-            [[NSRunLoop currentRunLoop]runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1]];
-        }
-        //RunLoop在同步并发请求下会有坑，建议改写成如下同步等待
-        /*
-         dispatch_semaphore_t sema_done = dispatch_semaphore_create(0);
-         [[HttpDNS shareInstance] getHostByNameAsync:url dnsCallback:^(NSString *resultUrl) {
-         [mutableReq setURL:[NSURL URLWithString:resultUrl]];
-         dispatch_semaphore_signal(sema_done);
-         }];
-         
-         dispatch_semaphore_wait(sema_done, DISPATCH_TIME_FOREVER);
-         dispatch_release(sema_done);
-         */
-    }
+    NSString *cachedFullPath = [convertedHost stringByAppendingString:filePath];
+    [mutableReq setURL:[NSURL URLWithString:cachedFullPath]];
+    
     NSMutableDictionary *headers = [mutableReq.allHTTPHeaderFields mutableCopy];
 
     [headers setObject:hostName forKey:@"Host"];
     mutableReq.allHTTPHeaderFields = headers;
     [mutableReq setValue:hostName forHTTPHeaderField:@"Host"];
-    NSLog(@"[Converted_Syn_Asyn] Converted URL in request: %@", [[mutableReq URL]absoluteString]);
-
     return mutableReq;
 }
 

@@ -29,8 +29,6 @@
 		4426DD591C294083007D0A9E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD581C294083007D0A9E /* libsqlite3.tbd */; };
 		4426DD5B1C29408A007D0A9E /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD5A1C294089007D0A9E /* libxml2.tbd */; };
 		4426DD6D1C2942B6007D0A9E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD6C1C2942B6007D0A9E /* libc++.tbd */; };
-		447FCFC11B4932D400142941 /* DnsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447FCFBF1B4932D400142941 /* DnsVC.m */; };
-		44AF5FE51B96EB97001B2E65 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AF5FE41B96EB97001B2E65 /* icon.png */; };
 		44F12A3A1B48E52A00812340 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F12A391B48E52A00812340 /* main.m */; };
 		44F12A3D1B48E52A00812340 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F12A3C1B48E52A00812340 /* AppDelegate.m */; };
 		44F12A431B48E52A00812340 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F12A411B48E52A00812340 /* Main.storyboard */; };
@@ -52,6 +50,16 @@
 		44F12A871B48E7FE00812340 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A861B48E7FE00812340 /* AdSupport.framework */; };
 		44F12A8A1B48E88500812340 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A891B48E88500812340 /* CoreLocation.framework */; };
 		44F12A8C1B48E8A800812340 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A8B1B48E8A800812340 /* Security.framework */; };
+		505FAED21D3E136F002C1C6D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 505FAED11D3E136F002C1C6D /* icon.png */; };
+		505FAEE41D3E138A002C1C6D /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAED51D3E138A002C1C6D /* GCDAsyncSocket.m */; };
+		505FAEE51D3E138A002C1C6D /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAED71D3E138A002C1C6D /* GCDAsyncUdpSocket.m */; };
+		505FAEE61D3E138A002C1C6D /* H5ContentURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAED91D3E138A002C1C6D /* H5ContentURLProtocol.m */; };
+		505FAEE71D3E138A002C1C6D /* H5DnsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAEDB1D3E138A002C1C6D /* H5DnsViewController.m */; };
+		505FAEE81D3E138A002C1C6D /* HttpDNS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 505FAEDD1D3E138A002C1C6D /* HttpDNS.mm */; };
+		505FAEE91D3E138A002C1C6D /* HttpDnsTCP.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAEDF1D3E138A002C1C6D /* HttpDnsTCP.m */; };
+		505FAEEA1D3E138A002C1C6D /* HttpDnsUDP.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAEE11D3E138A002C1C6D /* HttpDnsUDP.m */; };
+		505FAEEB1D3E138A002C1C6D /* HttpDnsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAEE31D3E138A002C1C6D /* HttpDnsViewController.m */; };
+		505FAEEE1D3E1394002C1C6D /* LabelWithPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAEED1D3E1394002C1C6D /* LabelWithPickView.m */; };
 		50A0FEDF1D0E8C6A004C502B /* BeaconAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */; };
 		5F6AA05C1B57ACF800C6D8D6 /* MSDKDns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6AA05B1B57ACF800C6D8D6 /* MSDKDns.framework */; };
 /* End PBXBuildFile section */
@@ -81,9 +89,6 @@
 		4426DD581C294083007D0A9E /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		4426DD5A1C294089007D0A9E /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		4426DD6C1C2942B6007D0A9E /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		447FCFBE1B4932D400142941 /* DnsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DnsVC.h; sourceTree = "<group>"; };
-		447FCFBF1B4932D400142941 /* DnsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DnsVC.m; sourceTree = "<group>"; };
-		44AF5FE41B96EB97001B2E65 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		44F12A341B48E52A00812340 /* MSDKDnsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSDKDnsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F12A381B48E52A00812340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44F12A391B48E52A00812340 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -110,7 +115,26 @@
 		44F12A861B48E7FE00812340 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		44F12A891B48E88500812340 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		44F12A8B1B48E8A800812340 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BeaconAPI_Base.framework; path = MSDKDnsDemo/BeaconAPI_Base.framework; sourceTree = "<group>"; };
+		505FAED11D3E136F002C1C6D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		505FAED41D3E138A002C1C6D /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		505FAED51D3E138A002C1C6D /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		505FAED61D3E138A002C1C6D /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		505FAED71D3E138A002C1C6D /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		505FAED81D3E138A002C1C6D /* H5ContentURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H5ContentURLProtocol.h; sourceTree = "<group>"; };
+		505FAED91D3E138A002C1C6D /* H5ContentURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = H5ContentURLProtocol.m; sourceTree = "<group>"; };
+		505FAEDA1D3E138A002C1C6D /* H5DnsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H5DnsViewController.h; sourceTree = "<group>"; };
+		505FAEDB1D3E138A002C1C6D /* H5DnsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = H5DnsViewController.m; sourceTree = "<group>"; };
+		505FAEDC1D3E138A002C1C6D /* HttpDNS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDNS.h; sourceTree = "<group>"; };
+		505FAEDD1D3E138A002C1C6D /* HttpDNS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HttpDNS.mm; sourceTree = "<group>"; };
+		505FAEDE1D3E138A002C1C6D /* HttpDnsTCP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDnsTCP.h; sourceTree = "<group>"; };
+		505FAEDF1D3E138A002C1C6D /* HttpDnsTCP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDnsTCP.m; sourceTree = "<group>"; };
+		505FAEE01D3E138A002C1C6D /* HttpDnsUDP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDnsUDP.h; sourceTree = "<group>"; };
+		505FAEE11D3E138A002C1C6D /* HttpDnsUDP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDnsUDP.m; sourceTree = "<group>"; };
+		505FAEE21D3E138A002C1C6D /* HttpDnsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDnsViewController.h; sourceTree = "<group>"; };
+		505FAEE31D3E138A002C1C6D /* HttpDnsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDnsViewController.m; sourceTree = "<group>"; };
+		505FAEEC1D3E1394002C1C6D /* LabelWithPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelWithPickView.h; sourceTree = "<group>"; };
+		505FAEED1D3E1394002C1C6D /* LabelWithPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelWithPickView.m; sourceTree = "<group>"; };
+		50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BeaconAPI_Base.framework; sourceTree = "<group>"; };
 		5F6AA05B1B57ACF800C6D8D6 /* MSDKDns.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MSDKDns.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,7 +183,7 @@
 		44AF5FE31B96EB97001B2E65 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				44AF5FE41B96EB97001B2E65 /* icon.png */,
+				505FAED11D3E136F002C1C6D /* icon.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -167,7 +191,6 @@
 		44F12A2B1B48E52A00812340 = {
 			isa = PBXGroup;
 			children = (
-				50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */,
 				44F12A361B48E52A00812340 /* MSDKDnsDemo */,
 				44F12A501B48E52A00812340 /* MSDKDnsDemoTests */,
 				44F12A351B48E52A00812340 /* Products */,
@@ -190,8 +213,13 @@
 				44F12A881B48E80400812340 /* Librarys */,
 				44F12A3B1B48E52A00812340 /* AppDelegate.h */,
 				44F12A3C1B48E52A00812340 /* AppDelegate.m */,
-				447FCFBE1B4932D400142941 /* DnsVC.h */,
-				447FCFBF1B4932D400142941 /* DnsVC.m */,
+				505FAEEC1D3E1394002C1C6D /* LabelWithPickView.h */,
+				505FAEED1D3E1394002C1C6D /* LabelWithPickView.m */,
+				505FAEE21D3E138A002C1C6D /* HttpDnsViewController.h */,
+				505FAEE31D3E138A002C1C6D /* HttpDnsViewController.m */,
+				505FAEF01D3E1401002C1C6D /* Socket */,
+				505FAEF11D3E140B002C1C6D /* H5 */,
+				505FAED31D3E138A002C1C6D /* GCD */,
 				44F12A411B48E52A00812340 /* Main.storyboard */,
 				44F12A441B48E52A00812340 /* Images.xcassets */,
 				44F12A461B48E52A00812340 /* LaunchScreen.xib */,
@@ -237,6 +265,7 @@
 				4426DD541C294073007D0A9E /* libstdc++.tbd */,
 				4426DD521C29406A007D0A9E /* libz.tbd */,
 				4426DD501C294063007D0A9E /* libstdc++.6.0.9.tbd */,
+				50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */,
 				44F12A861B48E7FE00812340 /* AdSupport.framework */,
 				44F12A841B48E7F300812340 /* QuartzCore.framework */,
 				44F12A821B48E7EC00812340 /* CoreText.framework */,
@@ -254,6 +283,41 @@
 				44F12A891B48E88500812340 /* CoreLocation.framework */,
 			);
 			name = Librarys;
+			sourceTree = "<group>";
+		};
+		505FAED31D3E138A002C1C6D /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				505FAED41D3E138A002C1C6D /* GCDAsyncSocket.h */,
+				505FAED51D3E138A002C1C6D /* GCDAsyncSocket.m */,
+				505FAED61D3E138A002C1C6D /* GCDAsyncUdpSocket.h */,
+				505FAED71D3E138A002C1C6D /* GCDAsyncUdpSocket.m */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
+		505FAEF01D3E1401002C1C6D /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				505FAEDE1D3E138A002C1C6D /* HttpDnsTCP.h */,
+				505FAEDF1D3E138A002C1C6D /* HttpDnsTCP.m */,
+				505FAEE01D3E138A002C1C6D /* HttpDnsUDP.h */,
+				505FAEE11D3E138A002C1C6D /* HttpDnsUDP.m */,
+			);
+			name = Socket;
+			sourceTree = "<group>";
+		};
+		505FAEF11D3E140B002C1C6D /* H5 */ = {
+			isa = PBXGroup;
+			children = (
+				505FAED81D3E138A002C1C6D /* H5ContentURLProtocol.h */,
+				505FAED91D3E138A002C1C6D /* H5ContentURLProtocol.m */,
+				505FAEDA1D3E138A002C1C6D /* H5DnsViewController.h */,
+				505FAEDB1D3E138A002C1C6D /* H5DnsViewController.m */,
+				505FAEDC1D3E138A002C1C6D /* HttpDNS.h */,
+				505FAEDD1D3E138A002C1C6D /* HttpDNS.mm */,
+			);
+			name = H5;
 			sourceTree = "<group>";
 		};
 		5F6AA0591B57ACF800C6D8D6 /* Library */ = {
@@ -356,7 +420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44AF5FE51B96EB97001B2E65 /* icon.png in Resources */,
+				505FAED21D3E136F002C1C6D /* icon.png in Resources */,
 				44F12A431B48E52A00812340 /* Main.storyboard in Resources */,
 				44F12A481B48E52A00812340 /* LaunchScreen.xib in Resources */,
 				44F12A451B48E52A00812340 /* Images.xcassets in Resources */,
@@ -393,9 +457,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				447FCFC11B4932D400142941 /* DnsVC.m in Sources */,
+				505FAEEB1D3E138A002C1C6D /* HttpDnsViewController.m in Sources */,
+				505FAEE71D3E138A002C1C6D /* H5DnsViewController.m in Sources */,
+				505FAEE61D3E138A002C1C6D /* H5ContentURLProtocol.m in Sources */,
+				505FAEE41D3E138A002C1C6D /* GCDAsyncSocket.m in Sources */,
+				505FAEEE1D3E1394002C1C6D /* LabelWithPickView.m in Sources */,
+				505FAEE51D3E138A002C1C6D /* GCDAsyncUdpSocket.m in Sources */,
 				44F12A3D1B48E52A00812340 /* AppDelegate.m in Sources */,
 				44F12A3A1B48E52A00812340 /* main.m in Sources */,
+				505FAEEA1D3E138A002C1C6D /* HttpDnsUDP.m in Sources */,
+				505FAEE81D3E138A002C1C6D /* HttpDNS.mm in Sources */,
+				505FAEE91D3E138A002C1C6D /* HttpDnsTCP.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

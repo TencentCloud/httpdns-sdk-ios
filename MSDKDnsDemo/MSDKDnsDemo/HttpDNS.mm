@@ -57,7 +57,7 @@
  * @return IP地址（异常会返回域名）
  *
  */
-- (NSString *)getHostByNameSync:(NSString *)url
+- (NSString *)getHostByName:(NSString *)url
 {
     @synchronized(self)
     {
@@ -67,72 +67,24 @@
         {
             return url;
         }
-        NSLog(@"hostName:%@", hostName);
 
         NSString *ipAdress = url;
-        NSLog(@"ip0Address:%@", url);
         std::vector<unsigned char *> ipsVector =
             MSDKDns::GetInstance()->WGGetHostByName((unsigned char *)[hostName UTF8String]);
-        if (ipsVector.size() > 0)
+        if (ipsVector.size() > 1)
         {
-            NSLog(@"isReturn back");
-            ipAdress =
-                [NSString stringWithUTF8String:(const char *)ipsVector[0]];
-            NSLog(@"ip1Address:%@", ipAdress);
+            if (![[NSString stringWithUTF8String:(const char *)ipsVector[1]] isEqualToString:@"0"]) {
+                ipAdress = [NSString stringWithFormat:@"[%@]",[NSString stringWithUTF8String:(const char *)ipsVector[1]]];
+            } else {
+                ipAdress = [NSString stringWithUTF8String:(const char *)ipsVector[0]];
+            }
             if (ipAdress.length != 0)
             {
                 ipAdress = [self requestURL:url stringByReplaceHostName:hostName byIP:ipAdress];
             }
         }
-        NSLog(@"ipAddress:%@", ipAdress);
-
         return ipAdress;
     }
-}
-
-/**
- * @brief 异步获取域名的IP地址
- *
- * @param hostName       域名，不要带http协议头!
- * @param resultCallback 查询IP地址的回调（异常会返回域名）
- *
- */
-- (void)getHostByNameAsync:(NSString *)url dnsCallback:(httpDnsBlock)dnsCallback
-{
-    NSString *hostName = [[NSURL URLWithString:url] host];
-
-    if (hostName.length == 0)
-    {
-        if (dnsCallback)
-        {
-            dnsCallback(url);
-        }
-
-        return;
-    }
-
-    __block NSString *ipAdress = url;
-
-
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
-        std::vector<unsigned char *> ipsVector =
-            MSDKDns::GetInstance()->WGGetHostByName((unsigned char *)[hostName UTF8String]);
-        if (ipsVector.size() > 0)
-        {
-            ipAdress = [NSString stringWithUTF8String:(const char *)ipsVector[0]];
-            if (ipAdress.length != 0)
-            {
-                ipAdress =
-                    [self requestURL:url stringByReplaceHostName:hostName byIP:
-                     ipAdress];
-            }
-        }
-        if (dnsCallback)
-        {
-            dnsCallback(ipAdress);
-        }
-
-    });
 }
 
 @end

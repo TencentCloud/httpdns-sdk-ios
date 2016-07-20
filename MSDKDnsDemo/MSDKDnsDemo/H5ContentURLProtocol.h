@@ -11,5 +11,5 @@
 @interface H5ContentURLProtocol : NSURLProtocol
 
 +(id) sharedProtocol;
-+ (NSURLRequest *)convertToNewRequest:(NSURLRequest *)oldRequest isSynchronous:(BOOL)isSynchronised;
++ (NSURLRequest *)convertToNewRequest:(NSURLRequest *)oldRequest;
 @end

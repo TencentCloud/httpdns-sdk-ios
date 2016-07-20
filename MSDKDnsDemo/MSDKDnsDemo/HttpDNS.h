@@ -21,13 +21,6 @@ typedef void (^httpDnsBlock)(NSString *url);
  * @return IP地址（异常会返回域名）
  *
  */
-- (NSString *)getHostByNameSync:(NSString *)url;
-/**
- * @brief 异步获取域名的IP地址
- *
- * @param hostName       域名，不要带http协议头!!!
- * @param resultCallback 查询IP地址的回调（异常会返回域名）
- *
- */
-- (void)getHostByNameAsync:(NSString *)url dnsCallback:(httpDnsBlock)dnsCallback;
+- (NSString *)getHostByName:(NSString *)url;
+
 @end
