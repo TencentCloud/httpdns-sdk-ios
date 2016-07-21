@@ -90,12 +90,20 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
 
 	std::vector<unsigned char*> ipsVector = MSDKDns::GetInstance()->WGGetHostByName((unsigned char *)"www.qq.com");
     if (ipsVector.size() > 1){
-        unsigned char* ipv4 = ipsVector[0];//ipv4地址
-		unsigned char* ipv6 = ipsVector[1];//ipv6地址
-        //Use ip to do something.
+        NSString* ipv4 = [NSString stringWithUTF8String:(const char*)result[0]];
+        NSString* ipv6 = [NSString stringWithUTF8String:(const char*)result[1]];
+        if (![ipv6 isEqualToString:@"0"]) {
+            //使用建议：当ipv6地址存在时，优先使用ipv6地址
+			//TODO 使用ipv6地址进行连接，注意格式，ipv6需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+        } else {
+           //使用ipv4地址进行连接
+        }
     }
 
 **注意：使用ipv6地址进行连接时，注意格式，ipv6需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/*********
+
+**使用建议：当ipv6地址存在时，优先使用ipv6地址**
+
 ### 4.2 控制台日志: WGOpenMSDKDnsLog
 
 #### 概述
