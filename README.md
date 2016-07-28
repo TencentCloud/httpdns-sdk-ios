@@ -53,6 +53,8 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
     [BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
     //******************************
 
+**注意：需要在Other linker flag里加入-ObjC标志。**
+
 ### 3.2 引入MSDKDns
 
 ### 3.3 配置文件
@@ -144,7 +146,34 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
 
 # 实践场景 #
 ---
-## 1. H5页面内元素HTTP_DNS加载
+
+## 1. Unity接入说明
+
+1. 在cs文件中进行接口声明：
+
+		#if UNITY_IOS
+        [DllImport("__Internal")]
+		private static extern string WGGetHostByName(string domain);
+		#endif
+
+2. 在需要进行域名解析的部分，调用**WGGetHostByName(string domain)**方法，并建议进行如下处理：
+
+		string ips = WGGetHostByName(domainStr);
+		string[] sArray=ips.Split(new char[] {';'}); 
+		if (sArray != null && sArray.Length > 1) {
+			if (!sArray[1].Equals("0")) {
+				//使用建议：当ipv6地址存在时，优先使用ipv6地址
+				//TODO 使用ipv6地址进行连接，注意格式，ipv6需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+				
+			} else {
+				//使用ipv4地址进行连接
+				
+			}
+		}
+
+3. 将unity工程打包为xcode工程，并按如上说明，引入依赖库等操作即可。
+
+## 2. H5页面内元素HTTP_DNS加载
 
 ### 原理
 
@@ -180,7 +209,7 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
 		}
 具体详见**[httpdns-ios-sdk](https://github.com/tencentyun/httpdns-ios-sdk)**
 
-## 2. Https场景
+## 3. Https场景
 
 ### 原理
 
