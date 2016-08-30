@@ -4,7 +4,7 @@
 <dict>
 
  <key>com.tencent.rdm.uuid</key>
-<string>8248a4b3-758a-4a59-b591-c6fd5863ca35</string>
+<string>8471f1d9-dcdd-4387-a524-48d67ed89bca</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -26,15 +26,19 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>COOPERATOR_APPID</key>
-	<string>0I1001PTUN1XCRQ3</string>
+	<string>0I000ZQ6GW1XWVIS</string>
 	<key>DNS_ID</key>
-	<string>fd746478c6bbfd7d</string>
+	<string>888</string>
 	<key>DNS_KEY</key>
-	<string>c018f4270a1ee38dd0ad2016ee1a49bf</string>
-	<key>HTTP_DNS_SERVER</key>
-	<string></string>
+	<string>3nRsFfEh</string>
 	<key>IS_COOPERATOR</key>
-	<false/>
+	<true/>
+	<key>IS_TEST</key>
+	<true/>
+	<key>TIME_OUT</key>
+	<integer>1000</integer>
+	<key>Debug</key>
+	<true/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -42,10 +46,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>QQAppID</key>
-	<string>0I3009Z6IE1JPEZ5</string>
-	<key>TIME_OUT</key>
-	<integer>3000</integer>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -60,7 +60,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>Debug</key>
-	<false/>
 </dict>
 </plist>

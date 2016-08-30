@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vCl-qF-zCk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vCl-qF-zCk">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -80,13 +80,13 @@
                                     <action selector="udpButtonDidClicked:" destination="kuO-za-Xf8" eventType="touchUpInside" id="doJ-Ml-kjq"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择域名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hyO-Hj-ZYt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="选择域名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hyO-Hj-ZYt">
                                 <rect key="frame" x="20" y="52" width="68" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择连接类型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="une-XU-gyl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="选择连接类型" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="une-XU-gyl">
                                 <rect key="frame" x="20" y="135" width="102" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -109,18 +109,47 @@
                                     <action selector="noqosButtonDidClicked:" destination="kuO-za-Xf8" eventType="touchUpInside" id="ip5-OB-oxh"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="www.qq.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zhk-7a-d0k">
+                                <rect key="frame" x="112" y="7" width="143" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSP-Gk-chf">
+                                <rect key="frame" x="271" y="6" width="30" height="30"/>
+                                <state key="normal" title="查询"/>
+                                <connections>
+                                    <action selector="getHostByName:" destination="kuO-za-Xf8" eventType="touchUpInside" id="mmG-GS-OV2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="输入域名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xye-zR-xWn">
+                                <rect key="frame" x="20" y="10" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="PPo-w3-ymi" firstAttribute="bottom" secondItem="WrE-Sx-nEA" secondAttribute="bottom" id="4W6-CE-ovr"/>
+                            <constraint firstItem="lXF-dD-DPB" firstAttribute="top" secondItem="une-XU-gyl" secondAttribute="bottom" constant="13" id="7Um-kO-u8n"/>
+                            <constraint firstItem="lSP-Gk-chf" firstAttribute="bottom" secondItem="zhk-7a-d0k" secondAttribute="bottom" id="9Uh-4Y-CS5"/>
+                            <constraint firstItem="WrE-Sx-nEA" firstAttribute="top" secondItem="hyO-Hj-ZYt" secondAttribute="bottom" constant="14" id="EV3-eb-v5k"/>
+                            <constraint firstItem="lSP-Gk-chf" firstAttribute="baseline" secondItem="zhk-7a-d0k" secondAttribute="baseline" id="GhO-Gf-1DR"/>
+                            <constraint firstItem="zhk-7a-d0k" firstAttribute="baseline" secondItem="Xye-zR-xWn" secondAttribute="baseline" id="Jny-i8-Ptb"/>
+                            <constraint firstItem="40F-ac-zPY" firstAttribute="top" secondItem="lXF-dD-DPB" secondAttribute="bottom" constant="28" id="LDW-FV-uhs"/>
                             <constraint firstItem="C38-Lb-uHT" firstAttribute="baseline" secondItem="lXF-dD-DPB" secondAttribute="baseline" id="WpM-34-vUj"/>
                             <constraint firstItem="PPo-w3-ymi" firstAttribute="baseline" secondItem="WrE-Sx-nEA" secondAttribute="baseline" id="ebb-UV-rWj"/>
                             <constraint firstItem="40F-ac-zPY" firstAttribute="width" secondItem="6A0-D0-Fpd" secondAttribute="width" id="irK-Rn-2Fc"/>
+                            <constraint firstItem="hyO-Hj-ZYt" firstAttribute="top" secondItem="Xye-zR-xWn" secondAttribute="bottom" constant="21" id="lsI-2J-YA8"/>
+                            <constraint firstItem="C38-Lb-uHT" firstAttribute="bottom" secondItem="lXF-dD-DPB" secondAttribute="bottom" id="nPI-mj-3vA"/>
                             <constraint firstItem="8Bc-QY-hlr" firstAttribute="top" secondItem="40F-ac-zPY" secondAttribute="bottom" constant="8" symbolic="YES" id="r9y-4I-mih"/>
-                            <constraint firstItem="40F-ac-zPY" firstAttribute="top" secondItem="CNe-Zh-PZZ" secondAttribute="bottom" constant="207" id="vHh-ZW-rCh"/>
+                            <constraint firstItem="zhk-7a-d0k" firstAttribute="top" secondItem="CNe-Zh-PZZ" secondAttribute="bottom" constant="10" id="vMh-EM-pgl"/>
+                            <constraint firstItem="une-XU-gyl" firstAttribute="top" secondItem="PPo-w3-ymi" secondAttribute="bottom" constant="18" id="w1b-M6-QDs"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="HTTP DNS" image="TabBar_Http" id="qqZ-4E-RJc"/>
                     <connections>
+                        <outlet property="Domain" destination="zhk-7a-d0k" id="EB0-ZT-Zk9"/>
                         <outlet property="resultTextView" destination="40F-ac-zPY" id="1JY-cj-ZVq"/>
                     </connections>
                 </viewController>

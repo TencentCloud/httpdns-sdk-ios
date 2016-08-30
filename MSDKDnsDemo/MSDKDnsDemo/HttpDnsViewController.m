@@ -17,10 +17,7 @@
 
 @interface HttpDnsViewController ()
 
-@property (nonatomic, strong) UIButton *qos_button;
-@property (nonatomic, strong) UIButton *noqos_button;
-@property (nonatomic, strong) UIButton *tcp_button;
-@property (nonatomic, strong) UIButton *udp_button;
+@property (weak, nonatomic) IBOutlet UITextField *Domain;
 
 @end
 
@@ -66,13 +63,37 @@
     [super didReceiveMemoryWarning];
 }
 
+-(IBAction)getHostByName:(id)sender{
+    [_resultTextView insertText:[NSString stringWithFormat:@"\n输入域名：%@，准备开始解析...", [_Domain text]]];
+    NSString *domain = [_Domain text];
+    if (domain.length > 0)
+    {
+        NSTimeInterval time1 = [[NSDate date] timeIntervalSince1970];
+        std::vector<unsigned char*> result =
+        MSDKDns::GetInstance()->WGGetHostByName((unsigned char *)[domain UTF8String]);
+        NSTimeInterval time2 = [[NSDate date] timeIntervalSince1970];
+        NSLog(@"本次耗时：%f", (time2 - time1) * 1000);
+        if (result.size() > 1) {
+            NSString* str = [NSString stringWithFormat:@"\n解析结果为：\nIPV4地址为：%@\nIPV6地址为：%@\n",[NSString stringWithUTF8String:(const char*)result[0]], [NSString stringWithUTF8String:(const char*)result[1]]];
+            [self setIpv4:[NSString stringWithUTF8String:(const char*)result[0]]];
+            [self setIpv6:[NSString stringWithUTF8String:(const char*)result[1]]];
+            [_resultTextView insertText:str];
+        } else {
+            [_resultTextView insertText:@"本次解析失败，请再次请求一次。"];
+        }
+    }
+}
+
 - (IBAction)qosButtonDidClicked:(id)sender{
     [_resultTextView insertText:@"\n选择了域名：qos.game.qq.com，准备开始解析..."];
     NSString *domain = @"qos.game.qq.com";
     if (domain.length > 0)
     {
+        NSTimeInterval time1 = [[NSDate date] timeIntervalSince1970];
         std::vector<unsigned char*> result =
         MSDKDns::GetInstance()->WGGetHostByName((unsigned char *)[domain UTF8String]);
+        NSTimeInterval time2 = [[NSDate date] timeIntervalSince1970];
+        NSLog(@"本次耗时：%f", (time2 - time1) * 1000);
         if (result.size() > 1) {
             NSString* str = [NSString stringWithFormat:@"\n解析结果为：\nIPV4地址为：%@\nIPV6地址为：%@\n",[NSString stringWithUTF8String:(const char*)result[0]], [NSString stringWithUTF8String:(const char*)result[1]]];
             [self setIpv4:[NSString stringWithUTF8String:(const char*)result[0]]];

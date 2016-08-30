@@ -27,8 +27,6 @@
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     NSString *appid = dict[@"COOPERATOR_APPID"];
-
-//    NSLog(@"!!!!!!!!!!!!!!!!!!!!!appid:%@  Analytics Version:%@", appid,[BeaconBaseInterface getSDKVersion]);
     [BeaconBaseInterface setAppKey:appid];
     [BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
     return YES;

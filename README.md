@@ -69,6 +69,7 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
 | DNS_ID | String | 参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |
 | DNS_KEY | String | 参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |	
 | Debug | Boolean | 日志开关配置，YES为打开MSDKDns日志，No为关闭MSDKDns日志 |	
+| IS_TEST | Boolean | 测试开关配置，YES为外部业务测试专用 |
 
 ## 4. API及使用示例
 
@@ -82,7 +83,7 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
      *
      *  @param domain 域名
      *  @return 查询到的IP数组，返回长度为2的数组，其中第一个值为解析到的ipv4地址；第二个值为解析到的ipv6地址，如不存在，则为0
-     *  注意：超时（3s）或者未查询到返回空数组
+     *  注意：超时（1s）或者未查询到返回空数组
      */
     std::vector<unsigned char*> WGGetHostByName(unsigned char* domain);
 
