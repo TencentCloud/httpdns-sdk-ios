@@ -28,7 +28,6 @@ public:
     
     virtual ~MSDKDnsObserver() {};
     
-    
 };
 
 #endif /* MSDKDnsObserver_h */
