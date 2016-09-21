@@ -131,7 +131,9 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
 
 ## 5. 注意事项
 
-1. 异常情况下，httpdns可能会解析失败：
+1. 如发现编译时报错: **"string file not found"**，将调用WGGetHostByName接口的.m文件，后缀名改为.mm即可。
+
+2. 异常情况下，httpdns可能会解析失败：
 
 	表现形式为：WGGetHostByName接口返回为空
 
@@ -140,7 +142,7 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
 	1. 业务再次请求一次WGGetHostByName即可，或者
 	2. 走业务原本的解析逻辑。
 
-2. 针对iOS 9以上版本，请关闭 ATS（Application Transport Secure）特性。即在info.plist中添加如下配置项：
+3. 针对iOS 9以上版本，请关闭 ATS（Application Transport Secure）特性。即在info.plist中添加如下配置项：
 
     	<key>NSAppTransportSecurity</key>
     	<dict>
