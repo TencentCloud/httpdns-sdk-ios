@@ -62,14 +62,14 @@ MSDKDns依赖**MSDK2.14.0i及其以上版本**，接入MSDKDns之前必须接入
 
 | Key        | Type           | Value  |
 | ------------- |-------------| -------------|
-| IS_COOPERATOR | Boolean | 外部应用填“YES”<br>内部应用填“NO” |
-| QQAppID | String | 腾讯内部应用对应的QQAppid |
-| COOPERATOR_APPID | String | 外部应用对应的上报appid，见key_ios.txt中 |
+| IS_COOPERATOR | Boolean | 外部应用填“YES”<br>腾讯应用填“NO” |
+| QQAppID | String | 腾讯应用对应的QQAppid，外部应用忽略此项 |
+| COOPERATOR_APPID | String | 外部应用对应的上报appid，接入时由系统或者管理员分配，腾讯业务忽略此项 |
 | TIME_OUT | Number | 请求httpdns超时设定时间<br>单位：ms |
-| DNS_ID | String | 参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |
-| DNS_KEY | String | 参照版本包中key_ios.txt文件中相应内容填写即可(腾讯内部应用可以不填) |	
-| Debug | Boolean | 日志开关配置，YES为打开MSDKDns日志，No为关闭MSDKDns日志 |	
-| IS_TEST | Boolean | 测试开关配置，YES为外部业务测试专用 |
+| DNS_ID | String | 接入时由系统或者管理员分配|
+| DNS_KEY | String | 接入时由系统或者管理员分配|	
+| Debug | Boolean | 日志开关配置，YES为打开MSDKDns日志，No为关闭MSDKDns日志，建议测试阶段k打开，上线前关闭 |	
+| IS_TEST | Boolean | 测试开关配置，提供想先进行体验的客户使用，YES为外部业务测试专用，腾讯业务忽略此项 |
 
 ## 4. API及使用示例
 
