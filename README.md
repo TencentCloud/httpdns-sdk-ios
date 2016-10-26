@@ -5,9 +5,10 @@
 | 目录名称       | 说明           |
 | ------------- |-------------|
 | HTTPDNSDemo | iOS客户端使用HttpDns api示例Demo |
-| HTTPDNSUnityDemo | Unity工程使用HttpDns api示例Demo |
 | HTTPDNSLibs | HTTPDNS iOS SDK目录 | 
-| HTTPDNS iOS客户端接入文档.md | HTTPDNS iOS客户端接入文档 |
+| HTTPDNSUnityDemo | Unity工程使用HttpDns api示例Demo |
+| HTTPDNS iOS客户端接入文档.docx | HTTPDNS iOS客户端接入文档 |
+| README.md | HTTPDNS iOS客户端接入文档 |
 | VERSION.md | HTTPDNS iOS SDK历史版本修改记录 |
 
 ## 1. 功能介绍
