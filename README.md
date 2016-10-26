@@ -2,6 +2,8 @@
 ----
 ## GitHub目录结构说明
 
+| 目录名称       | 说明           |
+| ------------- |-------------|
 | HTTPDNSDemo | iOS客户端使用HttpDns api示例Demo |
 | HTTPDNSUnityDemo | Unity工程使用HttpDns api示例Demo |
 | HTTPDNSLibs | HTTPDNS iOS SDK目录 | 
@@ -16,6 +18,8 @@
 ## 2. 安装包结构
 压缩文件中包含demo工程，其中包含：
 
+| 名称       | 适用说明           |
+| ------------- |-------------|
 | MSDKDns.framework | 适用“Build Setting->C++ Language Dialect”配置为**“GNU++98”**，“Build Setting->C++ Standard Library”为**“libstdc++(GNU C++ standard library)”**的工程。 |
 | MSDKDns_C11.framework | 适用于该两项配置分别为**“GNU++11”**和**“libc++(LLVM C++ standard library with C++11 support)”**的工程。 |
 
@@ -56,7 +60,6 @@
 
 | Key        | Type           | Value  |
 | ------------- |-------------| -------------|
-<<<<<<< HEAD:HTTPDNS iOS客户端接入文档.md
 | IS_COOPERATOR | Boolean | YES |
 | COOPERATOR_APPID | String | 接入时由系统或者管理员分配。 |
 | TIME_OUT | Number | 请求httpdns的超时设定时间单位：ms<br>如未设置，默认为1000ms |
@@ -64,16 +67,6 @@
 | DNS_KEY | String | 接入时由系统或者管理员分配。 |	
 | Debug | Boolean | 日志开关配置：<br>YES为打开HttpDns日志；<br>No为关闭HttpDns日志。 |	
 | IS_TEST | Boolean | 测试开关配置：<br>YES为供业务测试专用；<br>正式使用时，请设置为NO |
-=======
-| IS_COOPERATOR | Boolean | 外部应用填“YES”<br>腾讯应用填“NO” |
-| QQAppID | String | 腾讯应用对应的QQAppid，外部应用忽略此项 |
-| COOPERATOR_APPID | String | 外部应用对应的上报appid，接入时由系统或者管理员分配，腾讯业务忽略此项 |
-| TIME_OUT | Number | 请求httpdns超时设定时间<br>单位：ms |
-| DNS_ID | String | 接入时由系统或者管理员分配|
-| DNS_KEY | String | 接入时由系统或者管理员分配|	
-| Debug | Boolean | 日志开关配置，YES为打开MSDKDns日志，No为关闭MSDKDns日志，建议测试阶段k打开，上线前关闭 |	
-| IS_TEST | Boolean | 测试开关配置，提供想先进行体验的客户使用，YES为外部业务测试专用，腾讯业务忽略此项 |
->>>>>>> origin/master:README.md
 
 ## 4. API及使用示例
 
