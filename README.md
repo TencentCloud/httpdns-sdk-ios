@@ -12,13 +12,13 @@
 | HTTPDNSUnityDemo | Unity工程使用HttpDns api示例Demo | 使用Unity引擎的业务 |
 | HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用）.md | HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用） | 腾讯游戏及其它内部业务 |
 | HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用）.docx | HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用） | 腾讯游戏及其它内部业务 |
-| HTTPDNS iOS客户端接入文档.docx | HTTPDNS iOS客户端接入文档 | 腾讯云客户 |
+| HTTPDNS iOS客户端接入文档（腾讯云客户专用）.docx | HTTPDNS iOS客户端接入文档（腾讯云客户专用） | 腾讯云客户 |
 | README.md | HTTPDNS iOS客户端接入文档 | 腾讯云客户 |
-| VERSION.md | HTTPDNS iOS SDK历史版本修改记录 | 开发维护人员 |
+| VERSION.md | HTTPDNS iOS SDK历史版本修改记录 | SDK开发维护人员 |
 
 ## 1. 功能介绍
 
-### MSDKDns的主要功能是为了有效的避免由于运营商传统LocalDns解析导致的无法访问最佳接入点的方案。原理为使用Http加密协议替代传统的DNS协议，整个过程不使用域名，大大减少劫持的可能性。
+### HttpDns的主要功能是为了有效的避免由于运营商传统LocalDns解析导致的无法访问最佳接入点的方案。原理为使用Http加密协议替代传统的DNS协议，整个过程不使用域名，大大减少劫持的可能性。
 
 
 ## 2. 安装包结构
