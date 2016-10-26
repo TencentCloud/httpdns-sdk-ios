@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="kuO-za-Xf8">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="zBA-ox-kCn">
+            <objects>
+                <viewController id="kuO-za-Xf8" userLabel="View Controller" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CNe-Zh-PZZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Bc-QY-hlr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6A0-D0-Fpd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" text="解析结果报告：" translatesAutoresizingMaskIntoConstraints="NO" id="40F-ac-zPY" userLabel="Result">
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.69019607843137254" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="www.qq.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zhk-7a-d0k">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSP-Gk-chf">
+                                <state key="normal" title="查询"/>
+                                <connections>
+                                    <action selector="getHostByName:" destination="kuO-za-Xf8" eventType="touchUpInside" id="mmG-GS-OV2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入域名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xye-zR-xWn">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8Bc-QY-hlr" firstAttribute="top" secondItem="40F-ac-zPY" secondAttribute="bottom" constant="5" id="38s-3c-UDr"/>
+                            <constraint firstItem="40F-ac-zPY" firstAttribute="centerX" secondItem="6A0-D0-Fpd" secondAttribute="centerX" id="3NH-gA-v6D"/>
+                            <constraint firstItem="zhk-7a-d0k" firstAttribute="leading" secondItem="Xye-zR-xWn" secondAttribute="trailing" constant="1" id="3eb-va-14C"/>
+                            <constraint firstItem="lSP-Gk-chf" firstAttribute="leading" secondItem="zhk-7a-d0k" secondAttribute="trailing" constant="16" id="6ES-bA-gbT"/>
+                            <constraint firstItem="40F-ac-zPY" firstAttribute="top" secondItem="zhk-7a-d0k" secondAttribute="bottom" constant="20" id="8b6-Xq-rTd"/>
+                            <constraint firstItem="lSP-Gk-chf" firstAttribute="baseline" secondItem="zhk-7a-d0k" secondAttribute="baseline" id="Cci-Nx-kdG"/>
+                            <constraint firstItem="zhk-7a-d0k" firstAttribute="top" secondItem="CNe-Zh-PZZ" secondAttribute="bottom" constant="10" id="Skn-w7-Gki"/>
+                            <constraint firstItem="zhk-7a-d0k" firstAttribute="centerX" secondItem="6A0-D0-Fpd" secondAttribute="centerX" id="dmU-Ei-gUp"/>
+                            <constraint firstItem="Xye-zR-xWn" firstAttribute="baseline" secondItem="zhk-7a-d0k" secondAttribute="baseline" id="gVg-P4-O4m"/>
+                            <constraint firstItem="40F-ac-zPY" firstAttribute="width" secondItem="6A0-D0-Fpd" secondAttribute="width" id="rhA-cw-Smb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="Domain" destination="zhk-7a-d0k" id="EB0-ZT-Zk9"/>
+                        <outlet property="resultTextView" destination="40F-ac-zPY" id="1JY-cj-ZVq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZb-sq-BFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="121.5" y="690.5"/>
+        </scene>
+    </scenes>
+</document>
