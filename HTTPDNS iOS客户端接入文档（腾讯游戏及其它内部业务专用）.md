@@ -1,18 +1,5 @@
-# HTTPDNS iOS客户端接入文档 #
+# HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用） #
 ----
-## GitHub目录结构说明
-
-| 目录名称       | 说明           | 适用范围  |
-| ------------- |-------------| -------------|
-| HTTPDNSDemo | iOS客户端使用HttpDns api示例Demo | 所有业务 |
-| HTTPDNSLibs | HTTPDNS iOS SDK目录 | 所有业务 |
-| HTTPDNSUnityDemo | Unity工程使用HttpDns api示例Demo | 使用Unity引擎的业务 |
-| HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用）.md | HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用） | 腾讯游戏及其它内部业务 |
-| HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用）.docx | HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用） | 腾讯游戏及其它内部业务 |
-| HTTPDNS iOS客户端接入文档.docx | HTTPDNS iOS客户端接入文档 | 腾讯云业务 |
-| README.md | HTTPDNS iOS客户端接入文档 | 腾讯云业务 |
-| VERSION.md | HTTPDNS iOS SDK历史版本修改记录 | 开发维护人员 |
-
 ## 1. 功能介绍
 
 ### MSDKDns的主要功能是为了有效的避免由于运营商传统LocalDns解析导致的无法访问最佳接入点的方案。原理为使用Http加密协议替代传统的DNS协议，整个过程不使用域名，大大减少劫持的可能性。
@@ -28,9 +15,9 @@
 
 ## 3. 接入步骤
 ### 3.1 引入依赖库
-#### 3.1.1 已接入灯塔（Beacon）的业务
+#### 3.1.1 已接入MSDK或灯塔（Beacon）的业务
 仅需引入位于HTTPDNSLibs目录下的MSDKDns.framework（或MSDKDns_C11.framework，根据工程配置选其一）即可。
-#### 3.1.2 未接入灯塔（Beacon）的业务
+#### 3.1.2 未接入MSDK且未接入灯塔（Beacon）的业务
 - 引入依赖库（位于HTTPDNSLibs目录下）：
 	- BeaconAPI_Base.framework
 	- MSDKDns.framework（或MSDKDns_C11.framework，根据工程配置选其一）
@@ -47,7 +34,7 @@
 	- Security.framework
 - 并在application:didFinishLaunchingWithOptions:加入注册灯塔代码：
 
-	    //已正常接入灯塔的业务无需关注以下代码，未接入灯塔的业务调用以下代码注册灯塔
+	    //已正常接入MSDK的业务无需关注以下代码，未接入MSDK的业务调用以下代码注册灯塔
 		//******************************
 		NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
 		NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:plistPath];
@@ -63,13 +50,9 @@
 
 | Key        | Type           | Value  |
 | ------------- |-------------| -------------|
-| IS_COOPERATOR | Boolean | YES |
-| COOPERATOR_APPID | String | 接入时由系统或者管理员分配。 |
+| QQAppID | String | 应用对应的QQAppid |
 | TIME_OUT | Number | 请求httpdns的超时设定时间单位：ms<br>如未设置，默认为1000ms |
-| DNS_ID | String | 接入时由系统或者管理员分配。 |
-| DNS_KEY | String | 接入时由系统或者管理员分配。 |	
-| Debug | Boolean | 日志开关配置：<br>YES为打开HttpDns日志；<br>No为关闭HttpDns日志。 |	
-| IS_TEST | Boolean | 测试开关配置：<br>YES为供业务测试专用；<br>正式使用时，请设置为NO |
+| Debug | Boolean | 日志开关配置：<br>YES为打开HttpDns日志；<br>No为关闭HttpDns日志。 |
 
 ## 4. API及使用示例
 
