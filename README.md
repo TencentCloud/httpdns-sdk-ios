@@ -2,7 +2,7 @@
 ----
 **本接入文档供腾讯云客户参阅**
 
-**腾讯游戏及内部其它业务，请参阅文档[HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用）.md](https://github.com/tencentyun/httpdns-ios-sdk/blob/master/HTTPDNS%20iOS%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3%EF%BC%88%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%8F%8A%E5%85%B6%E5%AE%83%E5%86%85%E9%83%A8%E4%B8%9A%E5%8A%A1%E4%B8%93%E7%94%A8%EF%BC%89.md)**
+**腾讯内部业务，请参阅文档[HTTPDNS iOS客户端接入文档（腾讯内部业务专用）.md](https://github.com/tencentyun/httpdns-ios-sdk/blob/master/HTTPDNS%20iOS%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3%EF%BC%88%E8%85%BE%E8%AE%AF%E6%B8%B8%E6%88%8F%E5%8F%8A%E5%85%B6%E5%AE%83%E5%86%85%E9%83%A8%E4%B8%9A%E5%8A%A1%E4%B8%93%E7%94%A8%EF%BC%89.md)**
 ## GitHub目录结构说明
 
 | 目录名称       | 说明           | 适用范围  |
@@ -10,9 +10,9 @@
 | HTTPDNSDemo | iOS客户端使用HttpDns api示例Demo | 所有业务 |
 | HTTPDNSLibs | HTTPDNS iOS SDK目录 | 所有业务 |
 | HTTPDNSUnityDemo | Unity工程使用HttpDns api示例Demo | 使用Unity引擎的业务 |
-| HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用）.md | HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用） | 腾讯游戏及其它内部业务 |
-| HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用）.docx | HTTPDNS iOS客户端接入文档（腾讯游戏及其它内部业务专用） | 腾讯游戏及其它内部业务 |
 | HTTPDNS iOS客户端接入文档（腾讯云客户专用）.docx | HTTPDNS iOS客户端接入文档（腾讯云客户专用） | 腾讯云客户 |
+| HTTPDNS iOS客户端接入文档（腾讯内部业务专用）.docx | HTTPDNS iOS客户端接入文档（腾讯内部业务专用） | 腾讯内部业务 |
+| HTTPDNS iOS客户端接入文档（腾讯内部业务专用）.md | HTTPDNS iOS客户端接入文档（腾讯内部业务专用） | 腾讯内部业务 |
 | README.md | HTTPDNS iOS客户端接入文档 | 腾讯云客户 |
 | VERSION.md | HTTPDNS iOS SDK历史版本修改记录 | SDK开发维护人员 |
 
