@@ -28,13 +28,13 @@
 	<key>COOPERATOR_APPID</key>
 	<string>0I000ZQ6GW1XWVIS</string>
 	<key>DNS_ID</key>
-	<string>128</string>
+	<string>888</string>
 	<key>DNS_KEY</key>
-	<string>sQW9&lt;Fzq</string>
+	<string>3nRsFfEh</string>
 	<key>IS_COOPERATOR</key>
 	<true/>
 	<key>IS_TEST</key>
-	<false/>
+	<true/>
 	<key>TIME_OUT</key>
 	<integer>1000</integer>
 	<key>Debug</key>

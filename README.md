@@ -81,43 +81,45 @@
 
 引入头文件，调用WGGetHostByName接口会返回IP数组。
 
-返回的地址格式为std::vector<unsigned char*>，固定长度为2，其中第一个值为ipv4地址，第二个值为ipv6地址。以下为返回格式的详细说明：
+返回的地址格式为NSArray，固定长度为2，其中第一个值为ipv4地址，第二个值为ipv6地址。以下为返回格式的详细说明：
 
 - [ipv4, 0]：一般业务使用的情景中，绝大部分均会返回这种格式的结果，即不存在ipv6地址，仅返回ipv4地址给业务；
 - [ipv4, ipv6]：发生在ipv6环境下，ipv6及ipv4地址均会返回给业务；
 - [0, 0]：在极其少数的情况下，会返回该格式给业务，此时httpdns与localdns请求均超时，业务重新调用WGGetHostByName接口即可。
 
-	    /**
-	     *
-	     *  @param domain 域名
-	     *  @return 查询到的IP数组，返回长度为2的数组，其中第一个值为解析到的ipv4地址；第二个值为解析到的ipv6地址，如不存在，则为0
-	     *  注意：超时（1s）或者未查询到返回空数组
-	     */
-	    std::vector<unsigned char*> WGGetHostByName(unsigned char* domain);
+	     /**
+		 *  同步接口
+		 *  @param domain 域名
+		 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+		 */
+		- (NSArray*) WGGetHostByName:(NSString*) domain;
 
 #### 示例代码
 
 接口调用示例：
 
-	std::vector<unsigned char*> ipsVector = MSDKDns::GetInstance()->WGGetHostByName((unsigned char *)"www.qq.com");
-    if (ipsVector.size() > 1){
-        NSString* ipv4 = [NSString stringWithUTF8String:(const char*)result[0]];
-        NSString* ipv6 = [NSString stringWithUTF8String:(const char*)result[1]];
-        if (![ipv6 isEqualToString:@"0"]) {
-            //使用建议：当ipv6地址存在时，优先使用ipv6地址
-			//TODO 使用ipv6地址进行连接，注意格式，ipv6需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
-        } else {
-           //使用ipv4地址进行连接
-        }
-    }
+	NSArray* ipsArray = [[MSDKDns sharedInstance] WGGetHostByName: @"www.qq.com"];
+	if (ipsArray && ipsArray.count > 1){
+	    NSString* ipv4 = ipsArray[0];
+	    NSString* ipv6 = ipsArray[1];
+	    if (![ipv6 isEqualToString:@"0"]) {
+	        //使用建议：当ipv6地址存在时，优先使用ipv6地址
+	        //TODO 使用ipv6地址进行URL连接时，注意格式，ipv6需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+	    } else if (![ipv4 isEqualToString:@"0"]){
+	       //使用ipv4地址进行连接
+	    } else {
+			//异常情况返回为0,0，建议重试一次
+		}
+	}
 
-**注意：
-      注意：使用ipv6地址进行URL请求时，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/*********
+**注意：使用ipv6地址进行URL请求时，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/*********
 
 **使用建议：**
-      1、ipv6为0，直接使用ipv4地址连接
-      2、ipv6地址不为0，优先使用ipv6连接，如果ipv6连接失败，再使用ipv4地址进行连接
-      注：返回给业务的地址格式为 ："dns=ipv4,ipv6",如果没有ipv6地址，返回为0,例如:dns=192.168.1.1,0
+
+1. ipv6为0，直接使用ipv4地址连接
+2. ipv6地址不为0，优先使用ipv6连接，如果ipv6连接失败，再使用ipv4地址进行连接
+
+注：返回给业务的地址格式为 ："dns=ipv4,ipv6",如果没有ipv6地址，返回为0,例如:dns=192.168.1.1,0
 
 ### 4.2 控制台日志: WGOpenMSDKDnsLog
 
@@ -126,16 +128,16 @@
 业务可以通过开关控制是否打印HttpDns相关的Log。
 
 	/**
-     *
-     *  @param enabled true:打开 false:关闭
-     */
-    void WGOpenMSDKDnsLog(bool enabled);
+	 *  Log开关
+	 *  @param enabled YES:打开 NO:关闭
+	 */
+	- (void) WGOpenMSDKDnsLog:(BOOL) enabled;
 
 #### 示例代码
 
 接口调用示例：
 
- 	MSDKDns::GetInstance()->WGOpenMSDKDnsLog(true);
+ 	[[MSDKDns sharedInstance] WGOpenMSDKDnsLog: YES];
 
 ## 5. 注意事项
 
@@ -186,11 +188,14 @@
 		if (sArray != null && sArray.Length > 1) {
 			if (!sArray[1].Equals("0")) {
 				//使用建议：当ipv6地址存在时，优先使用ipv6地址
-				//TODO 使用ipv6地址进行连接，注意格式，ipv6需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+				//TODO 使用ipv6地址进行URL连接时，注意格式，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
 				
-			} else {
+			} else if(!sArray [0].Equals ("0")) {
 				//使用ipv4地址进行连接
 				
+			} else {
+				//异常情况返回为0,0，建议重试一次
+				WGGetHostByName(domainStr);
 			}
 		}
 
