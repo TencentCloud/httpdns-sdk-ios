@@ -2,7 +2,7 @@
 ----
 **本接入文档供腾讯云客户参阅**
 
-**腾讯内部业务，请参阅文档[HTTPDNS iOS客户端接入文档（腾讯内部业务专用）.md](https://github.com/tencentyun/httpdns-ios-sdk/blob/master/HTTPDNS%20iOS%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3%EF%BC%88%E8%85%BE%E8%AE%AF%E5%86%85%E9%83%A8%E4%B8%9A%E5%8A%A1%E4%B8%93%E7%94%A8%EF%BC%89.md)**
+**腾讯内部业务，请参阅文档[HTTPDNS iOS客户端接入文档（腾讯内部业务专用）.md](https://github.com/httpdns/new_ios/blob/master/HTTPDNS%20iOS%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3%EF%BC%88%E8%85%BE%E8%AE%AF%E5%86%85%E9%83%A8%E4%B8%9A%E5%8A%A1%E4%B8%93%E7%94%A8%EF%BC%89.md)**
 ## GitHub目录结构说明
 
 | 目录名称       | 说明           | 适用范围  |
@@ -75,11 +75,7 @@
 
 ## 4. API及使用示例
 
-### 4.1 获取IP: WGGetHostByName
-
-#### 概述
-
-引入头文件，调用WGGetHostByName接口会返回IP数组。
+获取IP共有两个接口，同步接口**WGGetHostByName**，异步接口**WGGetHostByNameAsync**，引入头文件，调用相应接口即可。
 
 返回的地址格式为NSArray，固定长度为2，其中第一个值为ipv4地址，第二个值为ipv6地址。以下为返回格式的详细说明：
 
@@ -87,14 +83,24 @@
 - [ipv4, ipv6]：发生在ipv6环境下，ipv6及ipv4地址均会返回给业务；
 - [0, 0]：在极其少数的情况下，会返回该格式给业务，此时httpdns与localdns请求均超时，业务重新调用WGGetHostByName接口即可。
 
-	     /**
+**注意：使用ipv6地址进行URL请求时，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/*********
+
+**使用建议：**
+
+1. ipv6为0，直接使用ipv4地址连接
+2. ipv6地址不为0，优先使用ipv6连接，如果ipv6连接失败，再使用ipv4地址进行连接
+
+### 4.1 获取IP，同步接口: WGGetHostByName
+
+#### 4.1.1 接口声明
+	    /**
 		 *  同步接口
 		 *  @param domain 域名
 		 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
 		 */
 		- (NSArray*) WGGetHostByName:(NSString*) domain;
 
-#### 示例代码
+#### 4.1.2 示例代码
 
 接口调用示例：
 
@@ -112,18 +118,61 @@
 		}
 	}
 
-**注意：使用ipv6地址进行URL请求时，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/*********
+### 4.2 获取IP，异步接口: WGGetHostByNameAsync
 
-**使用建议：**
+#### 4.2.1 接口声明
 
-1. ipv6为0，直接使用ipv4地址连接
-2. ipv6地址不为0，优先使用ipv6连接，如果ipv6连接失败，再使用ipv4地址进行连接
+	    /**
+		 *  异步接口
+		 *  @param domain 域名
+		 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+		 */
+		
+		- (void) WGGetHostByNameAsync:(NSString*) domain returnIps:(void (^)(NSArray* ipsArray))handler;
 
-注：返回给业务的地址格式为 ："dns=ipv4,ipv6",如果没有ipv6地址，返回为0,例如:dns=192.168.1.1,0
+#### 4.2.2 示例代码
 
-### 4.2 控制台日志: WGOpenMSDKDnsLog
+**接口调用示例1**：等待完整解析过程结束后，拿到结果，进行连接操作
 
-#### 概述
+	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray *ipsArray) {
+		//等待完整解析过程结束后，拿到结果，进行连接操作
+		if (ipsArray && ipsArray.count > 1) {
+			NSString* ipv4 = ipsArray[0];
+			NSString* ipv6 = ipsArray[1];
+			if (![ipv6 isEqualToString:@"0"]) {
+				//使用建议：当ipv6地址存在时，优先使用ipv6地址
+				//TODO 使用ipv6地址进行URL连接时，注意格式，ipv6需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+			} else if (![ipv4 isEqualToString:@"0"]){
+				//使用ipv4地址进行连接
+			} else {
+				//异常情况返回为0,0，建议重试一次
+			}
+		}
+	}];
+
+**接口调用示例2**：无需等待，可直接拿到缓存结果，如无缓存，则result为nil
+
+	__block NSArray* result;
+	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray *ipsArray) {
+		result = ipsArray;
+	}];
+	//无需等待，可直接拿到缓存结果，如无缓存，则result为nil
+	if (result) {
+		//拿到缓存结果，进行连接操作
+	} else {
+		//本次请求无缓存，业务可走原始逻辑
+	}
+
+**注意**：业务可根据自身需求，任选一种调用方式：
+
+示例1，优点：可保证每次请求都能拿到返回结果进行接下来的连接操作；
+缺点：异步接口的处理较同步接口稍显复杂。
+
+示例2，优点：对于解析时间有严格要求的业务，使用本示例，可无需等待，直接拿到缓存结果进行后续的连接操作，完全避免了同步接口中解析耗时可能会超过100ms的情况；缺点：第一次请求时，result一定会nil，需业务增加处理逻辑。
+
+### 4.3 控制台日志: WGOpenMSDKDnsLog
+
+#### 4.3.1 接口声明
 
 业务可以通过开关控制是否打印HttpDns相关的Log。
 
@@ -158,9 +207,7 @@
 
 			curl -H "host:www.qq.com" http://192.168.0.111/aaa.txt.
 
-2. 如发现编译时报错: **"string file not found"**，将调用WGGetHostByName接口的.m文件，后缀名改为.mm即可。
-
-3. 针对iOS 9以上版本，请关闭 ATS（Application Transport Secure）特性。即在info.plist中添加如下配置项：
+2. 针对iOS 9以上版本，请关闭 ATS（Application Transport Secure）特性。即在info.plist中添加如下配置项：
 
     	<key>NSAppTransportSecurity</key>
     	<dict>
@@ -179,11 +226,13 @@
 		#if UNITY_IOS
         [DllImport("__Internal")]
 		private static extern string WGGetHostByName(string domain);
+		[DllImport("__Internal")]
+		private static extern void WGGetHostByNameAsync(string domain);
 		#endif
 
-2. 在需要进行域名解析的部分，调用**WGGetHostByName(string domain)**方法，并建议进行如下处理：
+2. 在需要进行域名解析的部分，调用**WGGetHostByName(string domain)**或者**WGGetHostByNameAsync(string domain)**方法，并建议进行如下处理：
 
-		string ips = WGGetHostByName(domainStr);
+		string ips = HttpDns.GetHostByName(domainStr);
 		string[] sArray=ips.Split(new char[] {';'}); 
 		if (sArray != null && sArray.Length > 1) {
 			if (!sArray[1].Equals("0")) {
@@ -195,11 +244,21 @@
 				
 			} else {
 				//异常情况返回为0,0，建议重试一次
-				WGGetHostByName(domainStr);
+				HttpDns.GetHostByName(domainStr);
 			}
 		}
 
-3. 将unity工程打包为xcode工程，并按如上说明，引入依赖库等操作即可。
+3. 设置回调函数onDnsNotify(string ipString)，函数名可自定义，并添加如上类似处理步骤；
+
+4. 将unity工程打包为xcode工程，并按如上说明，引入依赖库；
+
+5. 将HTTPDNSUnityDemo下的MSDKDnsUnityManager.h及MSDKDnsUnityManager.mm文件导入到工程中，注意以下地方需要Unity中对应GameObject名称及回调函数名称对应：
+
+	![Unity接入图片1](HTTPDNSUnityDemo/Unity1.jpg) 
+
+	![Unity接入图片1](HTTPDNSUnityDemo/Unity2.jpg)  
+
+6. 按照所需接口调用即可。
 
 ## 2. Https场景下使用HttpDns解析结果
 

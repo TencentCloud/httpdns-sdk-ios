@@ -3,13 +3,11 @@ using System.Runtime.InteropServices;
 
 namespace com.tencent.httpdns {
     public class HttpDns {
-#if UNITY_ANDROID
-		private static AndroidJavaClass sGSDKPlatformClass;
-#endif
-
 #if UNITY_IOS
         [DllImport("__Internal")]
 		private static extern string WGGetHostByName(string domain);
+		[DllImport("__Internal")]
+		private static extern void WGGetHostByNameAsync(string domain);
 #endif
 
         // 解析域名
@@ -22,9 +20,11 @@ namespace com.tencent.httpdns {
 			return WGGetHostByName (domain);
 
 #endif
-				
-#if UNITY_ANDROID
-			return null;
+		}
+
+		public static void GetHostByNameAsync(string domain) {
+#if UNITY_IOS
+			WGGetHostByNameAsync (domain);	
 #endif
 		}
 	}

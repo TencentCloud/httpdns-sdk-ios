@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-// 未接入灯塔(Beacon)的业务需单独接入灯塔
+// 未接入MSDK的游戏需单独接入灯塔
 #import <BeaconAPI_Base/BeaconBaseInterface.h>
 
 @interface AppDelegate ()
@@ -22,13 +22,14 @@
 {
     // Override point for customization after application launch.
 
-    // 已正常接入灯塔的业务无需关注以下代码，未接入灯塔的业务调用以下代码注册灯塔
+    // 已正常接入MSDK的游戏无需关注以下代码，未接入MSDK的游戏调用以下代码注册灯塔
     // ******************************
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
     NSString *appid = dict[@"COOPERATOR_APPID"];
     [BeaconBaseInterface setAppKey:appid];
     [BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
+//    [BeaconBaseInterface setLogLevel:5];
     return YES;
 }
 

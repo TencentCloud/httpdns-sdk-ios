@@ -41,6 +41,7 @@
 		44F12A751B48E7B600812340 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A741B48E7B600812340 /* Foundation.framework */; };
 		44F12A771B48E7BF00812340 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A761B48E7BF00812340 /* CoreGraphics.framework */; };
 		44F12A791B48E7C600812340 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A781B48E7C600812340 /* MobileCoreServices.framework */; };
+		44F12A7B1B48E7CE00812340 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A7A1B48E7CE00812340 /* StoreKit.framework */; };
 		44F12A7D1B48E7D700812340 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A7C1B48E7D700812340 /* CFNetwork.framework */; };
 		44F12A7F1B48E7DE00812340 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A7E1B48E7DE00812340 /* CoreData.framework */; };
 		44F12A811B48E7E500812340 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A801B48E7E500812340 /* ImageIO.framework */; };
@@ -50,9 +51,9 @@
 		44F12A8A1B48E88500812340 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A891B48E88500812340 /* CoreLocation.framework */; };
 		44F12A8C1B48E8A800812340 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A8B1B48E8A800812340 /* Security.framework */; };
 		505FAED21D3E136F002C1C6D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 505FAED11D3E136F002C1C6D /* icon.png */; };
+		505FAEEB1D3E138A002C1C6D /* HttpDnsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAEE31D3E138A002C1C6D /* HttpDnsViewController.m */; };
 		50A0FEDF1D0E8C6A004C502B /* BeaconAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */; };
 		5F6AA05C1B57ACF800C6D8D6 /* MSDKDns.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6AA05B1B57ACF800C6D8D6 /* MSDKDns.framework */; };
-		DDFB7BAD1DC086FF00965231 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDFB7BAC1DC086FF00965231 /* ViewController.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		44F12A741B48E7B600812340 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		44F12A761B48E7BF00812340 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		44F12A781B48E7C600812340 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		44F12A7A1B48E7CE00812340 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		44F12A7C1B48E7D700812340 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		44F12A7E1B48E7DE00812340 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		44F12A801B48E7E500812340 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -106,10 +108,10 @@
 		44F12A891B48E88500812340 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		44F12A8B1B48E8A800812340 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		505FAED11D3E136F002C1C6D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		505FAEE21D3E138A002C1C6D /* HttpDnsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDnsViewController.h; sourceTree = "<group>"; };
+		505FAEE31D3E138A002C1C6D /* HttpDnsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDnsViewController.m; sourceTree = "<group>"; };
 		50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BeaconAPI_Base.framework; sourceTree = "<group>"; };
 		5F6AA05B1B57ACF800C6D8D6 /* MSDKDns.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MSDKDns.framework; sourceTree = "<group>"; };
-		DDFB7BAB1DC086FF00965231 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DDFB7BAC1DC086FF00965231 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				44F12A811B48E7E500812340 /* ImageIO.framework in Frameworks */,
 				44F12A7F1B48E7DE00812340 /* CoreData.framework in Frameworks */,
 				44F12A7D1B48E7D700812340 /* CFNetwork.framework in Frameworks */,
+				44F12A7B1B48E7CE00812340 /* StoreKit.framework in Frameworks */,
 				44F12A791B48E7C600812340 /* MobileCoreServices.framework in Frameworks */,
 				44F12A771B48E7BF00812340 /* CoreGraphics.framework in Frameworks */,
 				5F6AA05C1B57ACF800C6D8D6 /* MSDKDns.framework in Frameworks */,
@@ -186,8 +189,8 @@
 				44F12A881B48E80400812340 /* Librarys */,
 				44F12A3B1B48E52A00812340 /* AppDelegate.h */,
 				44F12A3C1B48E52A00812340 /* AppDelegate.m */,
-				DDFB7BAB1DC086FF00965231 /* ViewController.h */,
-				DDFB7BAC1DC086FF00965231 /* ViewController.mm */,
+				505FAEE21D3E138A002C1C6D /* HttpDnsViewController.h */,
+				505FAEE31D3E138A002C1C6D /* HttpDnsViewController.m */,
 				44F12A411B48E52A00812340 /* Main.storyboard */,
 				44F12A441B48E52A00812340 /* Images.xcassets */,
 				44F12A461B48E52A00812340 /* LaunchScreen.xib */,
@@ -240,6 +243,7 @@
 				44F12A801B48E7E500812340 /* ImageIO.framework */,
 				44F12A7E1B48E7DE00812340 /* CoreData.framework */,
 				44F12A7C1B48E7D700812340 /* CFNetwork.framework */,
+				44F12A7A1B48E7CE00812340 /* StoreKit.framework */,
 				44F12A781B48E7C600812340 /* MobileCoreServices.framework */,
 				44F12A761B48E7BF00812340 /* CoreGraphics.framework */,
 				44F12A741B48E7B600812340 /* Foundation.framework */,
@@ -317,13 +321,6 @@
 				TargetAttributes = {
 					44F12A331B48E52A00812340 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 5K7DJ7864W;
-						ProvisioningStyle = Manual;
-						SystemCapabilities = {
-							com.apple.InAppPurchase = {
-								enabled = 0;
-							};
-						};
 					};
 					44F12A4C1B48E52A00812340 = {
 						CreatedOnToolsVersion = 6.4;
@@ -396,9 +393,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				505FAEEB1D3E138A002C1C6D /* HttpDnsViewController.m in Sources */,
 				44F12A3D1B48E52A00812340 /* AppDelegate.m in Sources */,
 				44F12A3A1B48E52A00812340 /* main.m in Sources */,
-				DDFB7BAD1DC086FF00965231 /* ViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,8 +530,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer: haywood fu (74N2V268JF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5K7DJ7864W;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Library/MSDKDns",
@@ -546,10 +541,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2b9926fd-5731-40f0-a7de-33795c246070";
-				PROVISIONING_PROFILE_SPECIFIER = MSDKDnsNew;
+				PROVISIONING_PROFILE = "80e739e6-e362-4a36-ac7f-5989fe60ef8a";
 			};
 			name = Debug;
 		};
@@ -559,8 +552,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: fu chunhui (5K7DJ7864W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = HKB8WPFBR9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Library/MSDKDns",
@@ -572,10 +563,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "32d8f732-d114-494a-adda-1c2bdeec6d7e";
-				PROVISIONING_PROFILE_SPECIFIER = "RDM.*";
+				PROVISIONING_PROFILE = "abf3d5f8-7de2-4de9-8fb1-dba3b89bd03d";
 			};
 			name = Release;
 		};
@@ -657,8 +646,6 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Tencent Technology (Shenzhen) Co., Ltd";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = HKB8WPFBR9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Library/MSDKDns",
@@ -670,10 +657,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "32d8f732-d114-494a-adda-1c2bdeec6d7e";
-				PROVISIONING_PROFILE_SPECIFIER = "RDM.*";
 			};
 			name = DailyBuild;
 		};
