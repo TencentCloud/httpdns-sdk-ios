@@ -10,7 +10,7 @@
 #define MSDKDnsUnityManager_h
 
 #define UnityReceiverObject "ClickObject"
-#import "MSDKDns.h"
+#import <MSDKDns/MSDKDns.h>
 
 @interface MSDKDnsUnityManager : NSObject 
 
