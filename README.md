@@ -66,7 +66,7 @@
 
 | Key        | Type           | Value  |
 | ------------- |-------------| -------------|
-| IS_COOPERATOR | Boolean | YES |
+| IS_COOPERATOR | Boolean | YES<br>（腾讯内部业务填NO） |
 | COOPERATOR_APPID | String | 接入时由系统或者管理员分配。 |
 | TIME_OUT | Number | 请求httpdns的超时设定时间单位：ms<br>如未设置，默认为1000ms |
 | DNS_ID | String | 接入时由系统或者管理员分配。 |
