@@ -62,6 +62,9 @@
 **注意：需要在Other linker flag里加入-ObjC标志。**
 
 ### 3.2 配置文件
+
+**腾讯内部业务，请参阅文档[HTTPDNS iOS客户端接入文档（腾讯内部业务专用）.md](https://github.com/tencentyun/httpdns-ios-sdk/blob/master/HTTPDNS%20iOS%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3%EF%BC%88%E8%85%BE%E8%AE%AF%E5%86%85%E9%83%A8%E4%B8%9A%E5%8A%A1%E4%B8%93%E7%94%A8%EF%BC%89.md)**
+
 在info.plist中进行配置如下：
 
 | Key        | Type           | Value  |
@@ -194,7 +197,7 @@
 
 	- 以NSURLConnection为例：
 
-			NSURL* httpDnsURL = [NSURL URLWithString:@”使用解析结果ip拼接的URL”];
+			NSURL* httpDnsURL = [NSURL URLWithString:@"使用解析结果ip拼接的URL"];
 			float timeOut = 设置的超时时间;
 			NSMutableURLRequest* mutableReq = [NSMutableURLRequest requestWithURL:httpDnsURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval: timeOut];
 			[mutableReq setValue:@"原域名" forHTTPHeaderField:@"host"];
@@ -207,13 +210,20 @@
 
 			curl -H "host:www.qq.com" http://192.168.0.111/aaa.txt.
 
-2. 针对iOS 9以上版本，请关闭 ATS（Application Transport Secure）特性。即在info.plist中添加如下配置项：
+	- 以Unity的WWW接口为例：
 
-    	<key>NSAppTransportSecurity</key>
-    	<dict>
-        	<key>NSAllowsArbitraryLoads</key>
-        	<true/>
-    	</dict>
+			string httpDnsURL = "使用解析结果ip拼接的URL";
+			Dictionary<string, string> headers = new Dictionary<string, string> ();
+			headers["host"] = "原域名";
+			WWW conn = new WWW (url, null, headers);
+			yield return conn;
+			if (conn.error != null)  
+			{  
+				print("error is happened:"+ conn.error);      
+			} else  
+			{  
+				print("request ok" + conn.text); 
+			}  
 
 
 # 实践场景 #
@@ -400,3 +410,25 @@
 		    // 对于其他的challenges直接使用默认的验证方案
 		    completionHandler(disposition,credential);
 		}
+
+- **以Unity的WWW接口为例：**
+
+	将Unity工程导为Xcode工程后，打开Classes/Unity/**WWWConnection.mm**文件，修改下述代码：
+
+		//const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
+		const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
+	为：
+
+		const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
+		//const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
+
+### 注意事项 -- SNI（单IP多HTTPS证书）场景
+
+SNI（Server Name Indication）是为了解决一个服务器使用多个域名和证书的SSL/TLS扩展。它的工作原理如下：
+
+- 在连接到服务器建立SSL链接之前先发送要访问站点的域名（Hostname）。
+- 服务器根据这个域名返回一个合适的证书。
+
+上述过程中，当客户端使用HttpDns解析域名时，请求URL中的host会被替换成HttpDns解析出来的IP，导致服务器获取到的域名为解析后的IP，无法找到匹配的证书，只能返回默认的证书或者不返回，所以会出现SSL/TLS握手不成功的错误。
+
+由于iOS上层网络库NSURLConnection/NSURLSession没有提供接口进行SNI字段的配置，因此需要Socket层级的底层网络库例如CFNetwork，来实现IP直连网络请求适配方案。而基于CFNetwork的解决方案需要开发者考虑数据的收发、重定向、解码、缓存等问题（CFNetwork是非常底层的网络实现），希望开发者合理评估该场景的使用风险。
