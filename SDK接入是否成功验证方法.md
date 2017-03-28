@@ -20,7 +20,7 @@
 
 ### 二、检查解析结果
 
-搜索日志关键字“ReportingEvent,name:WGGetHostByName,events:”
+搜索日志关键字：**ReportingEvent,name:WGGetHostByName,events:**
 
 ![解析结果图片](result.png) 
 
