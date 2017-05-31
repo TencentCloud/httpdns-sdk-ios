@@ -10,7 +10,11 @@
 #define MSDKDnsUnityManager_h
 
 #define UnityReceiverObject "ClickObject"
+
+// 如引入framework为MSDKDns时，引入头文件<MSDKDns/MSDKDns.h>
 #import <MSDKDns/MSDKDns.h>
+// 如引入framework为MSDKDns_C11，则改为引入头文件<MSDKDns_C11/MSDKDns.h>
+// #import <MSDKDns_C11/MSDKDns.h>
 
 @interface MSDKDnsUnityManager : NSObject 
 
