@@ -56,6 +56,25 @@
 
 ## 4. API及使用示例
 
+### 4.1 设置用户Openid: WGSetDnsOpenId
+
+##### 接口声明
+
+	/**
+	 设置用户Openid，腾讯内部及代理业务关注
+	
+	 @param dnsOpenId 用户openid
+	 @return YES:成功 NO:失败
+	 */
+	- (BOOL) WGSetDnsOpenId:(NSString *) dnsOpenId;
+
+##### 示例代码
+
+	// 腾讯内部及代理业务需在拿到openid成功后调用此接口
+    BOOL result = [[MSDKDns sharedInstance] WGSetDnsOpenId:@"xxxxxxxxxxxxxxx"];
+
+### 4.2 获取IP
+
 获取IP共有两个接口，同步接口**WGGetHostByName**，异步接口**WGGetHostByNameAsync**，引入头文件，调用相应接口即可。
 
 返回的地址格式为NSArray，固定长度为2，其中第一个值为ipv4地址，第二个值为ipv6地址。以下为返回格式的详细说明：
@@ -71,19 +90,17 @@
 1. ipv6为0，直接使用ipv4地址连接
 2. ipv6地址不为0，优先使用ipv6连接，如果ipv6连接失败，再使用ipv4地址进行连接
 
-### 4.1 获取IP，同步接口: WGGetHostByName
+#### 4.2.1 同步接口: WGGetHostByName
 
-#### 4.1.1 接口声明
-	    /**
-		 *  同步接口
-		 *  @param domain 域名
-		 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
-		 */
-		- (NSArray*) WGGetHostByName:(NSString*) domain;
+##### 接口声明
+	/**
+	 *  同步接口
+	 *  @param domain 域名
+	 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+	 */
+	- (NSArray*) WGGetHostByName:(NSString*) domain;
 
-#### 4.1.2 示例代码
-
-接口调用示例：
+##### 示例代码
 
 	NSArray* ipsArray = [[MSDKDns sharedInstance] WGGetHostByName: @"www.qq.com"];
 	if (ipsArray && ipsArray.count > 1){
@@ -97,21 +114,21 @@
 	    }
 	}
 
-### 4.2 获取IP，异步接口: WGGetHostByNameAsync
+### 4.2.1 异步接口: WGGetHostByNameAsync
 
-#### 4.2.1 接口声明
+##### 接口声明
 
-	    /**
-		 *  异步接口
-		 *  @param domain 域名
-		 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
-		 */
+	/**
+	 *  异步接口
+	 *  @param domain 域名
+	 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+	 */
 		
-		- (void) WGGetHostByNameAsync:(NSString*) domain returnIps:(void (^)(NSArray* ipsArray))handler;
+	- (void) WGGetHostByNameAsync:(NSString*) domain returnIps:(void (^)(NSArray* ipsArray))handler;
 
-#### 4.2.2 示例代码
+##### 示例代码
 
-**接口调用示例1**：等待完整解析过程结束后，拿到结果，进行连接操作
+**示例1**：等待完整解析过程结束后，拿到结果，进行连接操作
 
 	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray *ipsArray) {
 		//等待完整解析过程结束后，拿到结果，进行连接操作
@@ -129,7 +146,7 @@
 		}
 	}];
 
-**接口调用示例2**：无需等待，可直接拿到缓存结果，如无缓存，则result为nil
+**示例2**：无需等待，可直接拿到缓存结果，如无缓存，则result为nil
 
 	__block NSArray* result;
 	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray *ipsArray) {
@@ -151,7 +168,7 @@
 
 ### 4.3 控制台日志: WGOpenMSDKDnsLog
 
-#### 4.3.1 接口声明
+##### 接口声明
 
 业务可以通过开关控制是否打印HttpDns相关的Log。
 
@@ -161,9 +178,7 @@
 	 */
 	- (void) WGOpenMSDKDnsLog:(BOOL) enabled;
 
-#### 示例代码
-
-接口调用示例：
+##### 示例代码
 
  	[[MSDKDns sharedInstance] WGOpenMSDKDnsLog: YES];
 
