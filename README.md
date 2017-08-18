@@ -422,7 +422,7 @@
 		const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
 		//const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
 
-### 注意事项 -- SNI（单IP多HTTPS证书）场景
+## 3. SNI（单IP多HTTPS证书）场景下使用HttpDns解析结果
 
 SNI（Server Name Indication）是为了解决一个服务器使用多个域名和证书的SSL/TLS扩展。它的工作原理如下：
 
@@ -431,4 +431,79 @@ SNI（Server Name Indication）是为了解决一个服务器使用多个域名�
 
 上述过程中，当客户端使用HttpDns解析域名时，请求URL中的host会被替换成HttpDns解析出来的IP，导致服务器获取到的域名为解析后的IP，无法找到匹配的证书，只能返回默认的证书或者不返回，所以会出现SSL/TLS握手不成功的错误。
 
-由于iOS上层网络库NSURLConnection/NSURLSession没有提供接口进行SNI字段的配置，因此需要Socket层级的底层网络库例如CFNetwork，来实现IP直连网络请求适配方案。而基于CFNetwork的解决方案需要开发者考虑数据的收发、重定向、解码、缓存等问题（CFNetwork是非常底层的网络实现），希望开发者合理评估该场景的使用风险。
+由于iOS上层网络库NSURLConnection/NSURLSession没有提供接口进行SNI字段的配置，因此可以考虑使用NSURLProtocol拦截网络请求，然后使用CFHTTPMessageRef创建NSInputStream实例进行Socket通信，并设置其kCFStreamSSLPeerName的值。
+
+需要注意的是，使用NSURLProtocol拦截NSURLSession发起的POST请求时，HTTPBody为空。解决方案有两个：
+
+1. 使用NSURLConnection发POST请求。
+2. 先将HTTPBody放入HTTP Header field中，然后在NSURLProtocol中再取出来。
+
+具体示例参见Demo，部分代码如下：
+
+在网络请求前注册NSURLProtocol子类，在示例的SNIViewController.m中。
+
+    // 注册拦截请求的NSURLProtocol
+    [NSURLProtocol registerClass:[MSDKDnsHttpMessageTools class]];
+   
+    // 需要设置SNI的URL
+    NSString *originalUrl = @"your url";
+    NSURL* url = [NSURL URLWithString:originalUrl];
+    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
+    NSArray* result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
+    NSString* ip = nil;
+    if (result && result.count > 1) {
+        if (![result[1] isEqualToString:@"0"]) {
+            ip = result[1];
+        } else {
+            ip = result[0];
+        }
+    }
+    // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
+    if (ip) {
+        NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
+        if (NSNotFound != hostFirstRange.location) {
+            NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
+            request.URL = [NSURL URLWithString:newUrl];
+            [request setValue:url.host forHTTPHeaderField:@"host"];
+        }
+    }
+
+    // NSURLConnection例子
+    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [self.connection start];
+
+    // NSURLSession例子
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSArray *protocolArray = @[ [MSDKDnsHttpMessageTools class] ];
+    configuration.protocolClasses = protocolArray;
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    self.task = [session dataTaskWithRequest:request];
+    [self.task resume];
+    
+    // 注*：使用NSURLProtocol拦截NSURLSession发起的POST请求时，HTTPBody为空。
+    // 解决方案有两个：1. 使用NSURLConnection发POST请求。
+    // 2. 先将HTTPBody放入HTTP Header field中，然后在NSURLProtocol中再取出来。
+    // 下面主要演示第二种解决方案
+    // NSString *postStr = [NSString stringWithFormat:@"param1=%@&param2=%@", @"val1", @"val2"];
+    // [_request addValue:postStr forHTTPHeaderField:@"originalBody"];
+    // _request.HTTPMethod = @"POST";
+    // NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    // NSArray *protocolArray = @[ [CFHttpMessageURLProtocol class] ];
+    // configuration.protocolClasses = protocolArray;
+    // NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    // NSURLSessionTask *task = [session dataTaskWithRequest:_request];
+    // [task resume];
+
+### 使用说明
+可在info.plist中配置需要拦截域名和无需拦截的域名：
+在info.plist中进行配置如下：
+
+| Key        | Type           | Value  |
+| ------------- |-------------| -------------|
+| Hijack_Domain | Array | 需要拦截的域名列表 |
+| Not_Hijack_Domain | Array | 不需要拦截的域名列表 |
+
+- 如设置了需要拦截的域名列表，则仅会拦截处理该域名列表中的https请求，其它域名不做处理；
+- 如设置了不需要拦截的域名列表，则不会拦截处理该域名列表中的https请求；
+
+建议使用Hijack_Domain仅拦截SNI场景下的域名，避免拦截其它场景下的域名。

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="YnP-Ms-MJ0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--SNI-->
+        <scene sceneID="fXf-JR-sXF">
+            <objects>
+                <viewController id="dmZ-me-hyg" userLabel="SNI" customClass="SNIViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pl0-dW-Jpi"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Wp-5B-0JR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AxP-pY-D7H">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBR-dt-NaI">
+                                <rect key="frame" x="0.0" y="90" width="375" height="30"/>
+                                <state key="normal" title="使用NSURLSession的示例"/>
+                                <connections>
+                                    <action selector="usingSession:" destination="dmZ-me-hyg" eventType="touchUpInside" id="P2h-Pi-xqR"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Log：
+" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lJj-hF-Lar">
+                                <rect key="frame" x="0.0" y="170" width="375" height="428"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m8H-4H-aMd">
+                                <rect key="frame" x="0.0" y="40" width="375" height="30"/>
+                                <state key="normal" title="使用NSURLConnection的示例"/>
+                                <connections>
+                                    <action selector="usingConnection:" destination="dmZ-me-hyg" eventType="touchUpInside" id="Cas-22-wcm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="m8H-4H-aMd" firstAttribute="width" secondItem="AxP-pY-D7H" secondAttribute="width" id="2J8-EF-UUV"/>
+                            <constraint firstItem="jBR-dt-NaI" firstAttribute="top" secondItem="m8H-4H-aMd" secondAttribute="bottom" constant="20" id="42n-9O-jZG"/>
+                            <constraint firstItem="lJj-hF-Lar" firstAttribute="width" secondItem="jBR-dt-NaI" secondAttribute="width" id="71p-yo-qOf"/>
+                            <constraint firstItem="0Wp-5B-0JR" firstAttribute="top" secondItem="lJj-hF-Lar" secondAttribute="bottom" constant="20" id="8GG-Ii-cUf"/>
+                            <constraint firstItem="lJj-hF-Lar" firstAttribute="centerX" secondItem="jBR-dt-NaI" secondAttribute="centerX" id="974-7d-1Zo"/>
+                            <constraint firstItem="jBR-dt-NaI" firstAttribute="width" secondItem="AxP-pY-D7H" secondAttribute="width" id="U7B-tV-Iqb"/>
+                            <constraint firstItem="jBR-dt-NaI" firstAttribute="centerX" secondItem="m8H-4H-aMd" secondAttribute="centerX" id="b2c-kt-R59"/>
+                            <constraint firstItem="lJj-hF-Lar" firstAttribute="top" secondItem="jBR-dt-NaI" secondAttribute="bottom" constant="50" id="d1L-nq-GMI"/>
+                            <constraint firstItem="m8H-4H-aMd" firstAttribute="centerX" secondItem="AxP-pY-D7H" secondAttribute="centerX" id="gkN-Qr-OpD"/>
+                            <constraint firstItem="m8H-4H-aMd" firstAttribute="top" secondItem="pl0-dW-Jpi" secondAttribute="bottom" constant="20" id="xgY-M9-h4Y"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="SNI场景示例" image="SNI_ICON" id="tCo-zR-ZUy" userLabel="SNI"/>
+                    <connections>
+                        <outlet property="logView" destination="lJj-hF-Lar" id="LPO-w9-2ht"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Al6-kR-XnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-333" y="762"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="69a-Mq-FTV">
+            <objects>
+                <tabBarController id="YnP-Ms-MJ0" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="3et-bF-vRt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="kuO-za-Xf8" kind="relationship" relationship="viewControllers" id="6ha-Wv-2ea"/>
+                        <segue destination="dmZ-me-hyg" kind="relationship" relationship="viewControllers" id="qWJ-Ic-bSA"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TvY-be-H1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-928" y="398"/>
+        </scene>
+        <!--HTTP DNS-->
+        <scene sceneID="zBA-ox-kCn">
+            <objects>
+                <viewController id="kuO-za-Xf8" customClass="HttpDnsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CNe-Zh-PZZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Bc-QY-hlr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6A0-D0-Fpd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" editable="NO" text="连接过程报告：" translatesAutoresizingMaskIntoConstraints="NO" id="40F-ac-zPY" userLabel="Result">
+                                <rect key="frame" x="0.0" y="140" width="375" height="473"/>
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.69019607843137254" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="www.qq.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zhk-7a-d0k">
+                                <rect key="frame" x="198" y="30" width="105" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSP-Gk-chf">
+                                <rect key="frame" x="97" y="80" width="92" height="30"/>
+                                <state key="normal" title="同步接口查询"/>
+                                <connections>
+                                    <action selector="getHostByName:" destination="kuO-za-Xf8" eventType="touchUpInside" id="mmG-GS-OV2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入域名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xye-zR-xWn">
+                                <rect key="frame" x="108" y="33.5" width="69.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECF-hw-NiY">
+                                <rect key="frame" x="204" y="80" width="92" height="30"/>
+                                <state key="normal" title="异步接口查询"/>
+                                <connections>
+                                    <action selector="getHostByNameAsync:" destination="kuO-za-Xf8" eventType="touchUpInside" id="v0K-bz-1aV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8Bc-QY-hlr" firstAttribute="top" secondItem="40F-ac-zPY" secondAttribute="bottom" constant="5" id="38s-3c-UDr"/>
+                            <constraint firstItem="40F-ac-zPY" firstAttribute="centerX" secondItem="6A0-D0-Fpd" secondAttribute="centerX" id="3NH-gA-v6D"/>
+                            <constraint firstItem="zhk-7a-d0k" firstAttribute="leading" secondItem="Xye-zR-xWn" secondAttribute="trailing" constant="20" id="3eb-va-14C"/>
+                            <constraint firstItem="lSP-Gk-chf" firstAttribute="centerX" secondItem="Xye-zR-xWn" secondAttribute="centerX" id="Lxb-FC-nb0"/>
+                            <constraint firstItem="zhk-7a-d0k" firstAttribute="top" secondItem="CNe-Zh-PZZ" secondAttribute="bottom" constant="10" id="Skn-w7-Gki"/>
+                            <constraint firstItem="40F-ac-zPY" firstAttribute="top" secondItem="lSP-Gk-chf" secondAttribute="bottom" constant="30" id="dfg-wY-9JI"/>
+                            <constraint firstItem="zhk-7a-d0k" firstAttribute="leading" secondItem="6A0-D0-Fpd" secondAttribute="centerX" constant="10" id="ePW-XX-GVI"/>
+                            <constraint firstItem="Xye-zR-xWn" firstAttribute="trailing" secondItem="6A0-D0-Fpd" secondAttribute="centerX" constant="-10" id="g9R-Ya-JZN"/>
+                            <constraint firstItem="Xye-zR-xWn" firstAttribute="baseline" secondItem="zhk-7a-d0k" secondAttribute="baseline" id="gVg-P4-O4m"/>
+                            <constraint firstItem="ECF-hw-NiY" firstAttribute="centerX" secondItem="zhk-7a-d0k" secondAttribute="centerX" id="iIL-a3-3zz"/>
+                            <constraint firstItem="ECF-hw-NiY" firstAttribute="baseline" secondItem="lSP-Gk-chf" secondAttribute="baseline" id="msV-Nb-zci"/>
+                            <constraint firstItem="40F-ac-zPY" firstAttribute="width" secondItem="6A0-D0-Fpd" secondAttribute="width" id="rhA-cw-Smb"/>
+                            <constraint firstItem="ECF-hw-NiY" firstAttribute="top" secondItem="zhk-7a-d0k" secondAttribute="bottom" constant="20" id="xSv-S7-1d6"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="HTTP DNS" image="HTTPDNS_ICON" id="qqZ-4E-RJc"/>
+                    <connections>
+                        <outlet property="Domain" destination="zhk-7a-d0k" id="EB0-ZT-Zk9"/>
+                        <outlet property="resultTextView" destination="40F-ac-zPY" id="1JY-cj-ZVq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZb-sq-BFj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-328" y="26"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="HTTPDNS_ICON" width="23" height="23"/>
+        <image name="SNI_ICON" width="24" height="24"/>
+    </resources>
+</document>
