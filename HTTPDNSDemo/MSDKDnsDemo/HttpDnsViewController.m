@@ -23,6 +23,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // 腾讯内部及代理业务需在拿到openid成功后调用此接口
+    BOOL result = [[MSDKDns sharedInstance] WGSetDnsOpenId:@"xxxxxxxxxxxxxxx"];
+    NSLog(@"%@", result? @"WGSetDnsOpenId Success!!!": @"WGSetDnsOpenId Fail!!!");
 }
 
 - (void)didReceiveMemoryWarning
@@ -30,7 +33,7 @@
     [super didReceiveMemoryWarning];
 }
 
--(IBAction)getHostByName:(id)sender{
+-(IBAction)getHostByName:(id)sender {
     [_resultTextView insertText:[NSString stringWithFormat:@"\n输入域名：%@，准备开始解析...", [_Domain text]]];
     NSString *domain = [_Domain text];
     if (domain.length > 0)
