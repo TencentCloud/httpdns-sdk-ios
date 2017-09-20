@@ -8,6 +8,10 @@ namespace com.tencent.httpdns {
 		private static extern string WGGetHostByName(string domain);
 		[DllImport("__Internal")]
 		private static extern void WGGetHostByNameAsync(string domain);
+		[DllImport("__Internal")]
+		private static extern void WGOpenMSDKDnsLog(bool enabled);
+		[DllImport("__Internal")]
+		private static extern bool WGSetDnsOpenId(string dnsOpenId);
 #endif
 
         // 解析域名
@@ -25,6 +29,18 @@ namespace com.tencent.httpdns {
 		public static void GetHostByNameAsync(string domain) {
 #if UNITY_IOS
 			WGGetHostByNameAsync (domain);	
+#endif
+		}
+
+		public static void OpenMSDKDnsLog(bool enabled) {
+#if UNITY_IOS
+			WGOpenMSDKDnsLog (enabled);	
+#endif
+		}
+
+		public static bool SetDnsOpenID(string dnsOpenId) {
+#if UNITY_IOS
+			return WGSetDnsOpenId(dnsOpenId);	
 #endif
 		}
 	}
