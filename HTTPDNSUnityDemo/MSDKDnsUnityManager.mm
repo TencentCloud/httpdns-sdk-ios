@@ -45,7 +45,7 @@ extern "C"{
     }
     
     char * WGGetHostByName (const char * domain) {
-        char* result = MakeStringCopy([[[MSDKDnsUnityManager sharedInstance] GetHostByName:domain] UTF8String]);
+        char * result = MakeStringCopy([[[MSDKDnsUnityManager sharedInstance] GetHostByName:domain] UTF8String]);
         return result;
     }
     
@@ -53,11 +53,9 @@ extern "C"{
         [[MSDKDns sharedInstance] WGGetHostByNameAsync:[NSString stringWithUTF8String:domain] returnIps:^(NSArray * ipsArray) {
             if (ipsArray && ipsArray.count > 1) {
                 NSString * result = [NSString stringWithFormat:@"%@;%@",ipsArray[0], ipsArray[1]];
-                char * resultChar = MakeStringCopy([result UTF8String]);
-                UnitySendMessage(UnityReceiverObject, "onDnsNotify", resultChar);
+                UnitySendMessage(UnityReceiverObject, "onDnsNotify", [result UTF8String]);
             } else {
-                char * resultChar = (char *)"0;0";
-                UnitySendMessage(UnityReceiverObject, "onDnsNotify", resultChar);
+                UnitySendMessage(UnityReceiverObject, "onDnsNotify", "0;0");
             }
         }];
     }
