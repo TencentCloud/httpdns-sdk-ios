@@ -8,12 +8,12 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.0.13.1i"
+#define MSDKDns_Version @"1.0.14i"
 
 #import <Foundation/Foundation.h>
 #if defined(__has_include)
-#if __has_include("MSDKFoundation/MSDKFoundation.h")
-#include "MSDKFoundation/MSDKFoundation.h"
+#if __has_include("MSDK/MSDK.h")
+#include "MSDK/MSDK.h"
 #endif
 
 #if __has_include("BeaconAPI_Base/BeaconBaseInterface.h")
