@@ -70,10 +70,10 @@
 | Key        | Type           | Value  |
 | ------------- |-------------| -------------|
 | IS_COOPERATOR | Boolean | YES（腾讯内部业务填NO） |
-| COOPERATOR_APPID | String | 接入时由系统或者管理员分配。 |
+| COOPERATOR_APPID | String | 云官网注册获得 |
 | TIME_OUT | Number | 请求httpdns的超时设定时间单位：ms<br>如未设置，默认为1000ms |
-| DNS_ID | String | 云官网注册获得。 |
-| DNS_KEY | String | 云官网注册获得。 |
+| DNS_ID | String | 云官网注册获得 |
+| DNS_KEY | String | 云官网注册获得 |
 | Debug | Boolean | 日志开关配置：<br>YES为打开HttpDns日志；<br>No为关闭HttpDns日志。 |
 
 ## 4. API及使用示例
