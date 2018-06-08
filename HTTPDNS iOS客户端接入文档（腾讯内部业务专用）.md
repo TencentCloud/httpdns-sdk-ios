@@ -234,24 +234,24 @@
 
 2. 在需要进行域名解析的部分，调用**WGGetHostByName(string domain)**或者**WGGetHostByNameAsync(string domain)**方法
 	1. 如使用同步接口**WGGetHostByName**，直接调用接口即可；
-	2. 如果使用异步接口，需设置回调函数onDnsNotify(string ipString)，函数名可自定义
+	2. 如果使用异步接口，需设置回调函数**onDnsNotify(string ipString)**，函数名可自定义
  
 	并建议添加如下处理代码：
 	
-			string[] sArray=ipString.Split(new char[] {';'}); 
-			if (sArray != null && sArray.Length > 1) {
-				if (!sArray[1].Equals("0")) {
-					//使用建议：当ipv6地址存在时，优先使用ipv6地址
-					//TODO 使用ipv6地址进行URL连接时，注意格式，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+		string[] sArray=ipString.Split(new char[] {';'}); 
+		if (sArray != null && sArray.Length > 1) {
+			if (!sArray[1].Equals("0")) {
+				//使用建议：当ipv6地址存在时，优先使用ipv6地址
+				//TODO 使用ipv6地址进行URL连接时，注意格式，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
 					
-				} else if(!sArray [0].Equals ("0")) {
-					//使用ipv4地址进行连接
+			} else if(!sArray [0].Equals ("0")) {
+				//使用ipv4地址进行连接
 					
-				} else {
-					//异常情况返回为0,0，建议重试一次
-					HttpDns.GetHostByName(domainStr);
-				}
+			} else {
+				//异常情况返回为0,0，建议重试一次
+				HttpDns.GetHostByName(domainStr);
 			}
+		}
 
 3. 将unity工程打包为xcode工程后，引入所需依赖库；
 
