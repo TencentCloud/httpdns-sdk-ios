@@ -240,9 +240,9 @@
 		private static extern void WGGetHostByNameAsync(string domain);
 		#endif
 
-2. 在需要进行域名解析的部分，调用**WGGetHostByName(string domain)**或者**WGGetHostByNameAsync(string domain)**方法
+2. 在需要进行域名解析的部分，调用WGGetHostByName(string domain)或者WGGetHostByNameAsync(string domain)方法
 	1. 如使用同步接口**WGGetHostByName**，直接调用接口即可；
-	2. 如果使用异步接口，需设置回调函数**onDnsNotify(string ipString)**，函数名可自定义
+	2. 如果使用异步接口**WGGetHostByNameAsync**，还需设置回调函数**onDnsNotify(string ipString)**，函数名可自定义
  
 	并建议添加如下处理代码：
 	
