@@ -232,35 +232,34 @@
 		private static extern void WGGetHostByNameAsync(string domain);
 		#endif
 
-2. 在需要进行域名解析的部分，调用**WGGetHostByName(string domain)**或者**WGGetHostByNameAsync(string domain)**方法，并建议进行如下处理：
-
-		string ips = HttpDns.GetHostByName(domainStr);
-		string[] sArray=ips.Split(new char[] {';'}); 
-		if (sArray != null && sArray.Length > 1) {
-			if (!sArray[1].Equals("0")) {
-				//使用建议：当ipv6地址存在时，优先使用ipv6地址
-				//TODO 使用ipv6地址进行URL连接时，注意格式，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
-				
-			} else if(!sArray [0].Equals ("0")) {
-				//使用ipv4地址进行连接
-				
-			} else {
-				//异常情况返回为0,0，建议重试一次
-				HttpDns.GetHostByName(domainStr);
+2. 在需要进行域名解析的部分，调用**WGGetHostByName(string domain)**或者**WGGetHostByNameAsync(string domain)**方法
+	1. 如使用同步接口**WGGetHostByName**，直接调用接口即可；
+	2. 如果使用异步接口，需设置回调函数onDnsNotify(string ipString)，函数名可自定义
+ 
+	并建议添加如下处理代码：
+	
+			string[] sArray=ipString.Split(new char[] {';'}); 
+			if (sArray != null && sArray.Length > 1) {
+				if (!sArray[1].Equals("0")) {
+					//使用建议：当ipv6地址存在时，优先使用ipv6地址
+					//TODO 使用ipv6地址进行URL连接时，注意格式，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+					
+				} else if(!sArray [0].Equals ("0")) {
+					//使用ipv4地址进行连接
+					
+				} else {
+					//异常情况返回为0,0，建议重试一次
+					HttpDns.GetHostByName(domainStr);
+				}
 			}
-		}
 
-3. 设置回调函数onDnsNotify(string ipString)，函数名可自定义，并添加如上类似处理步骤；
+3. 将unity工程打包为xcode工程后，引入所需依赖库；
 
-4. 将unity工程打包为xcode工程，并按如上说明，引入依赖库；
-
-5. 将HTTPDNSUnityDemo下的MSDKDnsUnityManager.h及MSDKDnsUnityManager.mm文件导入到工程中，注意以下地方需要与Unity中对应的GameObject名称及回调函数名称一致：
+4. 将HTTPDNSUnityDemo下的MSDKDnsUnityManager.h及MSDKDnsUnityManager.mm文件导入到工程中，注意以下地方需要与Unity中对应的GameObject名称及回调函数名称一致：
 
 	![Unity接入图片1](HTTPDNSUnityDemo/Unity1.png) 
 
 	![Unity接入图片1](HTTPDNSUnityDemo/Unity2.jpg)  
-
-6. 按照所需接口调用即可。
 
 ## 2. Https场景下（非SNI）使用HttpDns解析结果
 
