@@ -265,7 +265,7 @@
 
 4. 将HTTPDNSUnityDemo下的MSDKDnsUnityManager.h及MSDKDnsUnityManager.mm文件导入到工程中，注意以下地方需要与Unity中对应的GameObject名称及回调函数名称一致：
 
-	![Unity接入图片1](HTTPDNSUnityDemo/Unity1.png) 
+	![Unity接入图片1](HTTPDNSUnityDemo/Unity1.jpg) 
 
 	![Unity接入图片1](HTTPDNSUnityDemo/Unity2.jpg)  
 
