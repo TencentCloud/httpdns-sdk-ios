@@ -230,29 +230,29 @@
 
 	- 检测是否使用了HTTP代理：
 
-		- (BOOL)isUseHTTPProxy {
-			CFDictionaryRef dicRef = CFNetworkCopySystemProxySettings();
-			const CFStringRef proxyCFstr = (const CFStringRef)CFDictionaryGetValue(dicRef, (const void*)kCFNetworkProxiesHTTPProxy);
-			NSString* proxy = (__bridge NSString *)proxyCFstr;
-			if (proxy) {
-				return YES;
-			} else {
-				return NO;
+			- (BOOL)isUseHTTPProxy {
+				CFDictionaryRef dicRef = CFNetworkCopySystemProxySettings();
+				const CFStringRef proxyCFstr = (const CFStringRef)CFDictionaryGetValue(dicRef, (const void*)kCFNetworkProxiesHTTPProxy);
+				NSString* proxy = (__bridge NSString *)proxyCFstr;
+				if (proxy) {
+					return YES;
+				} else {
+					return NO;
+				}
 			}
-		}
 
 	- 检测是否使用了HTTPS代理：
 
-		- (BOOL)isUseHTTPSProxy {
-			CFDictionaryRef dicRef = CFNetworkCopySystemProxySettings();
-			const CFStringRef proxyCFstr = (const CFStringRef)CFDictionaryGetValue(dicRef, (const void*)kCFNetworkProxiesHTTPSProxy);
-			NSString* proxy = (__bridge NSString *)proxyCFstr;
-			if (proxy) {
-				return YES;
-			} else {
-				return NO;
+			- (BOOL)isUseHTTPSProxy {
+				CFDictionaryRef dicRef = CFNetworkCopySystemProxySettings();
+				const CFStringRef proxyCFstr = (const CFStringRef)CFDictionaryGetValue(dicRef, (const void*)kCFNetworkProxiesHTTPSProxy);
+				NSString* proxy = (__bridge NSString *)proxyCFstr;
+				if (proxy) {
+					return YES;
+				} else {
+					return NO;
+				}
 			}
-		}
 
 # 实践场景 #
 ---
