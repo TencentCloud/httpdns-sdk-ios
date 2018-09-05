@@ -18,7 +18,7 @@ public class ClickEvent : MonoBehaviour {
 			print("input is null, use the default domain: www.qq.com.");
 			result.text = "input is null, use the default domain: www.qq.com.";
 		}
-		string ips = HttpDns.GetHostByName(domainStr);
+		string ips = HttpDns.GetAddrByName(domainStr);
 		print (ips);
 		string[] sArray=ips.Split(new char[] {';'}); 
 		if (sArray != null && sArray.Length > 1) {
@@ -53,7 +53,7 @@ public class ClickEvent : MonoBehaviour {
 			print("input is null, use the default domain:www.qq.com.");
 			result.text = "input is null, use the default domain:www.qq.com.";
 		}
-		HttpDns.GetHostByNameAsync(domainStr);
+		HttpDns.GetAddrByNameAsync(domainStr);
 	}
 
 	public void onDnsNotify(string ipString) {

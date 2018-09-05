@@ -9,12 +9,11 @@
 #ifndef MSDKDnsUnityManager_h
 #define MSDKDnsUnityManager_h
 
-#define UnityReceiverObject "ClickObject"
 #import <MSDKDns/MSDKDns.h>
 
 @interface MSDKDnsUnityManager : NSObject 
 
-- (NSString*)GetHostByName:(const char*) domain;
+- (NSString *)GetHostByName:(const char *) domain;
 + (id) sharedInstance;
 
 @end

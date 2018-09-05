@@ -25,7 +25,7 @@
 - (NSString *) GetHostByName:(const char *)domain {
     NSArray* result = [[MSDKDns sharedInstance] WGGetHostByName:[NSString stringWithUTF8String:domain]];
     if (result && result.count > 1) {
-        NSString* str = [NSString stringWithFormat:@"%@;%@",result[0], result[1]];
+        NSString * str = [NSString stringWithFormat:@"%@;%@",result[0], result[1]];
         return str;
     } else {
         return nil;
@@ -48,8 +48,8 @@ extern "C"{
         char * result = MakeStringCopy([[[MSDKDnsUnityManager sharedInstance] GetHostByName:domain] UTF8String]);
         return result;
     }
-    
-    void WGGetHostByNameAsync (const char * domain) {
+	
+	void WGGetHostByNameAsync (const char * domain) {
         [[MSDKDns sharedInstance] WGGetHostByNameAsync:[NSString stringWithUTF8String:domain] returnIps:^(NSArray * ipsArray) {
             if (ipsArray && ipsArray.count > 1) {
                 NSString * result = [NSString stringWithFormat:@"%@;%@",ipsArray[0], ipsArray[1]];
@@ -66,6 +66,10 @@ extern "C"{
     
     bool WGSetDnsOpenId (const char * dnsOpenId) {
         return [[MSDKDns sharedInstance] WGSetDnsOpenId:[NSString stringWithUTF8String:dnsOpenId]];
+    }
+    
+    bool WGSetInitParams(const char * dnsAppId, int timeOut) {
+        return [[MSDKDns sharedInstance] WGSetDnsAppId:[NSString stringWithUTF8String:dnsAppId] TimeOut:timeOut];
     }
     
 #if defined(__cplusplus)
