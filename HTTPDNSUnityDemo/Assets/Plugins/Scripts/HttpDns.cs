@@ -22,8 +22,8 @@ namespace com.tencent.httpdns
 #if UNITY_IOS
         [DllImport("__Internal")]
         private static extern string WGGetHostByName(string domain);
-		[DllImport("__Internal")]
-		private static extern void WGGetHostByNameAsync(string domain);
+        [DllImport("__Internal")]
+        private static extern void WGGetHostByNameAsync(string domain);
         [DllImport("__Internal")]
         private static extern void WGOpenMSDKDnsLog(bool enabled);
         [DllImport("__Internal")]
@@ -99,8 +99,8 @@ namespace com.tencent.httpdns
             return null;
 #endif
         }
-		
-		public static void GetAddrByNameAsync(string domain)
+
+        public static void GetAddrByNameAsync(string domain)
         {
 #if UNITY_IOS
             WGGetHostByNameAsync (domain);
