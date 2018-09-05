@@ -8,7 +8,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.0.14i"
+#define MSDKDns_Version @"1.0.16i"
 
 #import <Foundation/Foundation.h>
 #if defined(__has_include)
@@ -55,6 +55,15 @@
  @return YES:成功 NO:失败
  */
 - (BOOL) WGSetDnsOpenId:(NSString *) dnsOpenId;
+
+/**
+ 设置业务基本信息
+
+ @param dnsAppId 业务appid，用于上报
+ @param timeOut 超时时间，单位ms，如设置0，默认为2000ms，
+ @return YES:成功 NO:失败
+ */
+- (BOOL) WGSetDnsAppId:(NSString *) dnsAppId TimeOut:(int)timeOut;
 
 @end
 #endif

@@ -56,7 +56,28 @@
 
 ## 4. API及使用示例
 
-### 4.1 设置用户Openid: WGSetDnsOpenId
+### 4.1 设置业务appid和配置超时时间: WGSetDnsAppId:TimeOut:
+
+#### 接口声明
+
+业务可以通过接口设置业务基本信息。
+
+	/**
+	 设置业务基本信息
+
+	 @param dnsAppId 业务appid，用于上报
+	 @param timeOut 超时时间，单位ms，如设置0，默认为2000ms，
+	 @return YES:成功 NO:失败
+	 */
+	- (BOOL) WGSetDnsAppId:(NSString *) dnsAppId TimeOut:(int)timeOut;
+
+#### 示例代码
+
+接口调用示例：
+
+ 	[[MSDKDns sharedInstance] WGSetDnsAppId: @"xxxxxx" TimeOut:2000];
+
+### 4.2 设置用户Openid: WGSetDnsOpenId
 
 ##### 接口声明
 
@@ -73,7 +94,7 @@
 	// 腾讯内部及代理业务需在拿到openid成功后调用此接口
     BOOL result = [[MSDKDns sharedInstance] WGSetDnsOpenId:@"xxxxxxxxxxxxxxx"];
 
-### 4.2 获取IP
+### 4.3 获取IP
 
 获取IP共有两个接口，同步接口**WGGetHostByName**，异步接口**WGGetHostByNameAsync**，引入头文件，调用相应接口即可。
 
@@ -90,7 +111,7 @@
 1. ipv6为0，直接使用ipv4地址连接
 2. ipv6地址不为0，优先使用ipv6连接，如果ipv6连接失败，再使用ipv4地址进行连接
 
-#### 4.2.1 同步接口: WGGetHostByName
+#### 4.3.1 同步接口: WGGetHostByName
 
 ##### 接口声明
 	/**
@@ -114,7 +135,7 @@
 	    }
 	}
 
-### 4.2.1 异步接口: WGGetHostByNameAsync
+### 4.3.2 异步接口: WGGetHostByNameAsync
 
 ##### 接口声明
 
@@ -166,7 +187,7 @@
 
 示例2，优点：对于解析时间有严格要求的业务，使用本示例，可无需等待，直接拿到缓存结果进行后续的连接操作，完全避免了同步接口中解析耗时可能会超过100ms的情况；缺点：第一次请求时，result一定会nil，需业务增加处理逻辑。
 
-### 4.3 控制台日志: WGOpenMSDKDnsLog
+### 4.4 控制台日志: WGOpenMSDKDnsLog
 
 ##### 接口声明
 

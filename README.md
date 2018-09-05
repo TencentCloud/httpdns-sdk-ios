@@ -173,9 +173,30 @@
 
 示例2，优点：对于解析时间有严格要求的业务，使用本示例，可无需等待，直接拿到缓存结果进行后续的连接操作，完全避免了同步接口中解析耗时可能会超过100ms的情况；缺点：第一次请求时，result一定会nil，需业务增加处理逻辑。
 
-### 4.3 控制台日志: WGOpenMSDKDnsLog
+### 4.3 设置业务appid和配置超时时间: WGSetDnsAppId:TimeOut:
 
 #### 4.3.1 接口声明
+
+业务可以通过接口设置业务基本信息。
+
+	/**
+	 设置业务基本信息
+
+	 @param dnsAppId 业务appid，用于上报
+	 @param timeOut 超时时间，单位ms，如设置0，默认为2000ms，
+	 @return YES:成功 NO:失败
+	 */
+	- (BOOL) WGSetDnsAppId:(NSString *) dnsAppId TimeOut:(int)timeOut;
+
+#### 示例代码
+
+接口调用示例：
+
+ 	[[MSDKDns sharedInstance] WGSetDnsAppId: @"xxxxxx" TimeOut:2000];
+	
+### 4.4 控制台日志: WGOpenMSDKDnsLog
+
+#### 4.4.1 接口声明
 
 业务可以通过开关控制是否打印HttpDns相关的Log。
 
