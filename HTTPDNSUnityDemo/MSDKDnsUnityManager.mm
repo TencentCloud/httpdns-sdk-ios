@@ -48,8 +48,8 @@ extern "C"{
         char * result = MakeStringCopy([[[MSDKDnsUnityManager sharedInstance] GetHostByName:domain] UTF8String]);
         return result;
     }
-	
-	void WGGetHostByNameAsync (const char * domain) {
+    
+    void WGGetHostByNameAsync (const char * domain) {
         [[MSDKDns sharedInstance] WGGetHostByNameAsync:[NSString stringWithUTF8String:domain] returnIps:^(NSArray * ipsArray) {
             if (ipsArray && ipsArray.count > 1) {
                 NSString * result = [NSString stringWithFormat:@"%@;%@",ipsArray[0], ipsArray[1]];
@@ -75,3 +75,4 @@ extern "C"{
 #if defined(__cplusplus)
 }
 #endif
+
