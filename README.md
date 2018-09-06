@@ -130,7 +130,7 @@
 		}
 	}
 
-#### 4.2。2 异步解析接口: WGGetHostByNameAsync
+#### 4.2.2 异步解析接口: WGGetHostByNameAsync
 
 ##### 接口声明
 
@@ -250,7 +250,7 @@
 
 ## 1. Unity工程接入
 
-1. 将HTTPDNSUnityDemo/Assets/Plugins/Scripts下的HttpDns.cs文件拷贝到Unity对应Assets/Plugins/Scripts路径下
+1. 将HTTPDNSUnityDemo/Assets/Plugins/Scripts下的**HttpDns.cs**文件拷贝到Unity对应Assets/Plugins/Scripts路径下
 
 2. 在需要进行域名解析的部分，调用HttpDns.GetAddrByName(string domain)或者HttpDns.GetAddrByNameAsync(string domain)方法
 	1. 如使用同步接口**HttpDns.GetAddrByName**，直接调用接口即可；
@@ -269,7 +269,7 @@
 					
 			} else {
 				//异常情况返回为0,0，建议重试一次
-				HttpDns.GetHostByName(domainStr);
+				HttpDns.GetAddrByName(domainStr);
 			}
 		}
 
