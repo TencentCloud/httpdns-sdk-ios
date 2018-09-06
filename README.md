@@ -17,9 +17,7 @@
 | VERSION.md | HTTPDNS iOS SDK历史版本修改记录 | SDK开发维护人员 |
 
 ## 1. 功能介绍
-
 ### HttpDns的主要功能是为了有效的避免由于运营商传统LocalDns解析导致的无法访问最佳接入点的方案。原理为使用Http加密协议替代传统的DNS协议，整个过程不使用域名，大大减少劫持的可能性。
-
 
 ## 2. 安装包结构
 压缩文件中包含demo工程，其中包含：
@@ -30,10 +28,9 @@
 | MSDKDns_C11.framework | 适用于该两项配置分别为**“GNU++11”**和**“libc++(LLVM C++ standard library with C++11 support)”**的工程。 |
 
 ## 3. 接入步骤
-### 3.1 引入依赖库
-#### 3.1.1 已接入灯塔（Beacon）的业务
+### 3.1 已接入灯塔（Beacon）的业务
 仅需引入位于HTTPDNSLibs目录下的MSDKDns.framework（或MSDKDns_C11.framework，根据工程配置选其一）即可。
-#### 3.1.2 未接入灯塔（Beacon）的业务
+### 3.2 未接入灯塔（Beacon）的业务
 - 引入依赖库（位于HTTPDNSLibs目录下）：
 	- BeaconAPI_Base.framework
 	- MSDKDns.framework（或MSDKDns_C11.framework，根据工程配置选其一）
@@ -52,31 +49,41 @@
 
 	    //已正常接入灯塔的业务无需关注以下代码，未接入灯塔的业务调用以下代码注册灯塔
 		//******************************
-		NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
-		NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-		NSString *appid = dic[@"COOPERATOR_APPID"];
-		[BeaconBaseInterface setAppKey:appid];
+		NSString * appkey = @"业务的灯塔appkey，由腾讯云官网注册获取";
+		[BeaconBaseInterface setAppKey:appkey];
 		[BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
 		//******************************
 
 **注意：需要在Other linker flag里加入-ObjC标志。**
 
-### 3.2 配置文件
-
-**腾讯内部业务，请参阅文档[HTTPDNS iOS客户端接入文档（腾讯内部业务专用）.md](https://github.com/tencentyun/httpdns-ios-sdk/blob/master/HTTPDNS%20iOS%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3%EF%BC%88%E8%85%BE%E8%AE%AF%E5%86%85%E9%83%A8%E4%B8%9A%E5%8A%A1%E4%B8%93%E7%94%A8%EF%BC%89.md)**
-
-在info.plist中进行配置如下：
-
-| Key        | Type           | Value  |
-| ------------- |-------------| -------------|
-| IS_COOPERATOR | Boolean | YES（腾讯内部业务填NO） |
-| COOPERATOR_APPID | String | 云官网注册获得 |
-| TIME_OUT | Number | 请求httpdns的超时设定时间单位：ms<br>如未设置，默认为1000ms |
-| DNS_ID | String | 云官网注册获得 |
-| DNS_KEY | String | 云官网注册获得 |
-| Debug | Boolean | 日志开关配置：<br>YES为打开HttpDns日志；<br>No为关闭HttpDns日志。 |
-
 ## 4. API及使用示例
+
+### 4.1 设置业务基本信息: WGSetDnsAppKey:DnsID:DnsKey:Debug:TimeOut:
+
+#### 接口声明
+
+业务可以通过接口设置业务基本信息。
+
+	/**
+	 设置业务基本信息（腾讯云业务使用）
+ 
+	 @param appkey  业务appkey，腾讯云官网（https://console.cloud.tencent.com/httpdns）申请获得，用于上报
+	 @param dnsid   dns解析id，腾讯云官网（https://console.cloud.tencent.com/httpdns）申请获得，用于域名解析鉴权
+	 @param dnsKey  dns解析key，腾讯云官网（https://console.cloud.tencent.com/httpdns）申请获得，用于域名解析鉴权
+	 @param debug   是否开启Debug日志，YES：开启，NO：关闭。建议联调阶段开启，正式上线前关闭
+	 @param timeout 超时时间，单位ms，如设置0，则设置为默认值2000ms
+ 
+	 @return YES:设置成功 NO:设置失败
+	 */
+	- (BOOL) WGSetDnsAppKey:(NSString *) appkey DnsID:(int)dnsid DnsKey:(NSString *)dnsKey Debug:(BOOL)debug TimeOut:(int)timeout;
+
+#### 示例代码
+
+接口调用示例：
+
+ 	[[MSDKDns sharedInstance] WGSetDnsAppKey: @"业务appkey，由腾讯云官网申请获得" DnsID:dns解析id DnsKey:@"dns解析key" Debug:YES TimeOut:2000];
+
+### 4.2 域名解析接口
 
 获取IP共有两个接口，同步接口**WGGetHostByName**，异步接口**WGGetHostByNameAsync**，引入头文件，调用相应接口即可。
 
@@ -93,24 +100,26 @@
 1. ipv6为0，直接使用ipv4地址连接
 2. ipv6地址不为0，优先使用ipv6连接，如果ipv6连接失败，再使用ipv4地址进行连接
 
-### 4.1 获取IP，同步接口: WGGetHostByName
+#### 4.2.1 同步解析接口: WGGetHostByName
 
-#### 4.1.1 接口声明
-	    /**
-		 *  同步接口
-		 *  @param domain 域名
-		 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
-		 */
-		- (NSArray*) WGGetHostByName:(NSString*) domain;
+##### 接口声明
+	/**
+	 域名同步解析（通用接口）
 
-#### 4.1.2 示例代码
+	 @param domain 域名
+ 
+	 @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+	 */
+	- (NSArray *) WGGetHostByName:(NSString *) domain;
+
+##### 示例代码
 
 接口调用示例：
 
-	NSArray* ipsArray = [[MSDKDns sharedInstance] WGGetHostByName: @"www.qq.com"];
+	NSArray * ipsArray = [[MSDKDns sharedInstance] WGGetHostByName: @"www.qq.com"];
 	if (ipsArray && ipsArray.count > 1){
-	    NSString* ipv4 = ipsArray[0];
-	    NSString* ipv6 = ipsArray[1];
+	    NSString * ipv4 = ipsArray[0];
+	    NSString * ipv6 = ipsArray[1];
 	    if (![ipv6 isEqualToString:@"0"]) {
 	        //使用建议：当ipv6地址存在时，优先使用ipv6地址
 	        //TODO 使用ipv6地址进行URL连接时，注意格式，ipv6需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
@@ -121,23 +130,23 @@
 		}
 	}
 
-### 4.2 获取IP，异步接口: WGGetHostByNameAsync
+#### 4.2。2 异步解析接口: WGGetHostByNameAsync
 
-#### 4.2.1 接口声明
+##### 接口声明
 
-	    /**
-		 *  异步接口
-		 *  @param domain 域名
-		 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
-		 */
-		
-		- (void) WGGetHostByNameAsync:(NSString*) domain returnIps:(void (^)(NSArray* ipsArray))handler;
+	/**
+	 域名异步解析（通用接口）
 
-#### 4.2.2 示例代码
+	 @param domain  域名
+	 @param handler 返回查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+	 */
+	- (void) WGGetHostByNameAsync:(NSString *) domain returnIps:(void (^)(NSArray * ipsArray))handler;
+
+##### 示例代码
 
 **接口调用示例1**：等待完整解析过程结束后，拿到结果，进行连接操作
 
-	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray *ipsArray) {
+	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray * ipsArray) {
 		//等待完整解析过程结束后，拿到结果，进行连接操作
 		if (ipsArray && ipsArray.count > 1) {
 			NSString* ipv4 = ipsArray[0];
@@ -156,7 +165,7 @@
 **接口调用示例2**：无需等待，可直接拿到缓存结果，如无缓存，则result为nil
 
 	__block NSArray* result;
-	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray *ipsArray) {
+	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray * ipsArray) {
 		result = ipsArray;
 	}];
 	//无需等待，可直接拿到缓存结果，如无缓存，则result为nil
@@ -173,54 +182,15 @@
 
 示例2，优点：对于解析时间有严格要求的业务，使用本示例，可无需等待，直接拿到缓存结果进行后续的连接操作，完全避免了同步接口中解析耗时可能会超过100ms的情况；缺点：第一次请求时，result一定会nil，需业务增加处理逻辑。
 
-### 4.3 设置业务appid和配置超时时间: WGSetDnsAppId:TimeOut:
-
-#### 4.3.1 接口声明
-
-业务可以通过接口设置业务基本信息。
-
-	/**
-	 设置业务基本信息
-
-	 @param dnsAppId 业务appid，用于上报
-	 @param timeOut 超时时间，单位ms，如设置0，默认为2000ms，
-	 @return YES:成功 NO:失败
-	 */
-	- (BOOL) WGSetDnsAppId:(NSString *) dnsAppId TimeOut:(int)timeOut;
-
-#### 示例代码
-
-接口调用示例：
-
- 	[[MSDKDns sharedInstance] WGSetDnsAppId: @"xxxxxx" TimeOut:2000];
-	
-### 4.4 控制台日志: WGOpenMSDKDnsLog
-
-#### 4.4.1 接口声明
-
-业务可以通过开关控制是否打印HttpDns相关的Log。
-
-	/**
-	 *  Log开关
-	 *  @param enabled YES:打开 NO:关闭
-	 */
-	- (void) WGOpenMSDKDnsLog:(BOOL) enabled;
-
-#### 示例代码
-
-接口调用示例：
-
- 	[[MSDKDns sharedInstance] WGOpenMSDKDnsLog: YES];
-
 ## 5. 注意事项
 
 1. 如果客户端的业务是与host绑定的，比如是绑定了host的http服务或者是cdn的服务，那么在用HTTPDNS返回的IP替换掉URL中的域名以后，还需要指定下Http头的host字段。
 
 	- 以NSURLConnection为例：
 
-			NSURL* httpDnsURL = [NSURL URLWithString:@"使用解析结果ip拼接的URL"];
+			NSURL * httpDnsURL = [NSURL URLWithString:@"使用解析结果ip拼接的URL"];
 			float timeOut = 设置的超时时间;
-			NSMutableURLRequest* mutableReq = [NSMutableURLRequest requestWithURL:httpDnsURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval: timeOut];
+			NSMutableURLRequest * mutableReq = [NSMutableURLRequest requestWithURL:httpDnsURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval: timeOut];
 			[mutableReq setValue:@"原域名" forHTTPHeaderField:@"host"];
 			NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest:mutableReq delegate:self];
 			[connection start];
@@ -280,18 +250,11 @@
 
 ## 1. Unity工程接入
 
-1. 在cs文件中进行接口声明：
+1. 将HTTPDNSUnityDemo/Assets/Plugins/Scripts下的HttpDns.cs文件拷贝到Unity对应Assets/Plugins/Scripts路径下
 
-		#if UNITY_IOS
-        [DllImport("__Internal")]
-		private static extern string WGGetHostByName(string domain);
-		[DllImport("__Internal")]
-		private static extern void WGGetHostByNameAsync(string domain);
-		#endif
-
-2. 在需要进行域名解析的部分，调用WGGetHostByName(string domain)或者WGGetHostByNameAsync(string domain)方法
-	1. 如使用同步接口**WGGetHostByName**，直接调用接口即可；
-	2. 如果使用异步接口**WGGetHostByNameAsync**，还需设置回调函数**onDnsNotify(string ipString)**，函数名可自定义
+2. 在需要进行域名解析的部分，调用HttpDns.GetAddrByName(string domain)或者HttpDns.GetAddrByNameAsync(string domain)方法
+	1. 如使用同步接口**HttpDns.GetAddrByName**，直接调用接口即可；
+	2. 如果使用异步接口**HttpDns.GetAddrByNameAsync**，还需设置回调函数**onDnsNotify(string ipString)**，函数名可自定义
  
 	并建议添加如下处理代码：
 	
@@ -543,15 +506,25 @@ SNI（Server Name Indication）是为了解决一个服务器使用多个域名�
     // [task resume];
 
 ### 使用说明
-可在info.plist中配置需要拦截域名和无需拦截的域名：
-在info.plist中进行配置如下：
+需调用以下接口设置需要拦截域名或无需拦截的域名：
 
-| Key        | Type           | Value  |
-| ------------- |-------------| -------------|
-| Hijack_Domain | Array | 需要拦截的域名列表 |
-| Not_Hijack_Domain | Array | 不需要拦截的域名列表 |
+	#pragma mark - SNI场景，仅调用一次即可，请勿多次调用
+	/**
+	 SNI场景下设置需要拦截的域名列表
+	 建议使用该接口设置，仅拦截SNI场景下的域名，避免拦截其它场景下的域名
+
+	 @param hijackDomainArray 需要拦截的域名列表
+	 */
+	- (void) WGSetHijackDomainArray:(NSArray *)hijackDomainArray;
+
+	/**
+	 SNI场景下设置不需要拦截的域名列表
+
+	 @param noHijackDomainArray 不需要拦截的域名列表
+	 */
+	- (void) WGSetNoHijackDomainArray:(NSArray *)noHijackDomainArray;
 
 - 如设置了需要拦截的域名列表，则仅会拦截处理该域名列表中的https请求，其它域名不做处理；
 - 如设置了不需要拦截的域名列表，则不会拦截处理该域名列表中的https请求；
 
-建议使用Hijack_Domain仅拦截SNI场景下的域名，避免拦截其它场景下的域名。
+建议使用WGSetHijackDomainArray仅拦截SNI场景下的域名，避免拦截其它场景下的域名。
