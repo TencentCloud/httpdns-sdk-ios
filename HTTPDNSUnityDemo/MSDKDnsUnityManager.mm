@@ -67,12 +67,13 @@ extern "C"{
     bool WGSetInitInnerParams(const char * appkey, bool debug, int timeout) {
         return [[MSDKDns sharedInstance] WGSetDnsAppKey:[NSString stringWithUTF8String:appkey] Debug:debug TimeOut:timeout];
     }
-	
-	bool WGSetInitParams(const char * appkey, int dnsid, const char * dnskey, bool debug, int timeout) {
-		return [[MSDKDns sharedInstance] WGSetDnsAppKey:[NSString stringWithUTF8String:appkey] DnsID:dnsid DnsKey:[NSString stringWithUTF8String:dnskey] Debug:debug TimeOut:timeout];
-	}
+    
+    bool WGSetInitParams(const char * appkey, int dnsid, const char * dnskey, bool debug, int timeout) {
+        return [[MSDKDns sharedInstance] WGSetDnsAppKey:[NSString stringWithUTF8String:appkey] DnsID:dnsid DnsKey:[NSString stringWithUTF8String:dnskey] Debug:debug TimeOut:timeout];
+    }
     
 #if defined(__cplusplus)
 }
 #endif
+
 

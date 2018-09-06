@@ -71,8 +71,7 @@ public class ClickEvent : MonoBehaviour {
                 //异常情况返回为0,0，建议重试一次
                 print("ReStartSyncClick");
                 print(domainStr);
-                if (domainStr == null || domainStr.Equals(""))
-                {
+                if (domainStr == null || domainStr.Equals("")) {
                     domainStr = "www.qq.com";
                     print("input is null, use the default domain:www.qq.com.");
                     result.text = "input is null, use the default domain:www.qq.com.";
