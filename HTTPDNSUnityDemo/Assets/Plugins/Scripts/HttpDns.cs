@@ -25,11 +25,11 @@ namespace com.tencent.httpdns
         [DllImport("__Internal")]
         private static extern void WGGetHostByNameAsync(string domain);
         [DllImport("__Internal")]
-        private static extern void WGOpenMSDKDnsLog(bool enabled);
-        [DllImport("__Internal")]
         private static extern bool WGSetDnsOpenId(string dnsOpenId);
         [DllImport("__Internal")]
-        private static extern bool WGSetInitParams(string dnsAppId, int timeOut);
+        private static extern bool WGSetInitInnerParams(string appkey, bool debug, int timeout);
+        [DllImport("__Internal")]
+        private static extern bool WGSetInitParams(string appkey, int dnsid, string dnskey, bool debug, int timeout);
 #endif
 
         public static void Init(string appId, bool debug, int timeout)
@@ -62,8 +62,41 @@ namespace com.tencent.httpdns
             mHttpDnsObj.Call("init", currentActivityObj, appId, debug, timeout);
 #endif
 #if UNITY_IOS
-            WGOpenMSDKDnsLog(debug);
-            WGSetInitParams(appId, timeout);
+            WGSetInitInnerParams(appId, debug, timeout);
+#endif
+        }
+
+        public static void Init(string appId, int dnsid, string dnskey, bool debug, int timeout)
+        {
+#if UNITY_ANDROID
+            AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            if (unityPlayerClass == null)
+            {
+                Debug.Log("unityPlayerClass == null");
+                return;
+            }
+            AndroidJavaObject currentActivityObj = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
+            if (currentActivityObj == null)
+            {
+                Debug.Log("currentActivityObj == null");
+                return;
+            }
+            AndroidJavaClass httpDnsClass = new AndroidJavaClass("com.tencent.msdk.dns.MSDKDnsResolver");
+            if (httpDnsClass == null)
+            {
+                Debug.Log("httpDnsClass == null");
+                return;
+            }
+            mHttpDnsObj = httpDnsClass.CallStatic<AndroidJavaObject>("getInstance");
+            if (mHttpDnsObj == null)
+            {
+                Debug.Log("mHttpDnsObj == null");
+                return;
+            }
+            mHttpDnsObj.Call("init", currentActivityObj, appId, dnsid, dnskey, debug, timeout);
+#endif
+#if UNITY_IOS
+            WGSetInitParams(appId, dnsid, dnskey, debug, timeout);
 #endif
         }
 

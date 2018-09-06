@@ -38,7 +38,7 @@ public class ClickEvent : MonoBehaviour {
 					print("input is null, use the default domain:www.qq.com.");
 					result.text = "input is null, use the default domain:www.qq.com.";
 				}
-				HttpDns.GetHostByNameAsync(domainStr);
+				HttpDns.GetAddrByName(domainStr);
 			}
 		}
     }
@@ -67,7 +67,18 @@ public class ClickEvent : MonoBehaviour {
 			} else if(!sArray [0].Equals ("0")){
 				//使用ipv4地址进行连接
 				result.text = "ipv6 address not exist, use the ipv4 address:" + sArray [0] + " to connect.";
-			}
-		}
+            } else {
+                //异常情况返回为0,0，建议重试一次
+                print("ReStartSyncClick");
+                print(domainStr);
+                if (domainStr == null || domainStr.Equals(""))
+                {
+                    domainStr = "www.qq.com";
+                    print("input is null, use the default domain:www.qq.com.");
+                    result.text = "input is null, use the default domain:www.qq.com.";
+                }
+                HttpDns.GetAddrByNameAsync(domainStr);
+            }
+        }
 	}
 }

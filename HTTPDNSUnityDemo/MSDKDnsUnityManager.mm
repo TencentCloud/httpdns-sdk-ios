@@ -60,16 +60,16 @@ extern "C"{
         }];
     }
     
-    void WGOpenMSDKDnsLog (bool enabled) {
-        [[MSDKDns sharedInstance] WGOpenMSDKDnsLog:enabled];
-    }
-    
     bool WGSetDnsOpenId (const char * dnsOpenId) {
         return [[MSDKDns sharedInstance] WGSetDnsOpenId:[NSString stringWithUTF8String:dnsOpenId]];
     }
     
-    bool WGSetInitParams(const char * dnsAppId, int timeOut) {
-        return [[MSDKDns sharedInstance] WGSetDnsAppId:[NSString stringWithUTF8String:dnsAppId] TimeOut:timeOut];
+    bool WGSetInitInnerParams(const char * appkey, bool debug, int timeout) {
+        return [[MSDKDns sharedInstance] WGSetDnsAppKey:[NSString stringWithUTF8String:appkey] Debug:debug TimeOut:timeout];
+    }
+
+	bool WGSetInitParams(const char * appkey, int dnsid, const char * dnskey, bool debug, int timeout) {
+        return [[MSDKDns sharedInstance] WGSetDnsAppKey:[NSString stringWithUTF8String:appkey] DnsID:dnsid DnsKey:[NSString stringWithUTF8String:dnskey] Debug:debug TimeOut:timeout];
     }
     
 #if defined(__cplusplus)
