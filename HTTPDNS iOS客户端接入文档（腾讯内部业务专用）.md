@@ -23,8 +23,6 @@
 - 引入系统库：
 	- libz.tdb
 	- libsqlite3.tdb
-	- libstdc++.tdb
-	- libstdc++.6.0.9.tdb
 	- libc++.tdb
 	- Foundation.framework
 	- CoreTelephony.framework
