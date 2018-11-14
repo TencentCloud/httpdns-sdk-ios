@@ -50,20 +50,21 @@
 
 	/**
 	 设置业务基本信息（腾讯内部及代理业务使用）
- 
+	 
 	 @param appkey  业务appid，同手Q APPID
-	 @param debug   是否开启Debug日志，YES：开启，NO：关闭
+	 @param debug   是否开启Debug日志，YES：开启，NO：关闭。建议联调阶段开启，正式上线前关闭
 	 @param timeout 超时时间，单位ms，如设置0，则设置为默认值2000ms
- 
+	 @param useHttp 是否使用http路解析，YES：使用http路解析，NO：使用https路解析
+	 
 	 @return YES:设置成功 NO:设置失败
 	 */
-	- (BOOL) WGSetDnsAppKey:(NSString *) appkey Debug:(BOOL)debug TimeOut:(int)timeout;
+	- (BOOL) WGSetDnsAppKey:(NSString *) appkey Debug:(BOOL)debug TimeOut:(int)timeout UseHttp:(BOOL)useHttp;
 
 #### 示例代码
 
 接口调用示例：
 
- 	BOOL result = [[MSDKDns sharedInstance] WGSetDnsAppKey:@"手Q APPID" Debug:YES TimeOut:2000];
+ 	BOOL result = [[MSDKDns sharedInstance] WGSetDnsAppKey:@"手Q APPID" Debug:YES TimeOut:2000 UseHttp:NO];
 
 ### 4.2 设置用户Openid: WGSetDnsOpenId
 
@@ -88,9 +89,10 @@
 
 返回的地址格式为NSArray，固定长度为2，其中第一个值为ipv4地址，第二个值为ipv6地址。以下为返回格式的详细说明：
 
-- [ipv4, 0]：一般业务使用的情景中，绝大部分均会返回这种格式的结果，即不存在ipv6地址，仅返回ipv4地址给业务；
-- [ipv4, ipv6]：发生在ipv6环境下，ipv6及ipv4地址均会返回给业务；
-- [0, 0]：在极其少数的情况下，会返回该格式给业务，此时httpdns与localdns请求均超时，业务重新调用WGGetHostByName接口即可。
+- ipv4下，仅返回ipv4地址，即返回格式为：[ipv4, 0]
+- ipv6下，仅返回ipv6地址，即返回格式为：[0, ipv6]
+- 双栈网络下，返回解析到ipv4&ipv6（如果存在）地址，即返回格式为：[ipv4, ipv6]
+- 解析失败，返回[0, 0]，业务重新调用WGGetHostByName接口即可。
 
 **注意：使用ipv6地址进行URL请求时，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/*********
 

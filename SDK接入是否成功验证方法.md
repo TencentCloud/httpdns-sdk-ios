@@ -2,21 +2,7 @@
 ----
 ### 一、打开Debug日志开关
 
-有两种方法可打开HttpDns Debug日志开关：
-
-1. 在项目工程的info.plist中进行如下配置：
-
-	| Key        | Type           | Value  |
-	| ------------- |-------------| -------------|
-	| Debug | Boolean | YES |
-
-2. 调用接口 **[[MSDKDns sharedInstance] WGOpenMSDKDnsLog:YES]**，接口说明如下：
-
-		/**
-		 *  Log开关
-		 *  @param enabled YES:打开 NO:关闭
-		 */
-		- (void) WGOpenMSDKDnsLog:(BOOL) enabled;
+调用设置业务基本信息接口，设置Debug参数为YES
 
 ### 二、检查解析结果
 
@@ -32,9 +18,9 @@
 
 1. **hdns\_ip解析没有结果**：
 
-	- 按照github上接入文档中配置说明进行检查，尤其内外部厂商（IS\_COOPERATOR）和是否开启测试环境（IS\_TEST）配置；
+	- 按照github上接入文档中接口说明进行检查；
 
-	- 如果info.plist配置没有问题，建议尝试切换网络环境再测试一下，如由wifi切换到4G；
+	- 如果接入没有问题，建议尝试切换网络环境再测试一下，如由wifi切换到4G；
 
 	- 如果还是不行，可以使用如下方法进行网络环境监测，将www.qq.com更换为业务的域名进行测试：
 	
