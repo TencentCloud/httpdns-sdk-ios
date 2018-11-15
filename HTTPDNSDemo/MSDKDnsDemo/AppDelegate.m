@@ -24,12 +24,9 @@
 
     // 已正常接入MSDK的游戏无需关注以下代码，未接入MSDK的游戏调用以下代码注册灯塔
     // ******************************
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
-    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    NSString *appid = dict[@"COOPERATOR_APPID"];
-    [BeaconBaseInterface setAppKey:appid];
+    [BeaconBaseInterface setAppKey:@"申请的灯塔AppKey"];
     [BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
-//    [BeaconBaseInterface setLogLevel:5];
+	
     return YES;
 }
 

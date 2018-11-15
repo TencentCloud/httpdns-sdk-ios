@@ -23,8 +23,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // 腾讯内部及代理业务需在拿到openid成功后调用此接口
-    BOOL result = [[MSDKDns sharedInstance] WGSetDnsOpenId:@"xxxxxxxxxxxxxxx"];
+	// 腾讯云业务
+	[[MSDKDns sharedInstance] WGSetDnsAppKey: @"业务appkey，由腾讯云官网申请获得" DnsID:[@"dns解析id" intValue] DnsKey:@"dns解析key" Debug:YES TimeOut:2000 UseHttp:NO];
+	
+    // 腾讯内部及代理业务
+	// [[MSDKDns sharedInstance] WGSetDnsAppKey:@"手Q APPID" Debug:YES TimeOut:2000 UseHttp:NO];
+    // BOOL result = [[MSDKDns sharedInstance] WGSetDnsOpenId:@"xxxxxxxxxxxxxxx"];
     NSLog(@"%@", result? @"WGSetDnsOpenId Success!!!": @"WGSetDnsOpenId Fail!!!");
 }
 
