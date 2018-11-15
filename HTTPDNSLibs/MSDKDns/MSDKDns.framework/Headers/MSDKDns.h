@@ -8,7 +8,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.1.1.1i"
+#define MSDKDns_Version @"1.1.2i"
 
 #import <Foundation/Foundation.h>
 #if defined(__has_include)
