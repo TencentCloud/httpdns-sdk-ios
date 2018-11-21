@@ -52,7 +52,7 @@
 	 @param appkey  业务appid，同手Q APPID
 	 @param debug   是否开启Debug日志，YES：开启，NO：关闭。建议联调阶段开启，正式上线前关闭
 	 @param timeout 超时时间，单位ms，如设置0，则设置为默认值2000ms
-	 @param useHttp 是否使用http路解析，YES：使用http路解析，NO：使用https路解析
+	 @param useHttp 是否使用http路解析，YES：使用http路解析，NO：使用https路解析，强烈建议使用http路解析，解析速度更快
 	 
 	 @return YES:设置成功 NO:设置失败
 	 */
@@ -62,7 +62,7 @@
 
 接口调用示例：
 
- 	BOOL result = [[MSDKDns sharedInstance] WGSetDnsAppKey:@"手Q APPID" Debug:YES TimeOut:2000 UseHttp:NO];
+ 	BOOL result = [[MSDKDns sharedInstance] WGSetDnsAppKey:@"手Q APPID" Debug:YES TimeOut:1000 UseHttp:YES];
 
 ### 4.2 设置用户Openid: WGSetDnsOpenId
 
