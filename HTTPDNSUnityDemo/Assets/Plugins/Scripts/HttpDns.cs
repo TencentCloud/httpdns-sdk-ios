@@ -81,6 +81,14 @@ namespace com.tencent.httpdns
                 Debug.Log("currentActivityObj == null");
                 return;
             }
+            AndroidJavaClass userActionClass = new AndroidJavaClass("com.tencent.beacon.event.UserAction");
+            if (userActionClass == null)
+            {
+                Debug.Log("userActionClass == null");
+                return;
+            }
+            userActionClass.CallStatic("initUserAction", currentActivityObj);
+            userActionClass.CallStatic("setAppKey", "");
             AndroidJavaClass httpDnsClass = new AndroidJavaClass("com.tencent.msdk.dns.MSDKDnsResolver");
             if (httpDnsClass == null)
             {
