@@ -31,6 +31,7 @@
 ### 3.1 已接入灯塔（Beacon）的业务
 仅需引入位于HTTPDNSLibs目录下的MSDKDns.framework（或MSDKDns_C11.framework，根据工程配置选其一）即可。
 ### 3.2 未接入灯塔（Beacon）的业务
+灯塔(beacon)SDK是腾讯灯塔团队开发的用于移动应用统计分析的SDK, HttpDNS SDK使用灯塔(beacon)SDK收集域名解析质量数据, 辅助定位问题
 - 引入依赖库（位于HTTPDNSLibs目录下）：
 	- BeaconAPI_Base.framework
 	- MSDKDns.framework（或MSDKDns_C11.framework，根据工程配置选其一）
