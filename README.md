@@ -223,7 +223,7 @@ HttpDns提供两种集成方式供iOS开发者选择：
             
 	- 以curl为例：
 
-    假设你要访问www.qq.com，通过HTTPDNS解析出来的IP为192.168.0.111，那么通过这个方式来调用即可：
+        假设你要访问www.qq.com，通过HTTPDNS解析出来的IP为192.168.0.111，那么通过这个方式来调用即可：
 
             curl -H "host:www.qq.com" http://192.168.0.111/aaa.txt.
 
@@ -326,10 +326,10 @@ HttpDns提供两种集成方式供iOS开发者选择：
             //绑定校验策略到服务端的证书上
             SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);
             
-            //评估当前serverTrust是否可信任
-            //官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed的情况下serverTrust可以被验证通过
-            //https://developer.apple.com/library/ios/technotes/tn2232/_index.html
-            //关于SecTrustResultType的详细信息请参考SecTrust.h
+            //评估当前serverTrust是否可信任，
+            //官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed的情况下serverTrust可以被验证通过，
+            //https://developer.apple.com/library/ios/technotes/tn2232/_index.html
+            //关于SecTrustResultType的详细信息请参考SecTrust.h    
             SecTrustResultType result;
             SecTrustEvaluate(serverTrust, &result);
             return (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
@@ -452,57 +452,57 @@ SNI（Server Name Indication）是为了解决一个服务器使用多个域名�
 
 在网络请求前注册NSURLProtocol子类，在示例的SNIViewController.m中。
 
-       // 注册拦截请求的NSURLProtocol
-       [NSURLProtocol registerClass:[MSDKDnsHttpMessageTools class]];
+    // 注册拦截请求的NSURLProtocol
+    [NSURLProtocol registerClass:[MSDKDnsHttpMessageTools class]];
       
-       // 需要设置SNI的URL
-       NSString *originalUrl = @"your url";
-       NSURL *url = [NSURL URLWithString:originalUrl];
-       NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-       NSArray *result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
-       NSString *ip = nil;
-       if (result && result.count > 1) {
-           if (![result[1] isEqualToString:@"0"]) {
-               ip = result[1];
-           } else {
-               ip = result[0];
-           }
-       }
-       // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
-       if (ip) {
-           NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
-           if (NSNotFound != hostFirstRange.location) {
-               NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
-               request.URL = [NSURL URLWithString:newUrl];
-               [request setValue:url.host forHTTPHeaderField:@"host"];
-           }
-       }
+    // 需要设置SNI的URL
+    NSString *originalUrl = @"your url";
+    NSURL *url = [NSURL URLWithString:originalUrl];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    NSArray *result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
+    NSString *ip = nil;
+    if (result && result.count > 1) {
+        if (![result[1] isEqualToString:@"0"]) {
+            ip = result[1];
+        } else {
+            ip = result[0];
+        }
+    }
+    // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
+    if (ip) {
+        NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
+        if (NSNotFound != hostFirstRange.location) {
+            NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
+            request.URL = [NSURL URLWithString:newUrl];
+            [request setValue:url.host forHTTPHeaderField:@"host"];
+        }
+    }
 
-       // NSURLConnection例子
-       self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-       [self.connection start];
+    // NSURLConnection例子
+    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [self.connection start];
 
-       // NSURLSession例子
-       NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-       NSArray *protocolArray = @[ [MSDKDnsHttpMessageTools class] ];
-       configuration.protocolClasses = protocolArray;
-       NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-       self.task = [session dataTaskWithRequest:request];
-       [self.task resume];
+    // NSURLSession例子
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSArray *protocolArray = @[ [MSDKDnsHttpMessageTools class] ];
+    configuration.protocolClasses = protocolArray;
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    self.task = [session dataTaskWithRequest:request];
+    [self.task resume];
        
-       // 注*：使用NSURLProtocol拦截NSURLSession发起的POST请求时，HTTPBody为空。
-       // 解决方案有两个：1. 使用NSURLConnection发POST请求。
-       // 2. 先将HTTPBody放入HTTP Header field中，然后在NSURLProtocol中再取出来。
-       // 下面主要演示第二种解决方案
-       // NSString *postStr = [NSString stringWithFormat:@"param1=%@&param2=%@", @"val1", @"val2"];
-       // [_request addValue:postStr forHTTPHeaderField:@"originalBody"];
-       // _request.HTTPMethod = @"POST";
-       // NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-       // NSArray *protocolArray = @[ [CFHttpMessageURLProtocol class] ];
-       // configuration.protocolClasses = protocolArray;
-       // NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-       // NSURLSessionTask *task = [session dataTaskWithRequest:_request];
-       // [task resume];
+    // 注*：使用NSURLProtocol拦截NSURLSession发起的POST请求时，HTTPBody为空。
+    // 解决方案有两个：1. 使用NSURLConnection发POST请求。
+    // 2. 先将HTTPBody放入HTTP Header field中，然后在NSURLProtocol中再取出来。
+    // 下面主要演示第二种解决方案
+    // NSString *postStr = [NSString stringWithFormat:@"param1=%@&param2=%@", @"val1", @"val2"];
+    // [_request addValue:postStr forHTTPHeaderField:@"originalBody"];
+    // _request.HTTPMethod = @"POST";
+    // NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    // NSArray *protocolArray = @[ [CFHttpMessageURLProtocol class] ];
+    // configuration.protocolClasses = protocolArray;
+    // NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    // NSURLSessionTask *task = [session dataTaskWithRequest:_request];
+    // [task resume];
 
 ### 使用说明
 需调用以下接口设置需要拦截域名或无需拦截的域名：
