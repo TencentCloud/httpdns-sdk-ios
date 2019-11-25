@@ -13,10 +13,27 @@
 | MSDKDns.framework | 适用“Build Setting->C++ Language Dialect”配置为**“GNU++98”**，“Build Setting->C++ Standard Library”为**“libstdc++(GNU C++ standard library)”**的工程。 |
 | MSDKDns_C11.framework | 适用于该两项配置分别为**“GNU++11”**和**“libc++(LLVM C++ standard library with C++11 support)”**的工程。 |
 
-## 3. 接入步骤
-### 3.1 已接入MSDK或灯塔（Beacon）的业务
+## 3. SDK集成
+HttpDns提供两种集成方式供iOS开发者选择：
+- 通过CocoaPods集成
+- 手动集成
+
+### 3.1 通过CocoaPods集成
+在工程的Podfile里面添加以下代码：
+
+    # 适用“Build Setting->C++ Language Dialect”配置为**“GNU++98”**，“Build Setting->C++ Standard Library”为**“libstdc++(GNU C++ standard library)”**的工程。
+    pod 'MSDKDns'
+    # 适用于该两项配置分别为**“GNU++11”**和**“libc++(LLVM C++ standard library with C++11 support)”**的工程。
+    # pod 'MSDKDns_C11'
+
+保存并执行`pod install`,然后用后缀为`.xcworkspace`的文件打开工程。
+
+关于`CocoaPods`的更多信息，请查看 [CocoaPods官方网站](https://cocoapods.org/)。
+
+### 3.2 手动集成
+#### 3.2.1 已接入MSDK或灯塔（Beacon）的业务
 仅需引入位于HTTPDNSLibs目录下的MSDKDns.framework（或MSDKDns_C11.framework，根据工程配置选其一）即可。
-### 3.2 未接入MSDK且未接入灯塔（Beacon）的业务
+#### 3.2.2 未接入MSDK且未接入灯塔（Beacon）的业务
 灯塔(beacon)SDK是腾讯灯塔团队开发的用于移动应用统计分析的SDK, HttpDNS SDK使用灯塔(beacon)SDK收集域名解析质量数据, 辅助定位问题
 - 引入依赖库（位于HTTPDNSLibs目录下）：
 	- BeaconAPI_Base.framework
@@ -32,12 +49,11 @@
 	- Security.framework
 - 并在application:didFinishLaunchingWithOptions:加入注册灯塔代码：
 
-		//已正常接入灯塔的业务无需关注以下代码，未接入灯塔的业务调用以下代码注册灯塔
-		//******************************
-		NSString * appkey = @"业务的灯塔appkey，由灯塔官网注册获取";
-		[BeaconBaseInterface setAppKey:appkey];
-		[BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
-		//******************************
+        //已正常接入灯塔的业务无需关注以下代码，未接入灯塔的业务调用以下代码注册灯塔
+        //******************************
+        [BeaconBaseInterface setAppKey:@"0000066HQK3XNL5U"];
+        [BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
+        //******************************
 
 **注意：需要在Other linker flag里加入-ObjC标志。**
 
@@ -103,42 +119,48 @@
 #### 4.3.1 同步接口: WGGetHostByName
 
 ##### 接口声明
-	/**
-	 *  同步接口
-	 *  @param domain 域名
-	 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
-	 */
-	- (NSArray*) WGGetHostByName:(NSString*) domain;
+    /**
+     域名同步解析（通用接口）
+     
+     @param domain 域名
+     
+     @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+     */
+     - (NSArray *) WGGetHostByName:(NSString *) domain;
 
 ##### 示例代码
 
-	NSArray* ipsArray = [[MSDKDns sharedInstance] WGGetHostByName: @"www.qq.com"];
-	if (ipsArray && ipsArray.count > 1){
-	    NSString* ipv4 = ipsArray[0];
-	    NSString* ipv6 = ipsArray[1];
-	    if (![ipv6 isEqualToString:@"0"]) {
-	        //使用建议：当ipv6地址存在时，优先使用ipv6地址
-	        //TODO 使用ipv6地址进行连接，注意格式，ipv6需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
-	    } else {
-	       //使用ipv4地址进行连接
-	    }
-	}
+接口调用示例：
+
+    NSArray *ipsArray = [[MSDKDns sharedInstance] WGGetHostByName: @"www.qq.com"];
+    if (ipsArray && ipsArray.count > 1) {
+        NSString *ipv4 = ipsArray[0];
+        NSString *ipv6 = ipsArray[1];
+        if (![ipv6 isEqualToString:@"0"]) {
+            //使用建议：当ipv6地址存在时，优先使用ipv6地址
+            //TODO 使用ipv6地址进行URL连接时，注意格式，ipv6需加方框号[]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+        } else if (![ipv4 isEqualToString:@"0"]){
+            //使用ipv4地址进行连接
+        } else {
+            //异常情况返回为0,0，建议重试一次
+        }
+    }
 
 ### 4.3.2 异步接口: WGGetHostByNameAsync
 
 ##### 接口声明
 
-	/**
-	 *  异步接口
-	 *  @param domain 域名
-	 *  @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
-	 */
-		
-	- (void) WGGetHostByNameAsync:(NSString*) domain returnIps:(void (^)(NSArray* ipsArray))handler;
+    /**
+     域名异步解析（通用接口）
+     
+     @param domain  域名
+     @param handler 返回查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+     */
+     - (void) WGGetHostByNameAsync:(NSString *) domain returnIps:(void (^)(NSArray *ipsArray))handler;
 
 ##### 示例代码
 
-**示例1**：等待完整解析过程结束后，拿到结果，进行连接操作
+**接口调用示例1**：等待完整解析过程结束后，拿到结果，进行连接操作
 
 	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray *ipsArray) {
 		//等待完整解析过程结束后，拿到结果，进行连接操作
@@ -156,18 +178,18 @@
 		}
 	}];
 
-**示例2**：无需等待，可直接拿到缓存结果，如无缓存，则result为nil
+**接口调用示例2**：无需等待，可直接拿到缓存结果，如无缓存，则result为nil
 
-	__block NSArray* result;
-	[[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray *ipsArray) {
-		result = ipsArray;
-	}];
-	//无需等待，可直接拿到缓存结果，如无缓存，则result为nil
-	if (result) {
-		//拿到缓存结果，进行连接操作
-	} else {
-		//本次请求无缓存，业务可走原始逻辑
-	}
+    __block NSArray* result;
+    [[MSDKDns sharedInstance] WGGetHostByNameAsync:domain returnIps:^(NSArray *ipsArray) {
+        result = ipsArray;
+    }];
+    //无需等待，可直接拿到缓存结果，如无缓存，则result为nil
+    if (result) {
+        //拿到缓存结果，进行连接操作
+    } else {
+        //本次请求无缓存，业务可走原始逻辑
+    }
 
 **注意**：业务可根据自身需求，任选一种调用方式：
 
@@ -182,61 +204,70 @@
 
 	- 以NSURLConnection为例：
 
-			NSURL* httpDnsURL = [NSURL URLWithString:@”使用解析结果ip拼接的URL”];
-			float timeOut = 设置的超时时间;
-			NSMutableURLRequest* mutableReq = [NSMutableURLRequest requestWithURL:httpDnsURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval: timeOut];
-			[mutableReq setValue:@"原域名" forHTTPHeaderField:@"host"];
-			NSURLConnection* connection = [[NSURLConnection alloc] initWithRequest:mutableReq delegate:self];
-			[connection start];
+            NSURL *httpDnsURL = [NSURL URLWithString:@"使用解析结果ip拼接的URL"];
+            float timeOut = 设置的超时时间;
+            NSMutableURLRequest *mutableReq = [NSMutableURLRequest requestWithURL:httpDnsURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval: timeOut];
+            [mutableReq setValue:@"原域名" forHTTPHeaderField:@"host"];
+            NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:mutableReq delegate:self];
+            [connection start];
+            
+        - 以NSURLSession为例：
+
+                NSURL *httpDnsURL = [NSURL URLWithString:@"使用解析结果ip拼接的URL"];
+                float timeOut = 设置的超时时间;
+                NSMutableURLRequest *mutableReq = [NSMutableURLRequest requestWithURL:httpDnsURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval: timeOut];
+                [mutableReq setValue:@"原域名" forHTTPHeaderField:@"host"];
+                NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+                NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+                NSURLSessionTask *task = [session dataTaskWithRequest:mutableReq];
+                [task resume];
 
 	- 以curl为例：
 
 		假设你要访问www.qq.com，通过HTTPDNS解析出来的IP为192.168.0.111，那么通过这个方式来调用即可：
 
-			curl -H "host:www.qq.com" http://192.168.0.111/aaa.txt.
+            curl -H "host:www.qq.com" http://192.168.0.111/aaa.txt.
 
 	- 以Unity的WWW接口为例：
 
-			string httpDnsURL = "使用解析结果ip拼接的URL";
-			Dictionary<string, string> headers = new Dictionary<string, string> ();
-			headers["host"] = "原域名";
-			WWW conn = new WWW (url, null, headers);
-			yield return conn;
-			if (conn.error != null)  
-			{  
-				print("error is happened:"+ conn.error);      
-			} else  
-			{  
-				print("request ok" + conn.text); 
-			}  
+            string httpDnsURL = "使用解析结果ip拼接的URL";
+            Dictionary<string, string> headers = new Dictionary<string, string> ();
+            headers["host"] = "原域名";
+            WWW conn = new WWW (url, null, headers);
+            yield return conn;
+            if (conn.error != null) {
+                print("error is happened:"+ conn.error);
+            } else {
+                print("request ok" + conn.text);
+            }
 
 2. 检测本地是否使用了HTTP代理，如果使用了HTTP代理，建议不要使用HTTPDNS做域名解析
 
 	- 检测是否使用了HTTP代理：
 
-			- (BOOL)isUseHTTPProxy {
-				CFDictionaryRef dicRef = CFNetworkCopySystemProxySettings();
-				const CFStringRef proxyCFstr = (const CFStringRef)CFDictionaryGetValue(dicRef, (const void*)kCFNetworkProxiesHTTPProxy);
-				NSString* proxy = (__bridge NSString *)proxyCFstr;
-				if (proxy) {
-					return YES;
-				} else {
-					return NO;
-				}
-			}
+            - (BOOL)isUseHTTPProxy {
+                CFDictionaryRef dicRef = CFNetworkCopySystemProxySettings();
+                const CFStringRef proxyCFstr = (const CFStringRef)CFDictionaryGetValue(dicRef, (const void*)kCFNetworkProxiesHTTPProxy);
+                NSString *proxy = (__bridge NSString *)proxyCFstr;
+                if (proxy) {
+                    return YES;
+                } else {
+                    return NO;
+                }
+            }
 
 	- 检测是否使用了HTTPS代理：
 
-			- (BOOL)isUseHTTPSProxy {
-				CFDictionaryRef dicRef = CFNetworkCopySystemProxySettings();
-				const CFStringRef proxyCFstr = (const CFStringRef)CFDictionaryGetValue(dicRef, (const void*)kCFNetworkProxiesHTTPSProxy);
-				NSString* proxy = (__bridge NSString *)proxyCFstr;
-				if (proxy) {
-					return YES;
-				} else {
-					return NO;
-				}
-			}
+            - (BOOL)isUseHTTPSProxy {
+                CFDictionaryRef dicRef = CFNetworkCopySystemProxySettings();
+                const CFStringRef proxyCFstr = (const CFStringRef)CFDictionaryGetValue(dicRef, (const void*)kCFNetworkProxiesHTTPSProxy);
+                NSString *proxy = (__bridge NSString *)proxyCFstr;
+                if (proxy) {
+                    return YES;
+                } else {
+                    return NO;
+                }
+            }
 			
 # 实践场景 #
 ---
@@ -251,20 +282,18 @@
  
 	并建议添加如下处理代码：
 	
-		string[] sArray=ipString.Split(new char[] {';'}); 
-		if (sArray != null && sArray.Length > 1) {
-			if (!sArray[1].Equals("0")) {
-				//使用建议：当ipv6地址存在时，优先使用ipv6地址
-				//TODO 使用ipv6地址进行URL连接时，注意格式，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
-					
-			} else if(!sArray [0].Equals ("0")) {
-				//使用ipv4地址进行连接
-					
-			} else {
-				//异常情况返回为0,0，建议重试一次
-				HttpDns.GetAddrByName(domainStr);
-			}
-		}
+        string[] sArray=ipString.Split(new char[] {';'}); 
+            if (sArray != null && sArray.Length > 1) {
+                if (!sArray[1].Equals("0")) {
+                    //使用建议：当ipv6地址存在时，优先使用ipv6地址
+                    //TODO 使用ipv6地址进行URL连接时，注意格式，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+                } else if(!sArray [0].Equals ("0")) {
+                    //使用ipv4地址进行连接
+                } else {
+                    //异常情况返回为0,0，建议重试一次
+                    HttpDns.GetAddrByName(domainStr);
+                }
+            }
 
 3. 将unity工程打包为xcode工程后，引入所需依赖库；
 
@@ -284,148 +313,125 @@
 
 - **以NSURLConnection接口为例：**
 
-		#pragma mark - NSURLConnectionDelegate
-	 	- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust forDomain:(NSString *)domain		
-	 	{		
-	 	    /*		
-	 	     * 创建证书校验策略		
-	 	     */		
-	 	    NSMutableArray *policies = [NSMutableArray array];		
-	 	    if (domain) {		
-	 	        [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, (__bridge CFStringRef)domain)];		
-	 	    } else {		
-	 	        [policies addObject:(__bridge_transfer id)SecPolicyCreateBasicX509()];		
-	 	    }		
-	 	    		
-	 	    /*		
-	 	     * 绑定校验策略到服务端的证书上		
-	 	     */		
-	 	    SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);		
-	 	    		
-	 	    /*		
-	 	     * 评估当前serverTrust是否可信任，		
-	 	     * 官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed		
-	 	     * 的情况下serverTrust可以被验证通过，https://developer.apple.com/library/ios/technotes/tn2232/_index.html		
-	 	     * 关于SecTrustResultType的详细信息请参考SecTrust.h		
-	 	     */		
-	 	    SecTrustResultType result;		
-	 	    SecTrustEvaluate(serverTrust, &result);		
-	 	    		
-	 	    return (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);		
-	 	}		
- 			
-	 	- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge		
-	 	{		
-	 	    if (!challenge) {		
-	 	        return;		
-	 	    }		
-	 	    		
-	 	    /*		
-	 	     * URL里面的host在使用HTTPDNS的情况下被设置成了IP，此处从HTTP Header中获取真实域名		
-	 	     */		
-	 	    NSString* host = [[self.request allHTTPHeaderFields] objectForKey:@"host"];		
-	 	    if (!host) {		
-	 	        host = self.request.URL.host;		
-	 	    }		
-	 	    		
-	 	    /*		
-	 	     * 判断challenge的身份验证方法是否是NSURLAuthenticationMethodServerTrust（HTTPS模式下会进行该身份验证流程），		
-	 	     * 在没有配置身份验证方法的情况下进行默认的网络请求流程。		
-	 	     */		
-	 	    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])		
-	 	    {		
-	 	        if ([self evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:host]) {		
-	 	            /*		
-	 	             * 验证完以后，需要构造一个NSURLCredential发送给发起方		
-	 	             */		
-	 	            NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];		
-	 	            [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];		
-	 	        } else {		
-	 	            /*		
-	 	             * 验证失败，取消这次验证流程		
-	 	             */		
-	 	            [[challenge sender] cancelAuthenticationChallenge:challenge];		
-	 	        }		
-	 	    } else {		
-	 	        /*		
-	 	         * 对于其他验证方法直接进行处理流程		
-	 	         */		
-	 	        [[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];		
-	 	    }		
-	 	}
+        #pragma mark - NSURLConnectionDelegate
+        - (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust forDomain:(NSString *)domain {
+            
+            //创建证书校验策略
+            NSMutableArray *policies = [NSMutableArray array];
+            if (domain) {
+                [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, (__bridge CFStringRef)domain)];
+            } else {
+                [policies addObject:(__bridge_transfer id)SecPolicyCreateBasicX509()];
+            }
+            
+            //绑定校验策略到服务端的证书上
+            SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);
+            
+            //评估当前serverTrust是否可信任
+            //官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed的情况下serverTrust可以被验证通过
+            //https://developer.apple.com/library/ios/technotes/tn2232/_index.html
+            //关于SecTrustResultType的详细信息请参考SecTrust.h
+            SecTrustResultType result;
+            SecTrustEvaluate(serverTrust, &result);
+            return (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
+        }
+        
+        - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+            if (!challenge) {
+                return;
+            }
+            
+            //URL里面的host在使用HTTPDNS的情况下被设置成了IP，此处从HTTP Header中获取真实域名
+            NSString *host = [[self.request allHTTPHeaderFields] objectForKey:@"host"];
+            if (!host) {
+                host = self.request.URL.host;
+            }
+            
+            //判断challenge的身份验证方法是否是NSURLAuthenticationMethodServerTrust（HTTPS模式下会进行该身份验证流程），
+            //在没有配置身份验证方法的情况下进行默认的网络请求流程。
+            if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+                if ([self evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:host]) {        
+                
+                    //验证完以后，需要构造一个NSURLCredential发送给发起方    
+                    NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+                    [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
+                } else {
+                    //验证失败，取消这次验证流程
+                    [[challenge sender] cancelAuthenticationChallenge:challenge];
+                }
+            } else {
+            
+                //对于其他验证方法直接进行处理流程
+                [[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
+            }
+        }
 
 
 - **以NSURLSession接口为例：**
 
-		#pragma mark - NSURLSessionDelegate
-	 	- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust forDomain:(NSString *)domain		
-	 	{		
-	 	    /*		
-	 	     * 创建证书校验策略		
-	 	     */		
-	 	    NSMutableArray *policies = [NSMutableArray array];		
-	 	    if (domain) {		
-	 	        [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, (__bridge CFStringRef)domain)];		
-	 	    } else {		
-	 	        [policies addObject:(__bridge_transfer id)SecPolicyCreateBasicX509()];		
-	 	    }		
-	 	    		
-	 	    /*		
-	 	     * 绑定校验策略到服务端的证书上		
-	 	     */		
-	 	    SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);		
-	 	    		
-	 	    /*		
-	 	     * 评估当前serverTrust是否可信任，		
-	 	     * 官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed		
-	 	     * 的情况下serverTrust可以被验证通过，https://developer.apple.com/library/ios/technotes/tn2232/_index.html		
-	 	     * 关于SecTrustResultType的详细信息请参考SecTrust.h		
-	 	     */		
-	 	    SecTrustResultType result;		
-	 	    SecTrustEvaluate(serverTrust, &result);		
-	 	    		
-	 	    return (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);		
-	 	}		
- 			
-		- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * __nullable credential))completionHandler
-		{
-		    if (!challenge) {
-		        return;
-		    }
-		    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-		    NSURLCredential *credential = nil;
-		    /*
-		     * 获取原始域名信息。
-		     */
-		    NSString* host = [[self.request allHTTPHeaderFields] objectForKey:@"host"];
-		    if (!host) {
-		        host = self.request.URL.host;
-		    }
-		    if ([challenge.protectionSpace.authenticationMethod  isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-		        if ([self evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:host]) {
-		            disposition = NSURLSessionAuthChallengeUseCredential;
-		            credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-		        } else {
-		            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-		        }
-		    } else {
-		        disposition = NSURLSessionAuthChallengePerformDefaultHandling;
-		    }
-		    // 对于其他的challenges直接使用默认的验证方案
-		    completionHandler(disposition,credential);
-		}
+        #pragma mark - NSURLSessionDelegate
+        - (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust forDomain:(NSString *)domain {
+            
+            //创建证书校验策略
+            NSMutableArray *policies = [NSMutableArray array];
+            if (domain) {
+                [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, (__bridge CFStringRef)domain)];
+            } else {
+                [policies addObject:(__bridge_transfer id)SecPolicyCreateBasicX509()];
+            }
+            
+            //绑定校验策略到服务端的证书上
+            SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);
+            
+            //评估当前serverTrust是否可信任，
+            //官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed的情况下serverTrust可以被验证通过，
+            //https://developer.apple.com/library/ios/technotes/tn2232/_index.html
+            //关于SecTrustResultType的详细信息请参考SecTrust.h    
+            SecTrustResultType result;
+            SecTrustEvaluate(serverTrust, &result);
+            
+            return (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
+        }
+        
+        - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * __nullable credential))completionHandler {
+            if (!challenge) {
+                return;
+            }
+            
+            NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+            NSURLCredential *credential = nil;
+            
+            //获取原始域名信息
+            NSString *host = [[self.request allHTTPHeaderFields] objectForKey:@"host"];
+            if (!host) {
+                host = self.request.URL.host;
+            }
+            if ([challenge.protectionSpace.authenticationMethod  isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+                if ([self evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:host]) {
+                    disposition = NSURLSessionAuthChallengeUseCredential;
+                    credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+                } else {
+                    disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+                }
+            } else {
+                disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+            }
+            
+            // 对于其他的challenges直接使用默认的验证方案
+            completionHandler(disposition,credential);
+        }
 
 - **以Unity的WWW接口为例：**
 
 	将Unity工程导为Xcode工程后，打开Classes/Unity/**WWWConnection.mm**文件，修改下述代码：
 
-		//const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
-		const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
+        //const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
+        const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
 	为：
 
-		const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
-		//const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
-
+        const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
+        //const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
+        
 ## 3. SNI（单IP多HTTPS证书）场景下使用HttpDns解析结果
 
 SNI（Server Name Indication）是为了解决一个服务器使用多个域名和证书的SSL/TLS扩展。它的工作原理如下：
@@ -446,77 +452,77 @@ SNI（Server Name Indication）是为了解决一个服务器使用多个域名�
 
 在网络请求前注册NSURLProtocol子类，在示例的SNIViewController.m中。
 
-    // 注册拦截请求的NSURLProtocol
-    [NSURLProtocol registerClass:[MSDKDnsHttpMessageTools class]];
-   
-    // 需要设置SNI的URL
-    NSString *originalUrl = @"your url";
-    NSURL* url = [NSURL URLWithString:originalUrl];
-    NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-    NSArray* result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
-    NSString* ip = nil;
-    if (result && result.count > 1) {
-        if (![result[1] isEqualToString:@"0"]) {
-            ip = result[1];
-        } else {
-            ip = result[0];
-        }
-    }
-    // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
-    if (ip) {
-        NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
-        if (NSNotFound != hostFirstRange.location) {
-            NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
-            request.URL = [NSURL URLWithString:newUrl];
-            [request setValue:url.host forHTTPHeaderField:@"host"];
-        }
-    }
-
-    // NSURLConnection例子
-    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    [self.connection start];
-
-    // NSURLSession例子
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSArray *protocolArray = @[ [MSDKDnsHttpMessageTools class] ];
-    configuration.protocolClasses = protocolArray;
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    self.task = [session dataTaskWithRequest:request];
-    [self.task resume];
+     // 注册拦截请求的NSURLProtocol
+     [NSURLProtocol registerClass:[MSDKDnsHttpMessageTools class]];
     
-    // 注*：使用NSURLProtocol拦截NSURLSession发起的POST请求时，HTTPBody为空。
-    // 解决方案有两个：1. 使用NSURLConnection发POST请求。
-    // 2. 先将HTTPBody放入HTTP Header field中，然后在NSURLProtocol中再取出来。
-    // 下面主要演示第二种解决方案
-    // NSString *postStr = [NSString stringWithFormat:@"param1=%@&param2=%@", @"val1", @"val2"];
-    // [_request addValue:postStr forHTTPHeaderField:@"originalBody"];
-    // _request.HTTPMethod = @"POST";
-    // NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    // NSArray *protocolArray = @[ [CFHttpMessageURLProtocol class] ];
-    // configuration.protocolClasses = protocolArray;
-    // NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    // NSURLSessionTask *task = [session dataTaskWithRequest:_request];
-    // [task resume];
+     // 需要设置SNI的URL
+     NSString *originalUrl = @"your url";
+     NSURL *url = [NSURL URLWithString:originalUrl];
+     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+     NSArray *result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
+     NSString *ip = nil;
+     if (result && result.count > 1) {
+         if (![result[1] isEqualToString:@"0"]) {
+             ip = result[1];
+         } else {
+             ip = result[0];
+         }
+     }
+     // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
+     if (ip) {
+         NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
+         if (NSNotFound != hostFirstRange.location) {
+             NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
+             request.URL = [NSURL URLWithString:newUrl];
+             [request setValue:url.host forHTTPHeaderField:@"host"];
+         }
+     }
+
+     // NSURLConnection例子
+     self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+     [self.connection start];
+
+     // NSURLSession例子
+     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+     NSArray *protocolArray = @[ [MSDKDnsHttpMessageTools class] ];
+     configuration.protocolClasses = protocolArray;
+     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+     self.task = [session dataTaskWithRequest:request];
+     [self.task resume];
+     
+     // 注*：使用NSURLProtocol拦截NSURLSession发起的POST请求时，HTTPBody为空。
+     // 解决方案有两个：1. 使用NSURLConnection发POST请求。
+     // 2. 先将HTTPBody放入HTTP Header field中，然后在NSURLProtocol中再取出来。
+     // 下面主要演示第二种解决方案
+     // NSString *postStr = [NSString stringWithFormat:@"param1=%@&param2=%@", @"val1", @"val2"];
+     // [_request addValue:postStr forHTTPHeaderField:@"originalBody"];
+     // _request.HTTPMethod = @"POST";
+     // NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+     // NSArray *protocolArray = @[ [CFHttpMessageURLProtocol class] ];
+     // configuration.protocolClasses = protocolArray;
+     // NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+     // NSURLSessionTask *task = [session dataTaskWithRequest:_request];
+     // [task resume];
 
 ### 使用说明
 需调用以下接口设置需要拦截域名或无需拦截的域名：
 
-	#pragma mark - SNI场景，仅调用一次即可，请勿多次调用
-	/**
-	 SNI场景下设置需要拦截的域名列表
-	 建议使用该接口设置，仅拦截SNI场景下的域名，避免拦截其它场景下的域名
+    #pragma mark - SNI场景，仅调用一次即可，请勿多次调用
+    /**
+     SNI场景下设置需要拦截的域名列表
+     建议使用该接口设置，仅拦截SNI场景下的域名，避免拦截其它场景下的域名
 
-	 @param hijackDomainArray 需要拦截的域名列表
-	 */
-	- (void) WGSetHijackDomainArray:(NSArray *)hijackDomainArray;
+     @param hijackDomainArray 需要拦截的域名列表
+     */
+    - (void) WGSetHijackDomainArray:(NSArray *)hijackDomainArray;
 
-	/**
-	 SNI场景下设置不需要拦截的域名列表
+    /**
+     SNI场景下设置不需要拦截的域名列表
 
-	 @param noHijackDomainArray 不需要拦截的域名列表
-	 */
-	- (void) WGSetNoHijackDomainArray:(NSArray *)noHijackDomainArray;
-
+     @param noHijackDomainArray 不需要拦截的域名列表
+     */
+     - (void) WGSetNoHijackDomainArray:(NSArray *)noHijackDomainArray;
+     
 - 如设置了需要拦截的域名列表，则仅会拦截处理该域名列表中的https请求，其它域名不做处理；
 - 如设置了不需要拦截的域名列表，则不会拦截处理该域名列表中的https请求；
 
