@@ -282,17 +282,17 @@ HttpDns提供两种集成方式供iOS开发者选择：
 	并建议添加如下处理代码：
     
         string[] sArray=ipString.Split(new char[] {';'}); 
-            if (sArray != null && sArray.Length > 1) {
-                if (!sArray[1].Equals("0")) {
-                    //使用建议：当ipv6地址存在时，优先使用ipv6地址
-                    //TODO 使用ipv6地址进行URL连接时，注意格式，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
-                } else if(!sArray [0].Equals ("0")) {
-                    //使用ipv4地址进行连接
-                } else {
-                    //异常情况返回为0,0，建议重试一次
-                    HttpDns.GetAddrByName(domainStr);
-                }
+        if (sArray != null && sArray.Length > 1) {
+            if (!sArray[1].Equals("0")) {
+                //使用建议：当ipv6地址存在时，优先使用ipv6地址
+                //TODO 使用ipv6地址进行URL连接时，注意格式，需加方框号[ ]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+            } else if(!sArray [0].Equals ("0")) {
+                //使用ipv4地址进行连接
+            } else {
+                //异常情况返回为0,0，建议重试一次
+                HttpDns.GetAddrByName(domainStr);
             }
+        }
 
 3. 将unity工程打包为xcode工程后，引入所需依赖库；
 
