@@ -77,25 +77,25 @@ HttpDns提供两种集成方式供iOS开发者选择：
 
 #### 接口声明
 
-	/**
-	 设置业务基本信息（腾讯云业务使用）
+    /**
+     设置业务基本信息（腾讯云业务使用）
 
-	 @param appkey  业务appkey，腾讯云官网（https://console.cloud.tencent.com/httpdns）申请获得，用于上报
-	 @param dnsid   dns解析id，腾讯云官网（https://console.cloud.tencent.com/httpdns）申请获得，用于域名解析鉴权
-	 @param dnsKey  dns解析key，腾讯云官网（https://console.cloud.tencent.com/httpdns）申请获得，用于域名解析鉴权
-	 @param debug   是否开启Debug日志，YES：开启，NO：关闭。建议联调阶段开启，正式上线前关闭
-	 @param timeout 超时时间，单位ms，如设置0，则设置为默认值2000ms
-	 @param useHttp 是否使用http路解析，YES：使用http路解析，NO：使用https路解析，强烈建议使用http路解析，解析速度更快
-	 
-	 @return YES:设置成功 NO:设置失败
-	 */
-	- (BOOL) WGSetDnsAppKey:(NSString *) appkey DnsID:(int)dnsid DnsKey:(NSString *)dnsKey Debug:(BOOL)debug TimeOut:(int)timeout UseHttp:(BOOL)useHttp;
+     @param appkey  业务appkey，腾讯云官网（https://console.cloud.tencent.com/httpdns）申请获得，用于上报
+     @param dnsid   dns解析id，腾讯云官网（https://console.cloud.tencent.com/httpdns）申请获得，用于域名解析鉴权
+     @param dnsKey  dns解析key，腾讯云官网（https://console.cloud.tencent.com/httpdns）申请获得，用于域名解析鉴权
+     @param debug   是否开启Debug日志，YES：开启，NO：关闭。建议联调阶段开启，正式上线前关闭
+     @param timeout 超时时间，单位ms，如设置0，则设置为默认值2000ms
+     @param useHttp 是否使用http路解析，YES：使用http路解析，NO：使用https路解析，强烈建议使用http路解析，解析速度更快
+     
+     @return YES:设置成功 NO:设置失败
+     */
+    - (BOOL) WGSetDnsAppKey:(NSString *) appkey DnsID:(int)dnsid DnsKey:(NSString *)dnsKey Debug:(BOOL)debug TimeOut:(int)timeout UseHttp:(BOOL)useHttp;
 
 #### 示例代码
 
 接口调用示例：
 
- 	[[MSDKDns sharedInstance] WGSetDnsAppKey: @"业务appkey，由腾讯云官网申请获得" DnsID:dns解析id DnsKey:@"dns解析key" Debug:YES TimeOut:1000 UseHttp:YES];
+     [[MSDKDns sharedInstance] WGSetDnsAppKey: @"业务appkey，由腾讯云官网申请获得" DnsID:dns解析id DnsKey:@"dns解析key" Debug:YES TimeOut:1000 UseHttp:YES];
 
 ### 4.2 域名解析接口
 
@@ -201,7 +201,7 @@ HttpDns提供两种集成方式供iOS开发者选择：
 
 1. 如果客户端的业务是与host绑定的，比如是绑定了host的http服务或者是cdn的服务，那么在用HTTPDNS返回的IP替换掉URL中的域名以后，还需要指定下Http头的host字段。
 
-	- 以NSURLConnection为例：
+    - 以NSURLConnection为例：
     
             NSURL *httpDnsURL = [NSURL URLWithString:@"使用解析结果ip拼接的URL"];
             float timeOut = 设置的超时时间;
@@ -209,21 +209,21 @@ HttpDns提供两种集成方式供iOS开发者选择：
             [mutableReq setValue:@"原域名" forHTTPHeaderField:@"host"];
             NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:mutableReq delegate:self];
             [connection start];
+    
+    - 以NSURLSession为例：
+    
+            NSURL *httpDnsURL = [NSURL URLWithString:@"使用解析结果ip拼接的URL"];
+            float timeOut = 设置的超时时间;
+            NSMutableURLRequest *mutableReq = [NSMutableURLRequest requestWithURL:httpDnsURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval: timeOut];
+            [mutableReq setValue:@"原域名" forHTTPHeaderField:@"host"];
+            NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+            NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue currentQueue]];
+            NSURLSessionTask *task = [session dataTaskWithRequest:mutableReq];
+            [task resume];
             
-        - 以NSURLSession为例：
-        
-                NSURL *httpDnsURL = [NSURL URLWithString:@"使用解析结果ip拼接的URL"];
-                float timeOut = 设置的超时时间;
-                NSMutableURLRequest *mutableReq = [NSMutableURLRequest requestWithURL:httpDnsURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval: timeOut];
-                [mutableReq setValue:@"原域名" forHTTPHeaderField:@"host"];
-                NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-                NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue currentQueue]];
-                NSURLSessionTask *task = [session dataTaskWithRequest:mutableReq];
-                [task resume];
-
 	- 以curl为例：
 
-		假设你要访问www.qq.com，通过HTTPDNS解析出来的IP为192.168.0.111，那么通过这个方式来调用即可：
+    假设你要访问www.qq.com，通过HTTPDNS解析出来的IP为192.168.0.111，那么通过这个方式来调用即可：
 
             curl -H "host:www.qq.com" http://192.168.0.111/aaa.txt.
 
@@ -349,9 +349,9 @@ HttpDns提供两种集成方式供iOS开发者选择：
             //判断challenge的身份验证方法是否是NSURLAuthenticationMethodServerTrust（HTTPS模式下会进行该身份验证流程），
             //在没有配置身份验证方法的情况下进行默认的网络请求流程。
             if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-                if ([self evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:host]) {		
+                if ([self evaluateServerTrust:challenge.protectionSpace.serverTrust forDomain:host]) {        
                 
-                    //验证完以后，需要构造一个NSURLCredential发送给发起方	
+                    //验证完以后，需要构造一个NSURLCredential发送给发起方    
                     NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
                     [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
                 } else {
@@ -385,7 +385,7 @@ HttpDns提供两种集成方式供iOS开发者选择：
             //评估当前serverTrust是否可信任，
             //官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed的情况下serverTrust可以被验证通过，
             //https://developer.apple.com/library/ios/technotes/tn2232/_index.html
-            //关于SecTrustResultType的详细信息请参考SecTrust.h	
+            //关于SecTrustResultType的详细信息请参考SecTrust.h    
             SecTrustResultType result;
             SecTrustEvaluate(serverTrust, &result);
             
@@ -422,15 +422,15 @@ HttpDns提供两种集成方式供iOS开发者选择：
 
 - **以Unity的WWW接口为例：**
 
-	将Unity工程导为Xcode工程后，打开Classes/Unity/**WWWConnection.mm**文件，修改下述代码：
+将Unity工程导为Xcode工程后，打开Classes/Unity/**WWWConnection.mm**文件，修改下述代码：
     
-        //const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
-        const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
+    //const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
+    const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
         
-	为：
+为：
     
-        const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
-        //const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
+    const char* WWWDelegateClassName = "UnityWWWConnectionSelfSignedCertDelegate";
+    //const char* WWWDelegateClassName = "UnityWWWConnectionDelegate";
 
 ## 3. SNI（单IP多HTTPS证书）场景下使用HttpDns解析结果
 
@@ -452,57 +452,57 @@ SNI（Server Name Indication）是为了解决一个服务器使用多个域名�
 
 在网络请求前注册NSURLProtocol子类，在示例的SNIViewController.m中。
 
-     // 注册拦截请求的NSURLProtocol
-     [NSURLProtocol registerClass:[MSDKDnsHttpMessageTools class]];
-    
-     // 需要设置SNI的URL
-     NSString *originalUrl = @"your url";
-     NSURL *url = [NSURL URLWithString:originalUrl];
-     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-     NSArray *result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
-     NSString *ip = nil;
-     if (result && result.count > 1) {
-         if (![result[1] isEqualToString:@"0"]) {
-             ip = result[1];
-         } else {
-             ip = result[0];
-         }
-     }
-     // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
-     if (ip) {
-         NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
-         if (NSNotFound != hostFirstRange.location) {
-             NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
-             request.URL = [NSURL URLWithString:newUrl];
-             [request setValue:url.host forHTTPHeaderField:@"host"];
-         }
-     }
+       // 注册拦截请求的NSURLProtocol
+       [NSURLProtocol registerClass:[MSDKDnsHttpMessageTools class]];
+      
+       // 需要设置SNI的URL
+       NSString *originalUrl = @"your url";
+       NSURL *url = [NSURL URLWithString:originalUrl];
+       NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+       NSArray *result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
+       NSString *ip = nil;
+       if (result && result.count > 1) {
+           if (![result[1] isEqualToString:@"0"]) {
+               ip = result[1];
+           } else {
+               ip = result[0];
+           }
+       }
+       // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
+       if (ip) {
+           NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
+           if (NSNotFound != hostFirstRange.location) {
+               NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
+               request.URL = [NSURL URLWithString:newUrl];
+               [request setValue:url.host forHTTPHeaderField:@"host"];
+           }
+       }
 
-     // NSURLConnection例子
-     self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-     [self.connection start];
+       // NSURLConnection例子
+       self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+       [self.connection start];
 
-     // NSURLSession例子
-     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-     NSArray *protocolArray = @[ [MSDKDnsHttpMessageTools class] ];
-     configuration.protocolClasses = protocolArray;
-     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-     self.task = [session dataTaskWithRequest:request];
-     [self.task resume];
-     
-     // 注*：使用NSURLProtocol拦截NSURLSession发起的POST请求时，HTTPBody为空。
-     // 解决方案有两个：1. 使用NSURLConnection发POST请求。
-     // 2. 先将HTTPBody放入HTTP Header field中，然后在NSURLProtocol中再取出来。
-     // 下面主要演示第二种解决方案
-     // NSString *postStr = [NSString stringWithFormat:@"param1=%@&param2=%@", @"val1", @"val2"];
-     // [_request addValue:postStr forHTTPHeaderField:@"originalBody"];
-     // _request.HTTPMethod = @"POST";
-     // NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-     // NSArray *protocolArray = @[ [CFHttpMessageURLProtocol class] ];
-     // configuration.protocolClasses = protocolArray;
-     // NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-     // NSURLSessionTask *task = [session dataTaskWithRequest:_request];
-     // [task resume];
+       // NSURLSession例子
+       NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+       NSArray *protocolArray = @[ [MSDKDnsHttpMessageTools class] ];
+       configuration.protocolClasses = protocolArray;
+       NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+       self.task = [session dataTaskWithRequest:request];
+       [self.task resume];
+       
+       // 注*：使用NSURLProtocol拦截NSURLSession发起的POST请求时，HTTPBody为空。
+       // 解决方案有两个：1. 使用NSURLConnection发POST请求。
+       // 2. 先将HTTPBody放入HTTP Header field中，然后在NSURLProtocol中再取出来。
+       // 下面主要演示第二种解决方案
+       // NSString *postStr = [NSString stringWithFormat:@"param1=%@&param2=%@", @"val1", @"val2"];
+       // [_request addValue:postStr forHTTPHeaderField:@"originalBody"];
+       // _request.HTTPMethod = @"POST";
+       // NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+       // NSArray *protocolArray = @[ [CFHttpMessageURLProtocol class] ];
+       // configuration.protocolClasses = protocolArray;
+       // NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+       // NSURLSessionTask *task = [session dataTaskWithRequest:_request];
+       // [task resume];
 
 ### 使用说明
 需调用以下接口设置需要拦截域名或无需拦截的域名：
