@@ -8,7 +8,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.1.5i"
+#define MSDKDns_Version @"1.1.6.1i"
 
 #import <Foundation/Foundation.h>
 #if defined(__has_include)
@@ -98,6 +98,25 @@
  @param noHijackDomainArray 不需要拦截的域名列表
  */
 - (void) WGSetNoHijackDomainArray:(NSArray *)noHijackDomainArray;
+
+#pragma mark - SNI场景，仅调用一次即可，请勿多次调用
+/**
+详细数据查询接口
+
+@param domain 域名
+
+@return 查询到的详细信息
+ 格式示例：
+ {
+ "v4_ips":"1.1.1.1,2.2.2.2",
+ "v6_ips":"FF01::1,FF01::2",
+ "v4_ttl":"100",
+ "v6_ttl":"100",
+ "v4_client_ip":"6.6.6.6"
+ "v6_client_ip":"FF01::6"
+ }
+*/
+- (NSDictionary *) WGGetDnsDetail:(NSString *) domain;
 
 @end
 #endif
