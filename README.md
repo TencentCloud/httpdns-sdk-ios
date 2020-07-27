@@ -197,6 +197,44 @@ HttpDns提供两种集成方式供iOS开发者选择：
 
 示例2，优点：对于解析时间有严格要求的业务，使用本示例，可无需等待，直接拿到缓存结果进行后续的连接操作，完全避免了同步接口中解析耗时可能会超过100ms的情况；缺点：第一次请求时，result一定会nil，需业务增加处理逻辑。
 
+#### 4.2.3 异步解析接口: WGGetHostByNameAsync
+
+	/**
+	详细数据查询接口
+
+	@param domain 域名
+
+	@return 查询到的详细信息
+	 格式示例：
+ 	{
+	 "v4_ips":"1.1.1.1,2.2.2.2",
+	 "v6_ips":"FF01::1,FF01::2",
+	 "v4_ttl":"100",
+	 "v6_ttl":"100",
+	 "v4_client_ip":"6.6.6.6"
+	 "v6_client_ip":"FF01::6"
+	 }
+	*/
+	- (NSDictionary *) WGGetDnsDetail:(NSString *) domain;
+
+##### 示例代码
+
+接口调用示例：
+
+    NSDictionary *ipsDic = [[MSDKDns sharedInstance] WGGetDnsDetail: @"www.qq.com"];
+    if (ipsDic && ipsDic.count > 0) {
+        NSString *ipv4 = ipsDic[@"v4_ips"];
+        NSString *ipv6 = ipsDic[@"v6_ips"];
+        if (![ipv6 isEqualToString:@"0"]) {
+            //使用建议：当ipv6地址存在时，优先使用ipv6地址
+            //TODO 使用ipv6地址进行URL连接时，注意格式，ipv6需加方框号[]进行处理，例如：http://[64:ff9b::b6fe:7475]/
+        } else if (![ipv4 isEqualToString:@"0"]){
+            //使用ipv4地址进行连接
+        } else {
+            //异常情况返回为0,0，建议重试一次
+        }
+    }
+
 ## 5. 注意事项
 
 1. 如果客户端的业务是与host绑定的，比如是绑定了host的http服务或者是cdn的服务，那么在用HTTPDNS返回的IP替换掉URL中的域名以后，还需要指定下Http头的host字段。
