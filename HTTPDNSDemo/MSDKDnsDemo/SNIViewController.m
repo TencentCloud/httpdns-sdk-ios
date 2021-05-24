@@ -1,14 +1,10 @@
-//
-//  HttpDnsViewController.m
-//  MSDKDnsDevDemo
-//
-//  Created by Gavin on 2016-07-08.
-//  Copyright © 2016 Tencent. All rights reserved.
-//
+/**
+ * Copyright (c) Tencent. All rights reserved.
+ */
 
 #import "SNIViewController.h"
-#import <MSDKDns/MSDKDns.h>
-#import <MSDKDns/MSDKDnsHttpMessageTools.h>
+#import <MSDKDns_C11/MSDKDns.h>
+#import <MSDKDns_C11/MSDKDnsHttpMessageTools.h>
 
 #define SCREEN_WIDTH  ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
