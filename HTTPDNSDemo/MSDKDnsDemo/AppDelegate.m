@@ -1,13 +1,9 @@
-//
-//  AppDelegate.m
-//  MSDKDnsDevDemo
-//
-//  Created by 付亚明 on 7/1/15.
-//  Copyright (c) 2015 Tencent. All rights reserved.
-//
+/**
+ * Copyright (c) Tencent. All rights reserved.
+ */
 
 #import "AppDelegate.h"
-// 未接入MSDK的游戏需单独接入灯塔
+
 #import <BeaconAPI_Base/BeaconBaseInterface.h>
 
 @interface AppDelegate ()
@@ -22,8 +18,7 @@
 {
     // Override point for customization after application launch.
 
-    // 已正常接入MSDK的游戏无需关注以下代码，未接入MSDK的游戏调用以下代码注册灯塔
-    // ******************************
+    // 灯塔上报，非必须
     [BeaconBaseInterface setAppKey:@"申请的灯塔AppKey"];
     [BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
 	

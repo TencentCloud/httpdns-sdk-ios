@@ -1,10 +1,6 @@
-//
-//  BeaconAnaPublicDefines.h
-//  Beacon
-//
-//  Created by tencent on 12-11-20.
-//  Copyright (c) 2012年 tencent. All rights reserved.
-//
+/**
+ * Copyright (c) Tencent. All rights reserved.
+ */
 
 #ifndef Beacon_Framework_AnaPublicDefines_h
 #define Beacon_Framework_AnaPublicDefines_h

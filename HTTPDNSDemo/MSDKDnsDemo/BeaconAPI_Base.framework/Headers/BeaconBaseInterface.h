@@ -1,10 +1,6 @@
-//
-//  BeaconBaseInterface.h
-//  Beacon
-//  
-//  Created by tencent on 16/1/19.
-//  Copyright © 2016年 tencent. All rights reserved.
-//
+/**
+ * Copyright (c) Tencent. All rights reserved.
+ */
 
 #import "BeaconAnaPublicDefines.h"
 #import "BeaconAnaUploader.h"

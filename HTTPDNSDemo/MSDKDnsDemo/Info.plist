@@ -2,9 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-
- <key>com.tencent.rdm.uuid</key>
-<string>36d5310b-413c-4715-abf4-338ff7afe1c9</string>
+	<key>com.tencent.rdm.uuid</key>
+	<string>36d5310b-413c-4715-abf4-338ff7afe1c9</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -25,6 +24,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>HTTPDNS_IP</key>
+	<string>119.29.29.29</string>
 	<key>COOPERATOR_APPID</key>
 	<string>业务的灯塔appid</string>
 	<key>DNS_ID</key>

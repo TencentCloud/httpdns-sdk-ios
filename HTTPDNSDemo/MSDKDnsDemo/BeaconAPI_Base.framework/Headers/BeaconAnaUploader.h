@@ -1,10 +1,6 @@
-//
-//  BeaconAnaUploader.h
-//  Beacon
-//
-//  Created by tencent on 12-3-6.
-//  Copyright (c) 2012年 tencent. All rights reserved.
-//
+/**
+ * Copyright (c) Tencent. All rights reserved.
+ */
 
 //此协议用于确认是否可以上报，默认时随时可以，客户端可以实现这个协议以控制上报时机
 @protocol AnaUploadConformer <NSObject>
