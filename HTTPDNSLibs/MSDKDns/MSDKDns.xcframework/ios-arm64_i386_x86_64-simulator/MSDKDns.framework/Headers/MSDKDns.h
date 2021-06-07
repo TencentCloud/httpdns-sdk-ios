@@ -5,7 +5,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.2.0"
+#define MSDKDns_Version @"1.2.1"
 
 #import <Foundation/Foundation.h>
 
@@ -21,7 +21,7 @@ typedef enum {
     HttpDnsEncryptTypeHTTPS = 2
 } HttpDnsEncryptType;
 
-struct DnsConfig {
+typedef struct DnsConfigStruct {
     NSString* appId; // 应用ID，腾讯云控制台申请获得，用于上报
     int dnsId; // 授权ID，腾讯云控制台申请后，通过邮件发送，用于域名解析鉴权
     NSString* dnsKey; // 加密密钥，加密方式为AES、DES时必传。腾讯云控制台申请后，通过邮件发送，用于域名解析鉴权
@@ -31,7 +31,7 @@ struct DnsConfig {
     int timeout; // 超时时间，单位ms，如设置0，则设置为默认值2000ms
     HttpDnsEncryptType encryptType; // 控制加密方式
     NSString* routeIp; // 查询线路IP地址
-};
+} DnsConfig;
 
 @interface MSDKDns : NSObject
 
@@ -45,6 +45,15 @@ struct DnsConfig {
  * @return YES：设置成功 NO：设置失败
  */
 - (BOOL) initConfig:(DnsConfig *)config;
+
+/**
+ * 初始化SDK
+ * 通过 Dictionary 配置，字段参考 DnsConfig 结构，用于兼容 swift 项目，解决 swift 项目中无法识别 DnsConfig 类型的问题
+ *
+ * @param config  配置
+ * @return YES：设置成功 NO：设置失败
+ */
+- (BOOL) initConfigWithDictionary:(NSDictionary *)config;
 
 /**
  * @deprecated This method is deprecated starting in version 1.2.1i
