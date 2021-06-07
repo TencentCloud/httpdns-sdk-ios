@@ -27,6 +27,15 @@
     // Do any additional setup after loading the view.
     // 注册拦截请求的NSURLProtocol
     [NSURLProtocol registerClass:[MSDKDnsHttpMessageTools class]];
+    
+    DnsConfig *config = new DnsConfig();
+    config->dnsIp = @"119.29.29.99";
+//    config->dnsId = @"your dnsId";
+//    config->dnsKey = @"your dnsKey";
+//    config->encryptType = HttpDnsEncryptTypeDES;
+    config->debug = YES;
+    config->timeout = 10000;
+    [[MSDKDns sharedInstance] initConfig: config];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,7 +45,7 @@
 
 - (IBAction)usingConnection:(id)sender {
     // 需要设置SNI的URL
-    NSString *originalUrl = @"业务的URL";
+    NSString *originalUrl = @"https://www.qq.com/";
     NSURL* url = [NSURL URLWithString:originalUrl];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSArray* result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
