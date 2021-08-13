@@ -22,7 +22,7 @@ typedef enum {
 } HttpDnsEncryptType;
 
 typedef struct DnsConfigStruct {
-    NSString* appId; // 应用ID，腾讯云控制台申请获得，用于上报
+    NSString* appId; // 应用ID，腾讯云控制台申请获得，用于灯塔数据上报（未集成灯塔时该参数无效）
     int dnsId; // 授权ID，腾讯云控制台申请后，通过邮件发送，用于域名解析鉴权
     NSString* dnsKey; // 加密密钥，加密方式为AES、DES时必传。腾讯云控制台申请后，通过邮件发送，用于域名解析鉴权
     NSString* token; // 加密方式为 HTTPS 时必传
@@ -31,6 +31,7 @@ typedef struct DnsConfigStruct {
     int timeout; // 超时时间，单位ms，如设置0，则设置为默认值2000ms
     HttpDnsEncryptType encryptType; // 控制加密方式
     NSString* routeIp; // 查询线路IP地址
+    BOOL httpOnly; // 是否仅返回 httpDns 解析结果。默认 false，即当 httpDns 解析失败时会返回 localDns 解析结果，设置为 true 时，仅返回 httpDns 的解析结果
 } DnsConfig;
 
 @interface MSDKDns : NSObject
