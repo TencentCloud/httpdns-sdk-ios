@@ -52,6 +52,7 @@
 		505FAEEB1D3E138A002C1C6D /* HttpDnsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 505FAEE31D3E138A002C1C6D /* HttpDnsViewController.m */; };
 		509467661EAC915800F53427 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 509467651EAC915800F53427 /* launch.png */; };
 		54D7011E276735E7004F87F1 /* MSDKDns_C11.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D7011D276735E7004F87F1 /* MSDKDns_C11.xcframework */; };
+		54D7012027674ED6004F87F1 /* BeaconAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D7011F27674ED6004F87F1 /* BeaconAPI_Base.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		509467651EAC915800F53427 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BeaconAPI_Base.framework; sourceTree = "<group>"; };
 		54D7011D276735E7004F87F1 /* MSDKDns_C11.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MSDKDns_C11.xcframework; path = ../HTTPDNSLibs/MSDKDns_C11/MSDKDns_C11.xcframework; sourceTree = "<group>"; };
+		54D7011F27674ED6004F87F1 /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BeaconAPI_Base.framework; path = ../HTTPDNSLibs/MSDKDns_C11/BeaconAPI_Base.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				44F12A851B48E7F300812340 /* QuartzCore.framework in Frameworks */,
 				44F12A831B48E7EC00812340 /* CoreText.framework in Frameworks */,
 				44F12A811B48E7E500812340 /* ImageIO.framework in Frameworks */,
+				54D7012027674ED6004F87F1 /* BeaconAPI_Base.framework in Frameworks */,
 				44F12A7F1B48E7DE00812340 /* CoreData.framework in Frameworks */,
 				44F12A7D1B48E7D700812340 /* CFNetwork.framework in Frameworks */,
 				44F12A791B48E7C600812340 /* MobileCoreServices.framework in Frameworks */,
@@ -168,6 +171,7 @@
 		2F3B2A7125F21C28004A70B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				54D7011F27674ED6004F87F1 /* BeaconAPI_Base.framework */,
 				54D7011D276735E7004F87F1 /* MSDKDns_C11.xcframework */,
 			);
 			name = Frameworks;
