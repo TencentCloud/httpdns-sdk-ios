@@ -44,6 +44,7 @@
 }
 
 - (IBAction)usingConnection:(id)sender {
+    _logView.text = nil;
     // 需要设置SNI的URL
     NSString *originalUrl = @"https://www.qq.com/";
     NSURL* url = [NSURL URLWithString:originalUrl];
@@ -71,8 +72,9 @@
 }
 
 - (IBAction)usingSession:(id)sender {
+    _logView.text = nil;
     // 需要设置SNI的URL
-    NSString *originalUrl = @"业务的URL";
+    NSString *originalUrl = @"https://www.qq.com/";;
     NSURL* url = [NSURL URLWithString:originalUrl];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSArray* result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
