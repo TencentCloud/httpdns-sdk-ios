@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *DnsKey;
 @property (weak, nonatomic) IBOutlet UITextField *Token;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *Channel;
-@property (weak, nonatomic) IBOutlet UITextField *AppId;
 @property (weak, nonatomic) IBOutlet UITextField *RouteIp;
 @property (strong, nonatomic) IBOutlet UITextView *resultTextView;
 @property (assign, nonatomic) DnsConfig *config;
@@ -37,7 +36,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)initConfig {
+- (IBAction)readConfig {
     _config->dnsIp = [_DnsIp text];
     _config->dnsId = [_DnsId text].intValue;
     _config->dnsKey = [_DnsKey text];
@@ -52,7 +51,6 @@
 
 
 -(IBAction)getHostByName:(id)sender {
-    [self initConfig];
     _resultTextView.text = @"";
     [_resultTextView insertText:[NSString stringWithFormat:@"\n输入域名：%@，准备开始解析...", [_Domain text]]];
     NSArray *domains = [self getQueryDomains];
@@ -86,7 +84,6 @@
     }
 }
 - (IBAction)getHostByNameAsync:(id)sender {
-    [self initConfig];
     _resultTextView.text = @"";
     [_resultTextView insertText:[NSString stringWithFormat:@"\n输入域名：%@，准备开始解析...", [_Domain text]]];
     NSArray *domains = [self getQueryDomains];

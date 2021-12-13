@@ -59,12 +59,6 @@ typedef struct DnsConfigStruct {
 - (BOOL) initConfigWithDictionary:(NSDictionary *)config;
 
 /**
- * @deprecated This method is deprecated starting in version 1.2.1i
- * @note Please use @code initConfig:dnsId:dnsKey:dnsIp:debug:timeout @endcode instead.
- */
-- (BOOL) WGSetDnsAppKey:(NSString *) appkey DnsID:(int)dnsid DnsKey:(NSString *)dnsKey DnsIP:(NSString *)dnsip Debug:(BOOL)debug TimeOut:(int)timeout DEPRECATED_ATTRIBUTE;
-
-/**
  * 设置UserId, 进行数据上报时区分用户, 出现问题时, 依赖该Id进行单用户问题排查
  
  * @param openId 用户的唯一标识符，腾讯业务建议直接使用OpenId，腾讯云客户建议传入长度50位以内，由字母数字下划线组合而成的字符串
