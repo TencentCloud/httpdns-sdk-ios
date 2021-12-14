@@ -47,6 +47,7 @@
     _config->minutesBeforeSwitchToMain = 1;
     _config->retryTimesBeforeSwitchServer = 2;
     [[MSDKDns sharedInstance] initConfig: _config];
+    [[MSDKDns sharedInstance] clearCache];
 }
 
 
