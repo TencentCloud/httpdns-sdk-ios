@@ -46,6 +46,7 @@
     _config->routeIp = [_RouteIp text];
     _config->minutesBeforeSwitchToMain = 1;
     _config->retryTimesBeforeSwitchServer = 2;
+    _config->enableReport = YES;
     [[MSDKDns sharedInstance] initConfig: _config];
     [[MSDKDns sharedInstance] clearCache];
 }

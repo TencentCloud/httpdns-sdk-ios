@@ -28,6 +28,7 @@ typedef struct DnsConfigStruct {
     BOOL httpOnly;// 可选，是否仅返回 httpDns 解析结果。默认 false，即当 httpDns 解析失败时会返回 localDns 解析结果，设置为 true 时，仅返回 httpDns 的解析结果
     NSUInteger retryTimesBeforeSwitchServer; // 可选，切换ip之前重试次数, 默认3次
     NSUInteger minutesBeforeSwitchToMain; // 可选，设置切回主ip间隔时长，默认10分钟
+    BOOL enableReport; // 是否开启解析异常上报，默认NO，不上报
 } DnsConfig;
 
 @interface MSDKDns : NSObject
