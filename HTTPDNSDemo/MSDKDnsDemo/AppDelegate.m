@@ -21,7 +21,7 @@
     // 灯塔上报，非必须
     [BeaconBaseInterface setAppKey:@"申请的灯塔AppKey"];
     [BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
-	
+
     return YES;
 }
 

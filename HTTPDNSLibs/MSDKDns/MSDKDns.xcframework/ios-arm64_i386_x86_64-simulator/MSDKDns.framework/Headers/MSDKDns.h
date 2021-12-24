@@ -5,15 +5,9 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.2.2"
+#define MSDKDns_Version @"1.3.0"
 
 #import <Foundation/Foundation.h>
-
-#if defined(__has_include)
-    #if __has_include("MSDK/MSDK.h")
-        #include "MSDK/MSDK.h"
-    #endif
-#endif
 
 typedef enum {
     HttpDnsEncryptTypeDES = 0,
@@ -22,16 +16,19 @@ typedef enum {
 } HttpDnsEncryptType;
 
 typedef struct DnsConfigStruct {
-    NSString* appId; // 应用ID，腾讯云控制台申请获得，用于灯塔数据上报（未集成灯塔时该参数无效）
+    NSString* appId; // 可选，应用ID，腾讯云控制台申请获得，用于灯塔数据上报（未集成灯塔时该参数无效）
     int dnsId; // 授权ID，腾讯云控制台申请后，通过邮件发送，用于域名解析鉴权
     NSString* dnsKey; // 加密密钥，加密方式为AES、DES时必传。腾讯云控制台申请后，通过邮件发送，用于域名解析鉴权
-    NSString* token; // 加密方式为 HTTPS 时必传
-    NSString* dnsIp; // HTTPDNS 服务器IP
+    NSString* token; // 加密token，加密方式为 HTTPS 时必传
+    NSString* dnsIp; // HTTPDNS 服务器 IP
     BOOL debug; // 是否开启Debug日志，YES：开启，NO：关闭。建议联调阶段开启，正式上线前关闭
-    int timeout; // 超时时间，单位ms，如设置0，则设置为默认值2000ms
+    int timeout; // 可选，超时时间，单位ms，如设置0，则设置为默认值2000ms
     HttpDnsEncryptType encryptType; // 控制加密方式
-    NSString* routeIp; // 查询线路IP地址
-    BOOL httpOnly; // 是否仅返回 httpDns 解析结果。默认 false，即当 httpDns 解析失败时会返回 localDns 解析结果，设置为 true 时，仅返回 httpDns 的解析结果
+    NSString* routeIp; // 可选，DNS 请求的 ECS（EDNS-Client-Subnet）值，默认情况下 HTTPDNS 服务器会查询客户端出口 IP 为 DNS 线路查询 IP，可以指定线路 IP 地址。支持 IPv4/IPv6 地址传入
+    BOOL httpOnly;// 可选，是否仅返回 httpDns 解析结果。默认 false，即当 httpDns 解析失败时会返回 localDns 解析结果，设置为 true 时，仅返回 httpDns 的解析结果
+    NSUInteger retryTimesBeforeSwitchServer; // 可选，切换ip之前重试次数, 默认3次
+    NSUInteger minutesBeforeSwitchToMain; // 可选，设置切回主ip间隔时长，默认10分钟
+    BOOL enableReport; // 是否开启解析异常上报，默认NO，不上报
 } DnsConfig;
 
 @interface MSDKDns : NSObject
@@ -57,24 +54,17 @@ typedef struct DnsConfigStruct {
 - (BOOL) initConfigWithDictionary:(NSDictionary *)config;
 
 /**
- * @deprecated This method is deprecated starting in version 1.2.1i
- * @note Please use @code initConfig:dnsId:dnsKey:dnsIp:debug:timeout @endcode instead.
- */
-- (BOOL) WGSetDnsAppKey:(NSString *) appkey DnsID:(int)dnsid DnsKey:(NSString *)dnsKey DnsIP:(NSString *)dnsip Debug:(BOOL)debug TimeOut:(int)timeout DEPRECATED_ATTRIBUTE;
-
-/**
- * @deprecated This method is deprecated starting in version 1.2.1i
- * @note Please use @code initConfig:dnsIp:debug:timeout @endcode instead.
-*/
-- (BOOL) WGSetDnsAppKey:(NSString *) appkey DnsIP:(NSString *)dnsip Debug:(BOOL)debug TimeOut:(int)timeout DEPRECATED_ATTRIBUTE;
-
-/**
  * 设置UserId, 进行数据上报时区分用户, 出现问题时, 依赖该Id进行单用户问题排查
  
  * @param openId 用户的唯一标识符，腾讯业务建议直接使用OpenId，腾讯云客户建议传入长度50位以内，由字母数字下划线组合而成的字符串
  * @return YES：成功 NO：失败
  */
 - (BOOL) WGSetDnsOpenId:(NSString *)openId;
+
+/**
+ * 设置 httpdns 备份服务器ip（无需手动设置，sdk 会自动设置）
+ */
+- (void) WGSetDnsBackupServerIps:(NSArray *)ips;
 
 #pragma mark - 域名解析接口，按需调用
 /**
@@ -145,6 +135,12 @@ typedef struct DnsConfigStruct {
  }
 */
 - (NSDictionary *) WGGetDnsDetail:(NSString *) domain;
+
+#pragma mark 清除缓存
+/**
+ 清理本地所有缓存，除非业务明确需要，不要调用该方法
+*/
+- (void)clearCache;
 
 @end
 #endif

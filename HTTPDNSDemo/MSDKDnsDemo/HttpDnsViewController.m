@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *DnsKey;
 @property (weak, nonatomic) IBOutlet UITextField *Token;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *Channel;
-@property (weak, nonatomic) IBOutlet UITextField *AppId;
 @property (weak, nonatomic) IBOutlet UITextField *RouteIp;
 @property (strong, nonatomic) IBOutlet UITextView *resultTextView;
 @property (assign, nonatomic) DnsConfig *config;
@@ -37,20 +36,24 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)initConfig {
+- (IBAction)readConfig {
     _config->dnsIp = [_DnsIp text];
     _config->dnsId = [_DnsId text].intValue;
     _config->dnsKey = [_DnsKey text];
     _config->token = [_Token text];
     _config->encryptType = [self getEncryptType];
     _config->debug = YES;
-    _config->timeout = 10000;
     _config->routeIp = [_RouteIp text];
+    _config->minutesBeforeSwitchToMain = 1;
+    _config->retryTimesBeforeSwitchServer = 2;
+    _config->enableReport = YES;
     [[MSDKDns sharedInstance] initConfig: _config];
+    [[MSDKDns sharedInstance] clearCache];
 }
 
+
 -(IBAction)getHostByName:(id)sender {
-    [self initConfig];
+    _resultTextView.text = @"";
     [_resultTextView insertText:[NSString stringWithFormat:@"\n输入域名：%@，准备开始解析...", [_Domain text]]];
     NSArray *domains = [self getQueryDomains];
     if ([domains count] == 1)
@@ -58,9 +61,9 @@
         NSTimeInterval time1 = [[NSDate date] timeIntervalSince1970];
         NSArray* result = [[MSDKDns sharedInstance] WGGetHostByName:domains[0]];
         NSTimeInterval time2 = [[NSDate date] timeIntervalSince1970];
-        NSLog(@"本次耗时：%f", (time2 - time1) * 1000);
+        NSLog(@"=====本次耗时=====：%fms", (time2 - time1) * 1000);
         if (result && result.count > 1) {
-            NSString* str = [NSString stringWithFormat:@"\n解析结果为：\nIPV4地址为：%@\nIPV6地址为：%@\n",result[0], result[1]];
+            NSString* str = [NSString stringWithFormat:@"\n解析结果为：\nIPV4地址为：%@\nIPV6地址为：%@\n", result[0], result[1]];
             [_resultTextView insertText:str];
             [_resultTextView scrollRangeToVisible:NSMakeRange(_resultTextView.text.length, 1)];
         } else {
@@ -71,7 +74,7 @@
         NSTimeInterval time1 = [[NSDate date] timeIntervalSince1970];
         NSDictionary* result = [[MSDKDns sharedInstance] WGGetHostsByNames:domains];
         NSTimeInterval time2 = [[NSDate date] timeIntervalSince1970];
-        NSLog(@"本次耗时：%f", (time2 - time1) * 1000);
+        NSLog(@"=====本次耗时=====：%fms", (time2 - time1) * 1000);
         if (result && [result count] > 0) {
             NSString* str = [NSString stringWithFormat:@"\n解析结果为：\n %@\n",result];
             [_resultTextView insertText:str];
@@ -83,7 +86,7 @@
     }
 }
 - (IBAction)getHostByNameAsync:(id)sender {
-    [self initConfig];
+    _resultTextView.text = @"";
     [_resultTextView insertText:[NSString stringWithFormat:@"\n输入域名：%@，准备开始解析...", [_Domain text]]];
     NSArray *domains = [self getQueryDomains];
     if ([domains count] == 1)
@@ -91,9 +94,9 @@
         NSTimeInterval time1 = [[NSDate date] timeIntervalSince1970];
         [[MSDKDns sharedInstance] WGGetHostByNameAsync:domains[0] returnIps:^(NSArray *ipsArray) {
             NSTimeInterval time2 = [[NSDate date] timeIntervalSince1970];
-            NSLog(@"本次耗时：%f", (time2 - time1) * 1000);
+            NSLog(@"=====本次耗时=====：%fms", (time2 - time1) * 1000);
             if (ipsArray && ipsArray.count > 1) {
-                NSString* str = [NSString stringWithFormat:@"\n解析结果为：\nIPV4地址为：%@\nIPV6地址为：%@\n",ipsArray[0], ipsArray[1]];
+                NSString* str = [NSString stringWithFormat:@"\n解析结果为 \nIPV4地址为：%@\nIPV6地址为：%@\n", ipsArray[0], ipsArray[1]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [_resultTextView insertText:str];
                     [_resultTextView scrollRangeToVisible:NSMakeRange(_resultTextView.text.length, 1)];
@@ -109,7 +112,7 @@
         NSTimeInterval time1 = [[NSDate date] timeIntervalSince1970];
         [[MSDKDns sharedInstance] WGGetHostsByNamesAsync:domains returnIps:^(NSDictionary *ipsDict) {
             NSTimeInterval time2 = [[NSDate date] timeIntervalSince1970];
-            NSLog(@"本次耗时：%f", (time2 - time1) * 1000);
+            NSLog(@"=====本次耗时=====：%fms", (time2 - time1) * 1000);
             if (ipsDict && [ipsDict count] > 0) {
                 NSString* str = [NSString stringWithFormat:@"\n解析结果为：\n：%@\n",ipsDict];
                 dispatch_async(dispatch_get_main_queue(), ^{
