@@ -74,7 +74,7 @@
 - (IBAction)usingSession:(id)sender {
     _logView.text = nil;
     // 需要设置SNI的URL
-    NSString *originalUrl = @"https://www.qq.com/";;
+    NSString *originalUrl = @"https://www.qq.com/";
     NSURL* url = [NSURL URLWithString:originalUrl];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
     NSArray* result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
@@ -82,6 +82,8 @@
     if (result && result.count > 1) {
         if (![result[1] isEqualToString:@"0"]) {
             ip = result[1];
+            // ipv6 需要使用 [] 号包起来
+            ip = [NSString stringWithFormat:@"[%@]", ip];
         } else {
             ip = result[0];
         }
