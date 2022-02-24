@@ -5,7 +5,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.3.2"
+#define MSDKDns_Version @"1.3.3"
 
 #import <Foundation/Foundation.h>
 
@@ -14,6 +14,13 @@ typedef enum {
     HttpDnsEncryptTypeAES = 1,
     HttpDnsEncryptTypeHTTPS = 2
 } HttpDnsEncryptType;
+
+typedef enum {
+    HttpDnsAddressTypeAuto = 0, // sdk自动检测
+    HttpDnsAddressTypeIPv4 = 1, // 只支持ipv4
+    HttpDnsAddressTypeIPv6 = 2, // 只支持ipv6
+    HttpDnsAddressTypeDual = 3, // 支持双协议栈
+} HttpDnsAddressType;
 
 typedef struct DnsConfigStruct {
     NSString* appId; // 可选，应用ID，腾讯云控制台申请获得，用于灯塔数据上报（未集成灯塔时该参数无效）
@@ -24,6 +31,7 @@ typedef struct DnsConfigStruct {
     BOOL debug; // 是否开启Debug日志，YES：开启，NO：关闭。建议联调阶段开启，正式上线前关闭
     int timeout; // 可选，超时时间，单位ms，如设置0，则设置为默认值2000ms
     HttpDnsEncryptType encryptType; // 控制加密方式
+    HttpDnsAddressType addressType; // 指定返回的ip地址类型，默认为 HttpDnsAddressTypeAuto sdk自动检测
     NSString* routeIp; // 可选，DNS 请求的 ECS（EDNS-Client-Subnet）值，默认情况下 HTTPDNS 服务器会查询客户端出口 IP 为 DNS 线路查询 IP，可以指定线路 IP 地址。支持 IPv4/IPv6 地址传入
     BOOL httpOnly;// 可选，是否仅返回 httpDns 解析结果。默认 false，即当 httpDns 解析失败时会返回 localDns 解析结果，设置为 true 时，仅返回 httpDns 的解析结果
     NSUInteger retryTimesBeforeSwitchServer; // 可选，切换ip之前重试次数, 默认3次
@@ -66,6 +74,11 @@ typedef struct DnsConfigStruct {
  */
 - (void) WGSetDnsBackupServerIps:(NSArray *)ips;
 
+/**
+ * 设置预解析的域名，设置的域名会在sdk初始化完成后自动进行解析
+ */
+- (void) WGSetPreResolvedDomains:(NSArray *)domains;
+
 #pragma mark - 域名解析接口，按需调用
 /**
  域名同步解析（通用接口）
@@ -86,6 +99,15 @@ typedef struct DnsConfigStruct {
 - (NSDictionary *) WGGetHostsByNames:(NSArray *) domains;
 
 /**
+ 域名批量同步解析（查询所有ip）
+
+ @param domains 域名数组
+ 
+ @return 查询到的IP字典
+ */
+- (NSDictionary *) WGGetAllHostsByNames:(NSArray *)domains;
+
+/**
  域名异步解析（通用接口）
 
  @param domain  域名
@@ -100,6 +122,14 @@ typedef struct DnsConfigStruct {
  @param handler 返回查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
  */
 - (void) WGGetHostsByNamesAsync:(NSArray *) domains returnIps:(void (^)(NSDictionary * ipsDictionary))handler;
+
+/**
+ 域名批量异步解析（查询所有ip）
+
+ @param domains  域名数组
+ @param handler 返回查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+ */
+- (void)WGGetAllHostsByNamesAsync:(NSArray *)domains returnIps:(void (^)(NSDictionary * ipsDictionary))handler;
 
 #pragma mark - SNI场景，仅调用一次即可，请勿多次调用
 /**
