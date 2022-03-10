@@ -135,7 +135,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="清除缓存"/>
                                 <connections>
-                                    <action selector="clearCache:" destination="kuO-za-Xf8" eventType="touchUpInside" id="Bju-WB-m1i"/>
+                                    <action selector="clearCache:" destination="kuO-za-Xf8" eventType="touchUpInside" id="VIF-RZ-n4K"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="查询域名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xye-zR-xWn">
@@ -155,6 +155,7 @@
                             <constraint firstItem="lSP-Gk-chf" firstAttribute="leading" secondItem="6A0-D0-Fpd" secondAttribute="leadingMargin" constant="20" id="2Ri-pO-Fy3"/>
                             <constraint firstItem="gPe-2A-1FN" firstAttribute="leading" secondItem="6A0-D0-Fpd" secondAttribute="leadingMargin" constant="20" id="8tc-Bj-wc3"/>
                             <constraint firstItem="ECF-hw-NiY" firstAttribute="leading" secondItem="lSP-Gk-chf" secondAttribute="trailing" constant="20" id="DvV-P1-cTj"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ECF-hw-NiY" secondAttribute="trailing" constant="20" symbolic="YES" id="EZs-h9-IM5"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gPe-2A-1FN" secondAttribute="trailing" constant="20" symbolic="YES" id="NCO-I0-h6s"/>
                             <constraint firstItem="8Bc-QY-hlr" firstAttribute="top" secondItem="40F-ac-zPY" secondAttribute="bottom" constant="5" id="NRD-XD-G2v"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zhk-7a-d0k" secondAttribute="trailing" constant="20" id="SAJ-sI-4QX"/>
