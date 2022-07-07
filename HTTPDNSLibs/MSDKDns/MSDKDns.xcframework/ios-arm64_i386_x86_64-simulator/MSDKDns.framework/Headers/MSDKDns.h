@@ -5,7 +5,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.3.5"
+#define MSDKDns_Version @"1.4.0"
 
 #import <Foundation/Foundation.h>
 
@@ -78,6 +78,11 @@ typedef struct DnsConfigStruct {
  * 设置预解析的域名，设置的域名会在sdk初始化完成后自动进行解析
  */
 - (void) WGSetPreResolvedDomains:(NSArray *)domains;
+
+/**
+ * 设置保活的域名，设置的域名会定时更新缓存，数量不能大于8个
+ */
+- (void) WGSetKeepAliveDomains:(NSArray *)domains;
 
 #pragma mark - 域名解析接口，按需调用
 /**
