@@ -41,6 +41,8 @@
     [[MSDKDns sharedInstance] initConfig: config];
     // 设置需要进行预解析的域名
     [[MSDKDns sharedInstance] WGSetPreResolvedDomains:@[@"dnspod.com", @"dnspod.cn"]];
+    // 设置缓存自动刷新功能
+    //  [[MSDKDns sharedInstance] WGSetKeepAliveDomains:@[@"www.qq.com",@"dnspod.com"]];
 }
 
 - (IBAction)clearCache:(id)sender {
