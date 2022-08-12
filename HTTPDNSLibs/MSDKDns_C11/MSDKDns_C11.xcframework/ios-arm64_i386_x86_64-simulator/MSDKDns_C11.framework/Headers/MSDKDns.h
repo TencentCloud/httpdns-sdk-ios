@@ -5,7 +5,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.4.1"
+#define MSDKDns_Version @"1.5.0"
 
 #import <Foundation/Foundation.h>
 
@@ -83,6 +83,16 @@ typedef struct DnsConfigStruct {
  * 设置保活的域名，设置的域名会定时更新缓存，数量不能大于8个
  */
 - (void) WGSetKeepAliveDomains:(NSArray *)domains;
+
+/**
+ * 启用IP优选，设置域名对应的端口号，对域名解析返回的IP列表进行IP探测，对返回的列表进行动态排序，以保证第一个IP是可用性最好的IP
+ */
+- (void) WGSetIPRankData:(NSDictionary *)IPRankData;
+
+/**
+ * 设置开启和关闭缓存启停功能，默认开启
+ */
+- (void) WGSetEnableKeepDomainsAlive: (BOOL)enableKeepDomainsAlive;
 
 #pragma mark - 域名解析接口，按需调用
 /**
