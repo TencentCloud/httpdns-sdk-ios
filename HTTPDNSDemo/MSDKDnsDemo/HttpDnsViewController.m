@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];    
     _resultTextView.layoutManager.allowsNonContiguousLayout= NO;
     [self loadConfig];
 }
@@ -39,10 +39,12 @@
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeIPv4;
     [[MSDKDns sharedInstance] initConfig: config];
-    // 设置需要进行预解析的域名
+   // 设置需要进行预解析的域名
     [[MSDKDns sharedInstance] WGSetPreResolvedDomains:@[@"dnspod.com", @"dnspod.cn"]];
     // 设置缓存自动刷新功能
     //  [[MSDKDns sharedInstance] WGSetKeepAliveDomains:@[@"www.qq.com",@"dnspod.com"]];
+    // 设置IP优选
+    // [[MSDKDns sharedInstance] WGSetIPRankData:@{@"oth.str.beacon.qq.com":@443,@"tmall.com":@443,@"www.qq.com":@443,@"youku.com":@80}];
 }
 
 - (IBAction)clearCache:(id)sender {
