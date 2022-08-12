@@ -127,6 +127,7 @@
 		50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BeaconAPI_Base.framework; sourceTree = "<group>"; };
 		54D7011D276735E7004F87F1 /* MSDKDns_C11.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MSDKDns_C11.xcframework; path = ../HTTPDNSLibs/MSDKDns_C11/MSDKDns_C11.xcframework; sourceTree = "<group>"; };
 		54D7011F27674ED6004F87F1 /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BeaconAPI_Base.framework; path = ../HTTPDNSLibs/MSDKDns_C11/BeaconAPI_Base.framework; sourceTree = "<group>"; };
+		5F5DAF5428A602AD00BF5B79 /* testConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +237,7 @@
 		44F12A501B48E52A00812340 /* MSDKDnsDemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				5F5DAF5428A602AD00BF5B79 /* testConfig.h */,
 				44F12A531B48E52A00812340 /* MSDKDnsDemoTests.m */,
 				44F12A511B48E52A00812340 /* Supporting Files */,
 			);
