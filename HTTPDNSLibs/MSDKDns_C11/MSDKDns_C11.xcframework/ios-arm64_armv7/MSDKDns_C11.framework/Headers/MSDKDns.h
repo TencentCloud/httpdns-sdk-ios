@@ -5,7 +5,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.5.0"
+#define MSDKDns_Version @"1.6.0"
 
 #import <Foundation/Foundation.h>
 
@@ -93,6 +93,16 @@ typedef struct DnsConfigStruct {
  * 设置开启和关闭缓存启停功能，默认开启
  */
 - (void) WGSetEnableKeepDomainsAlive: (BOOL)enableKeepDomainsAlive;
+
+/**
+ * 设置允许返回TTL过期域名的IP，默认关闭
+ */
+- (void) WGSetExpiredIPEnabled:(BOOL)enable;
+
+/**
+ * 设置持久化缓存功能，默认关闭
+ */
+- (void) WGSetPersistCacheIPEnabled:(BOOL)enable;
 
 #pragma mark - 域名解析接口，按需调用
 /**
