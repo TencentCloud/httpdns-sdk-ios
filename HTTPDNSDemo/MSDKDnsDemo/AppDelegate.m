@@ -4,8 +4,6 @@
 
 #import "AppDelegate.h"
 
-#import <BeaconAPI_Base/BeaconBaseInterface.h>
-
 @interface AppDelegate ()
 
 @end
@@ -17,10 +15,6 @@
         NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-
-    // 灯塔上报，非必须
-    [BeaconBaseInterface setAppKey:@"申请的灯塔AppKey"];
-    [BeaconBaseInterface enableAnalytics:@"" gatewayIP:nil];
 
     return YES;
 }
