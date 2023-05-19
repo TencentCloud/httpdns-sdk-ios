@@ -4,6 +4,7 @@
 
 #import "HttpDnsViewController.h"
 #import <MSDKDns_C11/MSDKDns.h>
+//#import <MSDKDns_C11_intl/MSDKDns.h>
 
 @interface HttpDnsViewController ()
 
@@ -27,18 +28,15 @@
 }
 
 - (void)loadConfig {
-    DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.98";
-    config->dnsId = 0; // 授权 Id
-    config->dnsKey = @""; // des 加密密钥
-    config->token = @""; //  https Token
-    config->encryptType = HttpDnsEncryptTypeDES;
-    config->debug = YES;
-    config->minutesBeforeSwitchToMain = 1;
-    config->retryTimesBeforeSwitchServer = 2;
-    config->enableReport = YES;
-    config->addressType = HttpDnsAddressTypeIPv4;
-    [[MSDKDns sharedInstance] initConfig: config];
+    DnsConfig config = {
+        .dnsIp = @"HTTPDNS 服务器IP",
+        .dnsId = dns授权id,
+        .dnsKey = @"DesKey加密密钥",
+        .encryptType = HttpDnsEncryptTypeDES,
+        .debug = YES,
+    };
+    [[MSDKDns sharedInstance] initConfig: &config];
+
    // 设置需要进行预解析的域名
     [[MSDKDns sharedInstance] WGSetPreResolvedDomains:@[@"dnspod.com", @"dnspod.cn"]];
     // 设置缓存自动刷新功能
