@@ -24,7 +24,6 @@
 /* Begin PBXBuildFile section */
 		4426DD531C29406A007D0A9E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD521C29406A007D0A9E /* libz.tbd */; };
 		4426DD571C29407B007D0A9E /* libz.1.1.3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD561C29407B007D0A9E /* libz.1.1.3.tbd */; };
-		4426DD591C294083007D0A9E /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD581C294083007D0A9E /* libsqlite3.tbd */; };
 		4426DD5B1C29408A007D0A9E /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD5A1C294089007D0A9E /* libxml2.tbd */; };
 		4426DD6D1C2942B6007D0A9E /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD6C1C2942B6007D0A9E /* libc++.tbd */; };
 		44F12A3A1B48E52A00812340 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F12A391B48E52A00812340 /* main.m */; };
@@ -49,16 +48,14 @@
 		44F12A8C1B48E8A800812340 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A8B1B48E8A800812340 /* Security.framework */; };
 		505FAED21D3E136F002C1C6D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 505FAED11D3E136F002C1C6D /* icon.png */; };
 		509467661EAC915800F53427 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 509467651EAC915800F53427 /* launch.png */; };
-		54D7012027674ED6004F87F1 /* BeaconAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D7011F27674ED6004F87F1 /* BeaconAPI_Base.framework */; };
+		5F1332EB28FFECED00A22D2A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD581C294083007D0A9E /* libsqlite3.tbd */; };
 		5F1A214C28C0AE810008E8FC /* SNIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A214B28C0AE800008E8FC /* SNIViewController.m */; };
-		5F1A215B28C1FB840008E8FC /* MSDKDns_C11.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1A215A28C1FB840008E8FC /* MSDKDns_C11.framework */; };
-		5F1E284D28B71E0700AD0D9F /* WCDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1E284C28B71E0700AD0D9F /* WCDB.framework */; };
-		5F1E289428B8738F00AD0D9F /* WCDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1E289328B8738F00AD0D9F /* WCDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5F85CB9328B3A2A5003D20D1 /* HttpDnsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F85CB9228B3A2A4003D20D1 /* HttpDnsViewController.m */; };
 		5F85CB9728B3A368003D20D1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD521C29406A007D0A9E /* libz.tbd */; };
 		5F85CB9928B3A37B003D20D1 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */; };
 		5F85CB9A28B3A38B003D20D1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A8B1B48E8A800812340 /* Security.framework */; };
 		5F85CB9B28B3A393003D20D1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F12A8B1B48E8A800812340 /* Security.framework */; };
+		5FCBCDFE2A162B0C00A73931 /* MSDKDns_C11.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FCBCDFD2A162B0C00A73931 /* MSDKDns_C11.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,13 +76,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		5FAA1C0228B4F51700C4CF12 /* Embed Frameworks */ = {
+		5F02C61128D176FE00F31287 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5F1E289428B8738F00AD0D9F /* WCDB.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,7 +115,6 @@
 		44F12A441B48E52A00812340 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		44F12A471B48E52A00812340 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		44F12A4D1B48E52A00812340 /* MSDKDnsDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MSDKDnsDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		44F12A521B48E52A00812340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44F12A531B48E52A00812340 /* MSDKDnsDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSDKDnsDemoTests.m; sourceTree = "<group>"; };
 		44F12A6E1B48E7A400812340 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		44F12A701B48E7AB00812340 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -140,14 +135,11 @@
 		505FAEE21D3E138A002C1C6D /* HttpDnsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpDnsViewController.h; sourceTree = "<group>"; };
 		509467651EAC915800F53427 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BeaconAPI_Base.framework; sourceTree = "<group>"; };
-		54D7011F27674ED6004F87F1 /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BeaconAPI_Base.framework; path = ../HTTPDNSLibs/MSDKDns_C11/BeaconAPI_Base.framework; sourceTree = "<group>"; };
 		5F1A214B28C0AE800008E8FC /* SNIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNIViewController.m; sourceTree = "<group>"; };
-		5F1A215A28C1FB840008E8FC /* MSDKDns_C11.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSDKDns_C11.framework; path = ../../MSDKDns_C11/MSDKDns_C11.framework; sourceTree = "<group>"; };
-		5F1E284C28B71E0700AD0D9F /* WCDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WCDB.framework; path = ../../WCDB.framework; sourceTree = "<group>"; };
-		5F1E289328B8738F00AD0D9F /* WCDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WCDB.framework; path = ../../WCDB.framework; sourceTree = "<group>"; };
 		5F5DAF5428A602AD00BF5B79 /* testConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testConfig.h; sourceTree = "<group>"; };
 		5F85CB9228B3A2A4003D20D1 /* HttpDnsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDnsViewController.m; sourceTree = "<group>"; };
 		5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		5FCBCDFD2A162B0C00A73931 /* MSDKDns_C11.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSDKDns_C11.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/sdkWorkspace-fzwspzfjxkyulaczlxnxaymfxjfm/Build/Products/Debug-iphonesimulator/MSDKDns_C11.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,21 +147,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F1332EB28FFECED00A22D2A /* libsqlite3.tbd in Frameworks */,
 				5F85CB9A28B3A38B003D20D1 /* Security.framework in Frameworks */,
 				4426DD6D1C2942B6007D0A9E /* libc++.tbd in Frameworks */,
 				4426DD5B1C29408A007D0A9E /* libxml2.tbd in Frameworks */,
-				4426DD591C294083007D0A9E /* libsqlite3.tbd in Frameworks */,
 				4426DD571C29407B007D0A9E /* libz.1.1.3.tbd in Frameworks */,
 				4426DD531C29406A007D0A9E /* libz.tbd in Frameworks */,
-				5F1E284D28B71E0700AD0D9F /* WCDB.framework in Frameworks */,
-				5F1A215B28C1FB840008E8FC /* MSDKDns_C11.framework in Frameworks */,
 				44F12A8C1B48E8A800812340 /* Security.framework in Frameworks */,
 				44F12A8A1B48E88500812340 /* CoreLocation.framework in Frameworks */,
 				44F12A871B48E7FE00812340 /* AdSupport.framework in Frameworks */,
 				44F12A851B48E7F300812340 /* QuartzCore.framework in Frameworks */,
 				44F12A831B48E7EC00812340 /* CoreText.framework in Frameworks */,
 				44F12A811B48E7E500812340 /* ImageIO.framework in Frameworks */,
-				54D7012027674ED6004F87F1 /* BeaconAPI_Base.framework in Frameworks */,
 				44F12A7F1B48E7DE00812340 /* CoreData.framework in Frameworks */,
 				44F12A7D1B48E7D700812340 /* CFNetwork.framework in Frameworks */,
 				5F85CB9728B3A368003D20D1 /* libz.tbd in Frameworks */,
@@ -177,6 +166,7 @@
 				5F85CB9B28B3A393003D20D1 /* Security.framework in Frameworks */,
 				44F12A771B48E7BF00812340 /* CoreGraphics.framework in Frameworks */,
 				44F12A751B48E7B600812340 /* Foundation.framework in Frameworks */,
+				5FCBCDFE2A162B0C00A73931 /* MSDKDns_C11.framework in Frameworks */,
 				5F85CB9928B3A37B003D20D1 /* CoreFoundation.framework in Frameworks */,
 				44F12A731B48E7B000812340 /* UIKit.framework in Frameworks */,
 				44F12A711B48E7AB00812340 /* SystemConfiguration.framework in Frameworks */,
@@ -197,10 +187,8 @@
 		2F3B2A7125F21C28004A70B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5F1E284C28B71E0700AD0D9F /* WCDB.framework */,
 				5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */,
-				54D7011F27674ED6004F87F1 /* BeaconAPI_Base.framework */,
-				5F1A215A28C1FB840008E8FC /* MSDKDns_C11.framework */,
+				5FCBCDFD2A162B0C00A73931 /* MSDKDns_C11.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -217,7 +205,6 @@
 		44F12A2B1B48E52A00812340 = {
 			isa = PBXGroup;
 			children = (
-				5F1E289328B8738F00AD0D9F /* WCDB.framework */,
 				44F12A361B48E52A00812340 /* MSDKDnsDemo */,
 				44F12A501B48E52A00812340 /* MSDKDnsDemoTests */,
 				44F12A351B48E52A00812340 /* Products */,
@@ -267,17 +254,8 @@
 			children = (
 				5F5DAF5428A602AD00BF5B79 /* testConfig.h */,
 				44F12A531B48E52A00812340 /* MSDKDnsDemoTests.m */,
-				44F12A511B48E52A00812340 /* Supporting Files */,
 			);
 			path = MSDKDnsDemoTests;
-			sourceTree = "<group>";
-		};
-		44F12A511B48E52A00812340 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				44F12A521B48E52A00812340 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		44F12A881B48E80400812340 /* Librarys */ = {
@@ -320,7 +298,7 @@
 				44F12A311B48E52A00812340 /* Frameworks */,
 				44F12A321B48E52A00812340 /* Resources */,
 				E8717FEA26257AE8008C8E12 /* Embed PlugIns */,
-				5FAA1C0228B4F51700C4CF12 /* Embed Frameworks */,
+				5F02C61128D176FE00F31287 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -581,13 +559,14 @@
 					"$(PROJECT_DIR)/MSDKDnsDemo",
 					"$(PROJECT_DIR)/../MSDKDns",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../**",
+					"$(PROJECT_DIR)/../**",
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MSDKDnsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/../..";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -613,13 +592,14 @@
 					"$(PROJECT_DIR)/MSDKDnsDemo",
 					"$(PROJECT_DIR)/../MSDKDns",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../**",
+					"$(PROJECT_DIR)/../**",
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MSDKDnsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/../..";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -635,6 +615,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -655,6 +636,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -719,13 +701,14 @@
 					"$(PROJECT_DIR)/MSDKDnsDemo",
 					"$(PROJECT_DIR)/../MSDKDns",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/../../**",
+					"$(PROJECT_DIR)/../**",
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MSDKDnsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/../..";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -742,6 +725,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
