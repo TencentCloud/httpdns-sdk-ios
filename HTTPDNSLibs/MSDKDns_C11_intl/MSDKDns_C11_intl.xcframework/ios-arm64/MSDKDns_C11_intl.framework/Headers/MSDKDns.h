@@ -5,7 +5,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.7.0"
+#define MSDKDns_Version @"1.8.0"
 
 #import <Foundation/Foundation.h>
 
@@ -27,7 +27,7 @@ typedef struct DnsConfigStruct {
     int dnsId; // 授权ID，腾讯云控制台申请后，通过邮件发送，用于域名解析鉴权
     NSString* dnsKey; // 加密密钥，加密方式为AES、DES时必传。腾讯云控制台申请后，通过邮件发送，用于域名解析鉴权
     NSString* token; // 加密token，加密方式为 HTTPS 时必传
-    NSString* dnsIp; // HTTPDNS 服务器 IP
+    NSString* dnsIp __attribute__((deprecated("v1.8.0及以上SDK内部调度，无需设置"))); // HTTPDNS 服务器 IP
     BOOL debug; // 是否开启Debug日志，YES：开启，NO：关闭。建议联调阶段开启，正式上线前关闭
     int timeout; // 可选，超时时间，单位ms，如设置0，则设置为默认值2000ms
     HttpDnsEncryptType encryptType; // 控制加密方式
@@ -105,7 +105,7 @@ typedef struct DnsConfigStruct {
 
  @param domain 域名
  
- @return 查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+ @return 查询到的IP数组，超时（默认2s）或者未未查询到返回[0,0]数组
  */
 - (NSArray *) WGGetHostByName:(NSString *) domain;
 
@@ -131,7 +131,7 @@ typedef struct DnsConfigStruct {
  域名异步解析（通用接口）
 
  @param domain  域名
- @param handler 返回查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+ @param handler 返回查询到的IP数组，超时（默认2s）或者未未查询到返回[0,0]数组
  */
 - (void) WGGetHostByNameAsync:(NSString *) domain returnIps:(void (^)(NSArray * ipsArray))handler;
 
@@ -139,7 +139,7 @@ typedef struct DnsConfigStruct {
  域名批量异步解析（通用接口）
 
  @param domains  域名数组
- @param handler 返回查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+ @param handler 返回查询到的IP数组，超时（默认2s）或者未未查询到返回[0,0]数组
  */
 - (void) WGGetHostsByNamesAsync:(NSArray *) domains returnIps:(void (^)(NSDictionary * ipsDictionary))handler;
 
@@ -147,7 +147,7 @@ typedef struct DnsConfigStruct {
  域名批量异步解析（查询所有ip）
 
  @param domains  域名数组
- @param handler 返回查询到的IP数组，超时（1s）或者未未查询到返回[0,0]数组
+ @param handler 返回查询到的IP数组，超时（默认2s）或者未未查询到返回[0,0]数组
  */
 - (void)WGGetAllHostsByNamesAsync:(NSArray *)domains returnIps:(void (^)(NSDictionary * ipsDictionary))handler;
 
