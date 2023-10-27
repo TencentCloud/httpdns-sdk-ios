@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -50,7 +50,7 @@
 		509467661EAC915800F53427 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 509467651EAC915800F53427 /* launch.png */; };
 		5F1332EB28FFECED00A22D2A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD581C294083007D0A9E /* libsqlite3.tbd */; };
 		5F1A214C28C0AE810008E8FC /* SNIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A214B28C0AE800008E8FC /* SNIViewController.m */; };
-		5F7BDD682A5278B8008A8292 /* MSDKDns_C11.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7BDD672A5278B8008A8292 /* MSDKDns_C11.framework */; };
+		5F5B282C2AE7C32E0067651F /* MSDKDns_C11.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B282B2AE7C32E0067651F /* MSDKDns_C11.xcframework */; };
 		5F85CB9328B3A2A5003D20D1 /* HttpDnsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F85CB9228B3A2A4003D20D1 /* HttpDnsViewController.m */; };
 		5F85CB9728B3A368003D20D1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD521C29406A007D0A9E /* libz.tbd */; };
 		5F85CB9928B3A37B003D20D1 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */; };
@@ -136,8 +136,8 @@
 		509467651EAC915800F53427 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BeaconAPI_Base.framework; sourceTree = "<group>"; };
 		5F1A214B28C0AE800008E8FC /* SNIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNIViewController.m; sourceTree = "<group>"; };
+		5F5B282B2AE7C32E0067651F /* MSDKDns_C11.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MSDKDns_C11.xcframework; path = "../../../../../Library/Developer/Xcode/DerivedData/sdkWorkspace-fzwspzfjxkyulaczlxnxaymfxjfm/Build/Products/Debug-iphoneos/MSDKDns_C11.xcframework"; sourceTree = "<group>"; };
 		5F5DAF5428A602AD00BF5B79 /* testConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testConfig.h; sourceTree = "<group>"; };
-		5F7BDD672A5278B8008A8292 /* MSDKDns_C11.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSDKDns_C11.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/sdkWorkspace-fzwspzfjxkyulaczlxnxaymfxjfm/Build/Products/Debug-iphoneos/MSDKDns_C11.framework"; sourceTree = "<group>"; };
 		5F85CB9228B3A2A4003D20D1 /* HttpDnsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDnsViewController.m; sourceTree = "<group>"; };
 		5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -151,12 +151,12 @@
 				5F85CB9A28B3A38B003D20D1 /* Security.framework in Frameworks */,
 				4426DD6D1C2942B6007D0A9E /* libc++.tbd in Frameworks */,
 				4426DD5B1C29408A007D0A9E /* libxml2.tbd in Frameworks */,
+				5F5B282C2AE7C32E0067651F /* MSDKDns_C11.xcframework in Frameworks */,
 				4426DD571C29407B007D0A9E /* libz.1.1.3.tbd in Frameworks */,
 				4426DD531C29406A007D0A9E /* libz.tbd in Frameworks */,
 				44F12A8C1B48E8A800812340 /* Security.framework in Frameworks */,
 				44F12A8A1B48E88500812340 /* CoreLocation.framework in Frameworks */,
 				44F12A871B48E7FE00812340 /* AdSupport.framework in Frameworks */,
-				5F7BDD682A5278B8008A8292 /* MSDKDns_C11.framework in Frameworks */,
 				44F12A851B48E7F300812340 /* QuartzCore.framework in Frameworks */,
 				44F12A831B48E7EC00812340 /* CoreText.framework in Frameworks */,
 				44F12A811B48E7E500812340 /* ImageIO.framework in Frameworks */,
@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */,
-				5F7BDD672A5278B8008A8292 /* MSDKDns_C11.framework */,
+				5F5B282B2AE7C32E0067651F /* MSDKDns_C11.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -499,7 +499,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -537,7 +537,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -550,9 +550,11 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = FN2V63AD2J;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = FN2V63AD2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -564,8 +566,12 @@
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MSDKDnsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/../..";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"$(PROJECT_DIR)/../..",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -574,7 +580,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.httpdnsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = com.tencent.httpdnsdemo_Development_SignProvision;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = com.tencent.httpdnsdemo_Development_SignProvision;
 			};
 			name = Debug;
 		};
@@ -583,9 +590,11 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = FN2V63AD2J;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = FN2V63AD2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -597,8 +606,12 @@
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MSDKDnsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/../..";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"$(PROJECT_DIR)/../..",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -607,7 +620,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.httpdnsdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = com.tencent.httpdnsdemo_Development_SignProvision;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = com.tencent.httpdnsdemo_Development_SignProvision;
 			};
 			name = Release;
 		};
@@ -626,7 +640,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MSDKDnsDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MSDKDnsDemo.app/MSDKDnsDemo";
 			};
@@ -643,7 +661,11 @@
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = MSDKDnsDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MSDKDnsDemo.app/MSDKDnsDemo";
 			};
@@ -679,7 +701,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -692,9 +714,11 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = FN2V63AD2J;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = FN2V63AD2J;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -706,8 +730,12 @@
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MSDKDnsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/../..";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"$(PROJECT_DIR)/../..",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -717,7 +745,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[arch=*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = com.tencent.httpdnsdemo_Development_SignProvision;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = com.tencent.httpdnsdemo_Development_SignProvision;
 			};
 			name = DailyBuild;
 		};
@@ -732,7 +761,11 @@
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = MSDKDnsDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MSDKDnsDemo.app/MSDKDnsDemo";
 			};

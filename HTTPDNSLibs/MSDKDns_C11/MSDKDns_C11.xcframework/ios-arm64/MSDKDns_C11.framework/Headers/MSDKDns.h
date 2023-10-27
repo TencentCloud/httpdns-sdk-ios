@@ -5,7 +5,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.8.1"
+#define MSDKDns_Version @"1.9.0"
 
 #import <Foundation/Foundation.h>
 
@@ -191,6 +191,11 @@ typedef struct DnsConfigStruct {
  清理本地所有缓存，除非业务明确需要，不要调用该方法
 */
 - (void)clearCache;
+
+/**
+ 需要清除的host域名数组。如果需要清空全部数据，传nil或者空数组即可
+*/
+- (void)clearHostCache:(NSArray *)hostArray;
 
 #pragma mark-查询网络栈支持情况
 /**

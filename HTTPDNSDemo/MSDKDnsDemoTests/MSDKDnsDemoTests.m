@@ -180,7 +180,6 @@
     // This is an example of a functional test case.
     
     DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.98";
 #ifdef testConfig_h
     config->dnsId = TESTDnsID; // 授权 Id
     config->dnsKey = TESTDnskey; // des 加密密钥
@@ -208,7 +207,6 @@
     // This is an example of a functional test case.
         
     DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.98";
 #ifdef testConfig_h
     config->dnsId = TESTDnsID; // 授权 Id
     config->dnsKey = TESTDnskey; // des 加密密钥
@@ -233,7 +231,6 @@
 
 - (void)testHTTPDesIPBoth {
     DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.98";
 #ifdef testConfig_h
     config->dnsId = TESTDnsID; // 授权 Id
     config->dnsKey = TESTDnskey; // des 加密密钥
@@ -260,7 +257,6 @@
 - (void)testHTTPAesIPV4 {
     // This is an example of a functional test case.
     DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.98";
 #ifdef testConfig_h
     config->dnsId = TESTDnsID; // 授权 Id
     config->dnsKey = TESTDnsAESkey; // aes 加密密钥
@@ -287,7 +283,6 @@
 - (void)testHTTPAesIPV6 {
     // This is an example of a functional test case.
     DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.98";
 #ifdef testConfig_h
     config->dnsId = TESTDnsID; // 授权 Id
     config->dnsKey = TESTDnsAESkey; // aes 加密密钥
@@ -312,7 +307,6 @@
 - (void)testHTTPAesIPBoth {
     // This is an example of a functional test case.
     DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.98";
 #ifdef testConfig_h
     config->dnsId = TESTDnsID; // 授权 Id
     config->dnsKey = TESTDnsAESkey; // aes 加密密钥
@@ -339,7 +333,6 @@
 - (void)testHTTPSIPV4 {
     // This is an example of a functional test case.
     DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.99";
 #ifdef testConfig_h
     config->dnsId = TESTDnsID; // 授权 Id
     config->dnsKey = TESTDnskey; // des 加密密钥
@@ -366,7 +359,6 @@
 - (void)testHTTPSIPV6 {
     // This is an example of a functional test case.
     DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.99";
 #ifdef testConfig_h
     config->dnsId = TESTDnsID; // 授权 Id
     config->dnsKey = TESTDnskey; // des 加密密钥
@@ -391,7 +383,6 @@
 - (void)testHTTPSIPBoth {
     // This is an example of a functional test case.
     DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.99";
 #ifdef testConfig_h
     config->dnsId = TESTDnsID; // 授权 Id
     config->dnsKey = TESTDnskey; // des 加密密钥
