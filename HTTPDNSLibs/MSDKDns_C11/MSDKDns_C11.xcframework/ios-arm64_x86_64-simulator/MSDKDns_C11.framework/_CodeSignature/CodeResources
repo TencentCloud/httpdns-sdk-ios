@@ -4,33 +4,33 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/MSDKDns.h</key>
-		<data>
-		B0UmyMSUD0eoYOoeCBB+89rKHHE=
-		</data>
-		<key>Headers/MSDKDnsHttpMessageTools.h</key>
-		<data>
-		1tuw/RS4c9msomQv/X3t+02VYkM=
-		</data>
 		<key>Info.plist</key>
 		<data>
-		4xqPBGD93tEsSbg/vDie/RSeeCg=
+		GA5ZIQkwjuxlByL/kjtT0Chvcyg=
+		</data>
+		<key>Versions/A/Headers/MSDKDns.h</key>
+		<data>
+		1mvHKNWuf49f9z500ujdujBCFcA=
+		</data>
+		<key>Versions/A/Headers/MSDKDnsHttpMessageTools.h</key>
+		<data>
+		1tuw/RS4c9msomQv/X3t+02VYkM=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/MSDKDns.h</key>
+		<key>Versions/A/Headers/MSDKDns.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			B0UmyMSUD0eoYOoeCBB+89rKHHE=
+			1mvHKNWuf49f9z500ujdujBCFcA=
 			</data>
 			<key>hash2</key>
 			<data>
-			JugD1CC8fAuwlSUSrM0QsnP3FxrcC12FwoAq0VqEPIU=
+			VV9PurSGqjTnstzmhHiAw52NxxKPf34+KjTBl0FCPEc=
 			</data>
 		</dict>
-		<key>Headers/MSDKDnsHttpMessageTools.h</key>
+		<key>Versions/A/Headers/MSDKDnsHttpMessageTools.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
