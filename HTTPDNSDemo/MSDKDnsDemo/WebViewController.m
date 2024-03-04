@@ -1,7 +1,10 @@
-/**
- * Copyright (c) Tencent. All rights reserved.
- */
-
+//
+//  WebViewController.m
+//  MSDKDnsDemo
+//
+//  Created by eric hu on 2024/1/29.
+//  Copyright © 2024 Tencent. All rights reserved.
+//
 #import <WebKit/WebKit.h>
 #import <MSDKDns_C11/MSDKDns.h>
 #import <MSDKDns_C11/MSDKDnsHttpMessageTools.h>
@@ -60,8 +63,7 @@
         [self.scrollViewForWk addSubview:self.wkWebView];
     }
     
-    NSURL* url = [NSURL URLWithString:@"https://www.juejin.cn"];
-//    NSURL* url = [NSURL URLWithString:@"http://localhost:5500/index.html"];
+    NSURL* url = [NSURL URLWithString:@"https://www.qq.com"];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     
     [self.wkWebView loadRequest:request];
