@@ -29,7 +29,6 @@
 
 - (void)loadConfig {
     DnsConfig config = {
-        .dnsIp = @"HTTPDNS 服务器IP",
         .dnsId = dns授权id,
         .dnsKey = @"DesKey加密密钥",
         .encryptType = HttpDnsEncryptTypeDES,
