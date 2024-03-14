@@ -1,10 +1,7 @@
-//
-//  WebViewController.m
-//  MSDKDnsDemo
-//
-//  Created by eric hu on 2024/1/29.
-//  Copyright © 2024 Tencent. All rights reserved.
-//
+/**
+ * Copyright (c) Tencent. All rights reserved.
+ */
+
 #import <WebKit/WebKit.h>
 #import <MSDKDns_C11/MSDKDns.h>
 #import <MSDKDns_C11/MSDKDnsHttpMessageTools.h>
@@ -31,7 +28,7 @@
     [[MSDKDns sharedInstance] initConfig: &config];
 
    // 设置需要进行预解析的域名
-    [[MSDKDns sharedInstance] WGSetPreResolvedDomains:@[@"dnspod.com", @"dnspod.cn"]];
+    [[MSDKDns sharedInstance] WGSetPreResolvedDomains:@[@"qq.com"]];
     
     // show webview
     _scrollViewForWk = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 200, self.view.bounds.size.width - 20, 500)];

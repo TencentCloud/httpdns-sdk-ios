@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -50,7 +50,9 @@
 		509467661EAC915800F53427 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 509467651EAC915800F53427 /* launch.png */; };
 		5F1332EB28FFECED00A22D2A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD581C294083007D0A9E /* libsqlite3.tbd */; };
 		5F1A214C28C0AE810008E8FC /* SNIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A214B28C0AE800008E8FC /* SNIViewController.m */; };
-		5F5B282C2AE7C32E0067651F /* MSDKDns_C11.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F5B282B2AE7C32E0067651F /* MSDKDns_C11.xcframework */; };
+		5F2B79B12B95A8E800C4A4D3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B79AF2B95A8E800C4A4D3 /* WebViewController.m */; };
+		5F2B79B32B95A9EA00C4A4D3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2B79B22B95A9EA00C4A4D3 /* WebKit.framework */; };
+		5F2B79B72B95B06400C4A4D3 /* MSDKDns_C11.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2B79B62B95B06400C4A4D3 /* MSDKDns_C11.framework */; };
 		5F85CB9328B3A2A5003D20D1 /* HttpDnsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F85CB9228B3A2A4003D20D1 /* HttpDnsViewController.m */; };
 		5F85CB9728B3A368003D20D1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD521C29406A007D0A9E /* libz.tbd */; };
 		5F85CB9928B3A37B003D20D1 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */; };
@@ -136,7 +138,11 @@
 		509467651EAC915800F53427 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		50A0FEDE1D0E8C6A004C502B /* BeaconAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BeaconAPI_Base.framework; sourceTree = "<group>"; };
 		5F1A214B28C0AE800008E8FC /* SNIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNIViewController.m; sourceTree = "<group>"; };
-		5F5B282B2AE7C32E0067651F /* MSDKDns_C11.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = MSDKDns_C11.xcframework; path = "../../../../../Library/Developer/Xcode/DerivedData/sdkWorkspace-fzwspzfjxkyulaczlxnxaymfxjfm/Build/Products/Debug-iphoneos/MSDKDns_C11.xcframework"; sourceTree = "<group>"; };
+		5F2B79AF2B95A8E800C4A4D3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		5F2B79B02B95A8E800C4A4D3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		5F2B79B22B95A9EA00C4A4D3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		5F2B79B42B95A9F900C4A4D3 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
+		5F2B79B62B95B06400C4A4D3 /* MSDKDns_C11.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSDKDns_C11.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/sdkWorkspace-fzwspzfjxkyulaczlxnxaymfxjfm/Build/Products/Debug-iphoneos/MSDKDns_C11.framework"; sourceTree = "<group>"; };
 		5F5DAF5428A602AD00BF5B79 /* testConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testConfig.h; sourceTree = "<group>"; };
 		5F85CB9228B3A2A4003D20D1 /* HttpDnsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDnsViewController.m; sourceTree = "<group>"; };
 		5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -151,8 +157,9 @@
 				5F85CB9A28B3A38B003D20D1 /* Security.framework in Frameworks */,
 				4426DD6D1C2942B6007D0A9E /* libc++.tbd in Frameworks */,
 				4426DD5B1C29408A007D0A9E /* libxml2.tbd in Frameworks */,
-				5F5B282C2AE7C32E0067651F /* MSDKDns_C11.xcframework in Frameworks */,
+				5F2B79B32B95A9EA00C4A4D3 /* WebKit.framework in Frameworks */,
 				4426DD571C29407B007D0A9E /* libz.1.1.3.tbd in Frameworks */,
+				5F2B79B72B95B06400C4A4D3 /* MSDKDns_C11.framework in Frameworks */,
 				4426DD531C29406A007D0A9E /* libz.tbd in Frameworks */,
 				44F12A8C1B48E8A800812340 /* Security.framework in Frameworks */,
 				44F12A8A1B48E88500812340 /* CoreLocation.framework in Frameworks */,
@@ -187,8 +194,10 @@
 		2F3B2A7125F21C28004A70B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F2B79B42B95A9F900C4A4D3 /* Network.framework */,
+				5F2B79B22B95A9EA00C4A4D3 /* WebKit.framework */,
 				5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */,
-				5F5B282B2AE7C32E0067651F /* MSDKDns_C11.xcframework */,
+				5F2B79B62B95B06400C4A4D3 /* MSDKDns_C11.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -231,6 +240,8 @@
 				5F85CB9228B3A2A4003D20D1 /* HttpDnsViewController.m */,
 				504F54421ECB02D4001BD7A9 /* SNIViewController.h */,
 				5F1A214B28C0AE800008E8FC /* SNIViewController.m */,
+				5F2B79B02B95A8E800C4A4D3 /* WebViewController.h */,
+				5F2B79AF2B95A8E800C4A4D3 /* WebViewController.m */,
 				44F12A411B48E52A00812340 /* Main.storyboard */,
 				44F12A441B48E52A00812340 /* Images.xcassets */,
 				44F12A461B48E52A00812340 /* LaunchScreen.xib */,
@@ -414,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F85CB9328B3A2A5003D20D1 /* HttpDnsViewController.m in Sources */,
+				5F2B79B12B95A8E800C4A4D3 /* WebViewController.m in Sources */,
 				44F12A3D1B48E52A00812340 /* AppDelegate.m in Sources */,
 				44F12A3A1B48E52A00812340 /* main.m in Sources */,
 				5F1A214C28C0AE810008E8FC /* SNIViewController.m in Sources */,
@@ -566,12 +578,8 @@
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MSDKDnsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"$(PROJECT_DIR)/../..",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/../..";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -606,12 +614,8 @@
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MSDKDnsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"$(PROJECT_DIR)/../..",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/../..";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -640,11 +644,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MSDKDnsDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MSDKDnsDemo.app/MSDKDnsDemo";
 			};
@@ -661,11 +661,7 @@
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = MSDKDnsDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MSDKDnsDemo.app/MSDKDnsDemo";
 			};
@@ -730,12 +726,8 @@
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = MSDKDnsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"$(PROJECT_DIR)/../..",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(PROJECT_DIR)/../..";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -761,11 +753,7 @@
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = MSDKDnsDemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MSDKDnsDemo.app/MSDKDnsDemo";
 			};
