@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/MSDKDns.h</key>
 		<data>
-		B0UmyMSUD0eoYOoeCBB+89rKHHE=
+		zETqPBCL9qwBT9p41xLiNSLjXWE=
 		</data>
 		<key>Headers/MSDKDnsHttpMessageTools.h</key>
 		<data>
@@ -14,11 +14,11 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		KMUZcCVdQ4lFHhAcno9F+EOguA4=
+		FkF1D91FAC3PRJHstiYM7YV788s=
 		</data>
 		<key>Versions/A/Headers/MSDKDns.h</key>
 		<data>
-		1mvHKNWuf49f9z500ujdujBCFcA=
+		zETqPBCL9qwBT9p41xLiNSLjXWE=
 		</data>
 		<key>Versions/A/Headers/MSDKDnsHttpMessageTools.h</key>
 		<data>
@@ -31,11 +31,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			B0UmyMSUD0eoYOoeCBB+89rKHHE=
+			zETqPBCL9qwBT9p41xLiNSLjXWE=
 			</data>
 			<key>hash2</key>
 			<data>
-			JugD1CC8fAuwlSUSrM0QsnP3FxrcC12FwoAq0VqEPIU=
+			2XbksaRg338a0CiTh2g7bKKmKjmWxSWJVXW7YzeJpGk=
 			</data>
 		</dict>
 		<key>Headers/MSDKDnsHttpMessageTools.h</key>
@@ -53,11 +53,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			1mvHKNWuf49f9z500ujdujBCFcA=
+			zETqPBCL9qwBT9p41xLiNSLjXWE=
 			</data>
 			<key>hash2</key>
 			<data>
-			VV9PurSGqjTnstzmhHiAw52NxxKPf34+KjTBl0FCPEc=
+			2XbksaRg338a0CiTh2g7bKKmKjmWxSWJVXW7YzeJpGk=
 			</data>
 		</dict>
 		<key>Versions/A/Headers/MSDKDnsHttpMessageTools.h</key>

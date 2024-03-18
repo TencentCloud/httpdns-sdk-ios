@@ -52,7 +52,7 @@
 		5F1A214C28C0AE810008E8FC /* SNIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A214B28C0AE800008E8FC /* SNIViewController.m */; };
 		5F2B79B12B95A8E800C4A4D3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B79AF2B95A8E800C4A4D3 /* WebViewController.m */; };
 		5F2B79B32B95A9EA00C4A4D3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2B79B22B95A9EA00C4A4D3 /* WebKit.framework */; };
-		5F2B79B72B95B06400C4A4D3 /* MSDKDns_C11.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F2B79B62B95B06400C4A4D3 /* MSDKDns_C11.framework */; };
+		5F619FA22BA8231B0015E5E0 /* MSDKDns_C11.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F619FA12BA8231B0015E5E0 /* MSDKDns_C11.framework */; };
 		5F85CB9328B3A2A5003D20D1 /* HttpDnsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F85CB9228B3A2A4003D20D1 /* HttpDnsViewController.m */; };
 		5F85CB9728B3A368003D20D1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4426DD521C29406A007D0A9E /* libz.tbd */; };
 		5F85CB9928B3A37B003D20D1 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */; };
@@ -142,8 +142,8 @@
 		5F2B79B02B95A8E800C4A4D3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		5F2B79B22B95A9EA00C4A4D3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		5F2B79B42B95A9F900C4A4D3 /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
-		5F2B79B62B95B06400C4A4D3 /* MSDKDns_C11.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSDKDns_C11.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/sdkWorkspace-fzwspzfjxkyulaczlxnxaymfxjfm/Build/Products/Debug-iphoneos/MSDKDns_C11.framework"; sourceTree = "<group>"; };
 		5F5DAF5428A602AD00BF5B79 /* testConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = testConfig.h; sourceTree = "<group>"; };
+		5F619FA12BA8231B0015E5E0 /* MSDKDns_C11.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MSDKDns_C11.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/sdkWorkspace-fzwspzfjxkyulaczlxnxaymfxjfm/Build/Products/Debug-iphoneos/MSDKDns_C11.framework"; sourceTree = "<group>"; };
 		5F85CB9228B3A2A4003D20D1 /* HttpDnsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpDnsViewController.m; sourceTree = "<group>"; };
 		5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -159,7 +159,6 @@
 				4426DD5B1C29408A007D0A9E /* libxml2.tbd in Frameworks */,
 				5F2B79B32B95A9EA00C4A4D3 /* WebKit.framework in Frameworks */,
 				4426DD571C29407B007D0A9E /* libz.1.1.3.tbd in Frameworks */,
-				5F2B79B72B95B06400C4A4D3 /* MSDKDns_C11.framework in Frameworks */,
 				4426DD531C29406A007D0A9E /* libz.tbd in Frameworks */,
 				44F12A8C1B48E8A800812340 /* Security.framework in Frameworks */,
 				44F12A8A1B48E88500812340 /* CoreLocation.framework in Frameworks */,
@@ -174,6 +173,7 @@
 				5F85CB9B28B3A393003D20D1 /* Security.framework in Frameworks */,
 				44F12A771B48E7BF00812340 /* CoreGraphics.framework in Frameworks */,
 				44F12A751B48E7B600812340 /* Foundation.framework in Frameworks */,
+				5F619FA22BA8231B0015E5E0 /* MSDKDns_C11.framework in Frameworks */,
 				5F85CB9928B3A37B003D20D1 /* CoreFoundation.framework in Frameworks */,
 				44F12A731B48E7B000812340 /* UIKit.framework in Frameworks */,
 				44F12A711B48E7AB00812340 /* SystemConfiguration.framework in Frameworks */,
@@ -196,8 +196,8 @@
 			children = (
 				5F2B79B42B95A9F900C4A4D3 /* Network.framework */,
 				5F2B79B22B95A9EA00C4A4D3 /* WebKit.framework */,
+				5F619FA12BA8231B0015E5E0 /* MSDKDns_C11.framework */,
 				5F85CB9828B3A37B003D20D1 /* CoreFoundation.framework */,
-				5F2B79B62B95B06400C4A4D3 /* MSDKDns_C11.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -511,7 +511,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -549,7 +549,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -697,7 +697,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
