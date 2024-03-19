@@ -28,14 +28,12 @@
     // 注册拦截请求的NSURLProtocol
     [NSURLProtocol registerClass:[MSDKDnsHttpMessageTools class]];
     
-    DnsConfig *config = new DnsConfig();
-    config->dnsIp = @"119.29.29.99";
-//    config->dnsId = @"your dnsId";
-//    config->dnsKey = @"your dnsKey";
-//    config->encryptType = HttpDnsEncryptTypeDES;
-    config->debug = YES;
-    config->timeout = 10000;
-    [[MSDKDns sharedInstance] initConfig: config];
+    DnsConfig config = {
+        .dnsId = dns授权id,
+        .dnsKey = @"DesKey加密密钥",
+        .encryptType = HttpDnsEncryptTypeDES,
+    };
+    [[MSDKDns sharedInstance] initConfig: &config];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,24 +47,6 @@
     NSString *originalUrl = @"https://www.qq.com/";
     NSURL* url = [NSURL URLWithString:originalUrl];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-    NSArray* result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
-    NSString* ip = nil;
-    if (result && result.count > 1) {
-        if (![result[1] isEqualToString:@"0"]) {
-            ip = result[1];
-        } else {
-            ip = result[0];
-        }
-    }
-    // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
-    if (ip) {
-        NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
-        if (NSNotFound != hostFirstRange.location) {
-            NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
-            request.URL = [NSURL URLWithString:newUrl];
-            [request setValue:url.host forHTTPHeaderField:@"host"];
-        }
-    }
     self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [self.connection start];
 }
@@ -74,47 +54,17 @@
 - (IBAction)usingSession:(id)sender {
     _logView.text = nil;
     // 需要设置SNI的URL
-    NSString *originalUrl = @"https://www.qq.com/";;
+    NSString *originalUrl = @"https://www.qq.com/";
     NSURL* url = [NSURL URLWithString:originalUrl];
     NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
-    NSArray* result = [[MSDKDns sharedInstance] WGGetHostByName:url.host];
-    NSString* ip = nil;
-    if (result && result.count > 1) {
-        if (![result[1] isEqualToString:@"0"]) {
-            ip = result[1];
-        } else {
-            ip = result[0];
-        }
-    }
-    // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
-    if (ip) {
-        NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
-        if (NSNotFound != hostFirstRange.location) {
-            NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
-            request.URL = [NSURL URLWithString:newUrl];
-            [request setValue:url.host forHTTPHeaderField:@"host"];
-        }
-    }
+    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSArray *protocolArray = @[[MSDKDnsHttpMessageTools class]];
     configuration.protocolClasses = protocolArray;
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
     self.task = [session dataTaskWithRequest:request];
     [self.task resume];
-    
-    // 注*：使用NSURLProtocol拦截NSURLSession发起的POST请求时，HTTPBody为空。
-    // 解决方案有两个：1. 使用NSURLConnection发POST请求。
-    // 2. 先将HTTPBody放入HTTP Header field中，然后在NSURLProtocol中再取出来。
-    // 下面主要演示第二种解决方案
-    // NSString *postStr = [NSString stringWithFormat:@"param1=%@&param2=%@", @"val1", @"val2"];
-    // [_request addValue:postStr forHTTPHeaderField:@"originalBody"];
-    // _request.HTTPMethod = @"POST";
-    // NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    // NSArray *protocolArray = @[ [CFHttpMessageURLProtocol class] ];
-    // configuration.protocolClasses = protocolArray;
-    // NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    // NSURLSessionTask *task = [session dataTaskWithRequest:_request];
-    // [task resume];
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
