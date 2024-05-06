@@ -6,11 +6,15 @@
 	<dict>
 		<key>Info.plist</key>
 		<data>
-		0COFDLUobkpGiiqcaB87VmGOiTc=
+		6ey47Z5aa6shI5x3eNw7Xu1Y/WM=
+		</data>
+		<key>PrivacyInfo.xcprivacy</key>
+		<data>
+		CyIAYZ38Bdk0mH7kk9ILnzSfEes=
 		</data>
 		<key>Versions/A/Headers/MSDKDns.h</key>
 		<data>
-		zETqPBCL9qwBT9p41xLiNSLjXWE=
+		97G5KlLo8kWk8LzpJPdAmw5HO00=
 		</data>
 		<key>Versions/A/Headers/MSDKDnsHttpMessageTools.h</key>
 		<data>
@@ -19,15 +23,26 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			CyIAYZ38Bdk0mH7kk9ILnzSfEes=
+			</data>
+			<key>hash2</key>
+			<data>
+			5MbjxNs2O0dfrIalbJUS6Pvwnwy1K8+01O/wHw0779Q=
+			</data>
+		</dict>
 		<key>Versions/A/Headers/MSDKDns.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zETqPBCL9qwBT9p41xLiNSLjXWE=
+			97G5KlLo8kWk8LzpJPdAmw5HO00=
 			</data>
 			<key>hash2</key>
 			<data>
-			2XbksaRg338a0CiTh2g7bKKmKjmWxSWJVXW7YzeJpGk=
+			DCKOqK857hG+HwUDst41indeSxQvLEcCIBpqRLK+gus=
 			</data>
 		</dict>
 		<key>Versions/A/Headers/MSDKDnsHttpMessageTools.h</key>
