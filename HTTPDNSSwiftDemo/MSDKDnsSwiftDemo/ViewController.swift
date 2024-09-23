@@ -18,7 +18,6 @@ class ViewController: UIViewController {
         // 调用SDK解析接口之前必须初始化配置
         self.msdkDns = MSDKDns.sharedInstance() as? MSDKDns;
         self.msdkDns?.initConfig(with: [
-            "dnsIp": "119.29.29.99",
             "debug": true,
             "dnsId": "your dnsId",
             "dnsKey": "your dnsKey",
