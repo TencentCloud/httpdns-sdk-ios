@@ -4,47 +4,25 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/MSDKDns.h</key>
-		<data>
-		TvvaczXYBImLcxNW1QNw6oPn4DA=
-		</data>
-		<key>Headers/MSDKDnsHttpMessageTools.h</key>
-		<data>
-		1tuw/RS4c9msomQv/X3t+02VYkM=
-		</data>
 		<key>Info.plist</key>
 		<data>
-		9JtdaZA+lICluEjJoEoiEYPSldw=
+		5bp0lhs6+z+tbnQKVmzHm0/a8Ao=
 		</data>
 		<key>PrivacyInfo.xcprivacy</key>
 		<data>
 		CyIAYZ38Bdk0mH7kk9ILnzSfEes=
 		</data>
+		<key>Versions/A/Headers/MSDKDns.h</key>
+		<data>
+		wcleY9+B9dQLGNthCFASGhjeJLg=
+		</data>
+		<key>Versions/A/Headers/MSDKDnsHttpMessageTools.h</key>
+		<data>
+		1tuw/RS4c9msomQv/X3t+02VYkM=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/MSDKDns.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			TvvaczXYBImLcxNW1QNw6oPn4DA=
-			</data>
-			<key>hash2</key>
-			<data>
-			1rGuXcDyPm3omfaKdeH7YCyuZ/kA2WEBVrGESVt9hQ4=
-			</data>
-		</dict>
-		<key>Headers/MSDKDnsHttpMessageTools.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			1tuw/RS4c9msomQv/X3t+02VYkM=
-			</data>
-			<key>hash2</key>
-			<data>
-			4kJH5EbqUx+Hjta1x1IxHfRHK84TWaZvm+GoNZvYlHg=
-			</data>
-		</dict>
 		<key>PrivacyInfo.xcprivacy</key>
 		<dict>
 			<key>hash</key>
@@ -54,6 +32,28 @@
 			<key>hash2</key>
 			<data>
 			5MbjxNs2O0dfrIalbJUS6Pvwnwy1K8+01O/wHw0779Q=
+			</data>
+		</dict>
+		<key>Versions/A/Headers/MSDKDns.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wcleY9+B9dQLGNthCFASGhjeJLg=
+			</data>
+			<key>hash2</key>
+			<data>
+			Aua7Vqdts9rJuX1I6yC+0u2BCV1WUjw6DPIBlvlUIAg=
+			</data>
+		</dict>
+		<key>Versions/A/Headers/MSDKDnsHttpMessageTools.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			1tuw/RS4c9msomQv/X3t+02VYkM=
+			</data>
+			<key>hash2</key>
+			<data>
+			4kJH5EbqUx+Hjta1x1IxHfRHK84TWaZvm+GoNZvYlHg=
 			</data>
 		</dict>
 	</dict>
