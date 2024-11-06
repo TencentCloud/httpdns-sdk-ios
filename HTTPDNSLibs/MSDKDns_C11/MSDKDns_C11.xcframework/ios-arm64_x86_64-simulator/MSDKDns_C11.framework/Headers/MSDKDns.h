@@ -5,7 +5,7 @@
 #ifndef __MSDKDns_H__
 #define __MSDKDns_H__
 
-#define MSDKDns_Version @"1.10.5"
+#define MSDKDns_Version @"1.11.0"
 
 #import <Foundation/Foundation.h>
 
@@ -35,7 +35,7 @@ typedef struct DnsConfigStruct {
     NSString* routeIp; // 可选，DNS 请求的 ECS（EDNS-Client-Subnet）值，默认情况下 HTTPDNS 服务器会查询客户端出口 IP 为 DNS 线路查询 IP，可以指定线路 IP 地址。支持 IPv4/IPv6 地址传入
     BOOL httpOnly;// 可选，是否仅返回 httpDns 解析结果。默认 false，即当 httpDns 解析失败时会返回 localDns 解析结果，设置为 true 时，仅返回 httpDns 的解析结果
     NSUInteger retryTimesBeforeSwitchServer; // 可选，切换ip之前重试次数, 默认3次
-    NSUInteger minutesBeforeSwitchToMain; // 可选，设置切回主ip间隔时长，默认10分钟
+    NSUInteger minutesBeforeSwitchToMain __attribute__((deprecated("v1.11.0及以上不支持该设置"))); // 可选，设置切回主ip间隔时长，默认10分钟
     BOOL enableReport; // 是否开启解析异常上报，默认NO，不上报
     BOOL enableExperimentalBugly;  // 实验性参数，仅提供给内部特定团队使用，请勿启用
 } DnsConfig;

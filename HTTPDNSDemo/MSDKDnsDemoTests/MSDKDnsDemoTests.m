@@ -188,7 +188,6 @@
     config->encryptType = HttpDnsEncryptTypeDES;
 //    config->debug = YES;
     config->httpOnly = YES;
-    config->minutesBeforeSwitchToMain = 1;
     config->retryTimesBeforeSwitchServer = 2;
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeIPv4;
@@ -215,7 +214,6 @@
     config->encryptType = HttpDnsEncryptTypeDES;
 //    config->debug = YES;
     config->httpOnly = YES;
-    config->minutesBeforeSwitchToMain = 1;
     config->retryTimesBeforeSwitchServer = 2;
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeIPv6;
@@ -239,7 +237,6 @@
     config->encryptType = HttpDnsEncryptTypeDES;
 //    config->debug = YES;
     config->httpOnly = YES;
-    config->minutesBeforeSwitchToMain = 1;
     config->retryTimesBeforeSwitchServer = 2;
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeDual;
@@ -265,7 +262,6 @@
     config->encryptType = HttpDnsEncryptTypeAES;
 //    config->debug = YES;
     config->httpOnly = YES;
-    config->minutesBeforeSwitchToMain = 1;
     config->retryTimesBeforeSwitchServer = 2;
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeIPv4;
@@ -291,7 +287,6 @@
     config->encryptType = HttpDnsEncryptTypeAES;
 //    config->debug = YES;
     config->httpOnly = YES;
-    config->minutesBeforeSwitchToMain = 1;
     config->retryTimesBeforeSwitchServer = 2;
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeIPv6;
@@ -315,7 +310,6 @@
     config->encryptType = HttpDnsEncryptTypeAES;
 //    config->debug = YES;
     config->httpOnly = YES;
-    config->minutesBeforeSwitchToMain = 1;
     config->retryTimesBeforeSwitchServer = 2;
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeDual;
@@ -341,7 +335,6 @@
     config->encryptType = HttpDnsEncryptTypeHTTPS;
 //    config->debug = YES;
     config->httpOnly = YES;
-    config->minutesBeforeSwitchToMain = 1;
     config->retryTimesBeforeSwitchServer = 2;
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeIPv4;
@@ -367,7 +360,6 @@
     config->encryptType = HttpDnsEncryptTypeHTTPS;
 //    config->debug = YES;
     config->httpOnly = YES;
-    config->minutesBeforeSwitchToMain = 1;
     config->retryTimesBeforeSwitchServer = 2;
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeIPv6;
@@ -391,7 +383,6 @@
     config->encryptType = HttpDnsEncryptTypeHTTPS;
 //    config->debug = YES;
     config->httpOnly = YES;
-    config->minutesBeforeSwitchToMain = 1;
     config->retryTimesBeforeSwitchServer = 2;
     config->enableReport = YES;
     config->addressType = HttpDnsAddressTypeDual;
