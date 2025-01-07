@@ -27,11 +27,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clickButton () {
-//        let result = self.msdkDns?.wgGetHosts(byNames: ["qq.com", "dnspod.com"]);
-//        let data = try? JSONSerialization.data(withJSONObject: result ?? [], options: [])
-//        let str = String(data: data!, encoding: String.Encoding.utf8) ?? "";
-//        resultView?.insertText(str + "\n\n");
-        
         resultView?.text = ""
         let domains = ["qq.com", "dnspod.com"]
         let startTime = Date().timeIntervalSince1970
@@ -51,10 +46,4 @@ class ViewController: UIViewController {
     @IBAction func clickSniBtn(_ sender: Any) {
         AlamofireSwiftTest.sendAlamofireRequest(resultView: resultView);
     }
-    
 }
-
- 
-
-
- 
