@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		862556FF2CCF3A86002C2C5B /* AlamofireSwiftTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862556FE2CCF3A76002C2C5B /* AlamofireSwiftTest.swift */; };
+		862557022CCF3CF7002C2C5B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 862557012CCF3CF7002C2C5B /* Alamofire */; };
 		E8421552266B08C9004FB4A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8421551266B08C9004FB4A8 /* AppDelegate.swift */; };
 		E8421554266B08C9004FB4A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8421553266B08C9004FB4A8 /* SceneDelegate.swift */; };
 		E8421556266B08C9004FB4A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8421555266B08C9004FB4A8 /* ViewController.swift */; };
@@ -44,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		862556FE2CCF3A76002C2C5B /* AlamofireSwiftTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireSwiftTest.swift; sourceTree = "<group>"; };
 		E842154E266B08C9004FB4A8 /* MSDKDnsSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSDKDnsSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8421551266B08C9004FB4A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8421553266B08C9004FB4A8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 				E84215A8266B10B4004FB4A8 /* CoreGraphics.framework in Frameworks */,
 				E84215A6266B10AE004FB4A8 /* SystemConfiguration.framework in Frameworks */,
 				E84215A4266B10A7004FB4A8 /* CoreTelephony.framework in Frameworks */,
+				862557022CCF3CF7002C2C5B /* Alamofire in Frameworks */,
 				E84215A2266B10A0004FB4A8 /* Foundation.framework in Frameworks */,
 				E842159D266B1095004FB4A8 /* libc++.tbd in Frameworks */,
 				E8421598266B108B004FB4A8 /* libsqlite3.tbd in Frameworks */,
@@ -128,6 +132,7 @@
 		E8421550266B08C9004FB4A8 /* MSDKDnsSwiftDemo */ = {
 			isa = PBXGroup;
 			children = (
+				862556FE2CCF3A76002C2C5B /* AlamofireSwiftTest.swift */,
 				E8421551266B08C9004FB4A8 /* AppDelegate.swift */,
 				E8421553266B08C9004FB4A8 /* SceneDelegate.swift */,
 				E8421555266B08C9004FB4A8 /* ViewController.swift */,
@@ -261,6 +266,9 @@
 				Base,
 			);
 			mainGroup = E8421545266B08C9004FB4A8;
+			packageReferences = (
+				862557002CCF3CEE002C2C5B /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = E842154F266B08C9004FB4A8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -304,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				862556FF2CCF3A86002C2C5B /* AlamofireSwiftTest.swift in Sources */,
 				E8421556266B08C9004FB4A8 /* ViewController.swift in Sources */,
 				E8421552266B08C9004FB4A8 /* AppDelegate.swift in Sources */,
 				E8421554266B08C9004FB4A8 /* SceneDelegate.swift in Sources */,
@@ -637,6 +646,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		862557002CCF3CEE002C2C5B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		862557012CCF3CF7002C2C5B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 862557002CCF3CEE002C2C5B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E8421546266B08C9004FB4A8 /* Project object */;
 }
