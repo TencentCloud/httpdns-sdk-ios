@@ -10,5 +10,5 @@
 
 
 #import "MSDKDns_C11/MSDKDns.h"
-
+#import "MSDKDns_C11/MSDKDnsHttpMessageTools.h"
 #endif /* SwiftOC_Header_h */

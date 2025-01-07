@@ -27,13 +27,23 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clickButton () {
-        let result = self.msdkDns?.wgGetHosts(byNames: ["qq.com", "dnspod.com"]);
-        let data = try? JSONSerialization.data(withJSONObject: result ?? [], options: [])
-        let str = String(data: data!, encoding: String.Encoding.utf8) ?? "";
-        resultView?.insertText(str + "\n\n");
+        resultView?.text = ""
+        let domains = ["qq.com", "dnspod.com"]
+        let startTime = Date().timeIntervalSince1970
+        if let result = msdkDns?.wgGetAllHosts(byNames: domains) {
+            let endTime = Date().timeIntervalSince1970
+            let duration = (endTime - startTime) * 1000
+            print("=====本次耗时=====：\(duration)ms")
+            if let jsonData = try? JSONSerialization.data(withJSONObject: result, options: []),
+               let jsonString = String(data: jsonData, encoding: .utf8) {
+                resultView?.insertText("\n解析结果为：\n\(jsonString)\n\n")
+            }
+        } else {
+            resultView?.insertText("\n本次解析失败，请再次请求一次。\n\n")
+        }
     }
 
-
+    @IBAction func clickSniBtn(_ sender: Any) {
+        AlamofireSwiftTest.sendAlamofireRequest(resultView: resultView);
+    }
 }
-
- 
